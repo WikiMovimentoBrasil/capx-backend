@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 
-from users.models import Affiliation, Region, Language, WikimediaProject, AreaOfInterest, CustomUser, Profile
+from users.models import Region, Language, WikimediaProject, AreaOfInterest, Organization, CustomUser, Profile
 
 
 class ProfileInline(admin.StackedInline):
@@ -21,7 +20,7 @@ class AccountUserAdmin(AuthUserAdmin):
 
 
 admin.site.register(CustomUser, AccountUserAdmin)
-admin.site.register(Affiliation)
+admin.site.register(Organization)
 admin.site.register(Region)
 admin.site.register(Language)
 admin.site.register(WikimediaProject)

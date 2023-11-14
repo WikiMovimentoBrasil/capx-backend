@@ -2,24 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
 from django.utils.translation import gettext_lazy as _
 from django.dispatch import receiver
+from django.utils import timezone
 from django.db.models.signals import post_save
 from skills.models import Skill
-from datetime import datetime
-
-
-class Affiliation(models.Model):
-    organization_name = models.CharField(verbose_name=_("Organization name"), max_length=256, unique=True,
-                                         error_messages={"unique": _("There's another organization with that name.")})
-    organization_code = models.CharField(verbose_name=_("Organization code"), max_length=20, null=True, blank=True)
-    organization_website = models.URLField(verbose_name=_("Organization website"), unique=True,
-                                           error_messages={
-                                               "unique": _("This website is already used by another organization.")})
-
-    def __str__(self):
-        if self.organization_code:
-            return self.organization_name + " (" + self.organization_code + ")"
-        else:
-            return self.organization_name
 
 
 class Region(models.Model):
@@ -54,6 +39,32 @@ class AreaOfInterest(models.Model):
         return self.area_name
 
 
+class OrganizationType(models.Model):
+    type_code = models.CharField(verbose_name=_("Type code"), max_length=20, unique=True)
+    type_name = models.CharField(verbose_name=_("Type name"), max_length=140)
+
+
+class Organization(models.Model):
+    organization_name = models.CharField(verbose_name=_("Organization name"), max_length=256, unique=True,
+                                         error_messages={"unique": _("There's another organization with that name.")})
+    organization_description = models.TextField(verbose_name=_("Organization description"), max_length=1024)
+    organization_code = models.CharField(verbose_name=_("Organization code"), max_length=20, null=True, blank=True)
+    organization_website = models.URLField(
+        verbose_name=_("Organization website"),
+        unique=True,
+        error_messages={"unique": _("This website is already used by another organization.")})
+    organization_type = models.ForeignKey(OrganizationType, verbose_name=_("Organization type"),
+                                          on_delete=models.RESTRICT)
+    organization_location = models.ManyToManyField(Region, verbose_name=_("Region"),
+                                                   related_name="organization_region", blank=True)
+
+    def __str__(self):
+        if self.organization_code:
+            return self.organization_name + " (" + self.organization_code + ")"
+        else:
+            return self.organization_name
+
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(_("username"), max_length=100, unique=True, help_text=_("100 characters or fewer"))
     first_name = models.CharField(_('first name'), max_length=30, null=True, blank=True)
@@ -64,7 +75,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
                                    help_text=_('Designates whether the user can log into this admin site.'))
     is_active = models.BooleanField(_('active'), default=True, help_text=_(
         'Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
-    date_joined = models.DateTimeField(_('date joined'), default=datetime.now())
+    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     user_groups = models.JSONField(null=True, blank=False)
 
     objects = UserManager()
@@ -103,7 +114,7 @@ class Profile(models.Model):
     # LOCALIZATION
     region = models.ManyToManyField(Region, verbose_name=_("Region"), related_name="user_region", blank=True)
     language = models.ManyToManyField(Language, verbose_name=_("Language"), related_name="user_language", blank=True)
-    affiliation = models.ManyToManyField(Affiliation, verbose_name=_("Affiliation"),
+    affiliation = models.ManyToManyField(Organization, verbose_name=_("Affiliation"),
                                          related_name="user_affiliation", blank=True)
     wikimedia_project = models.ManyToManyField(WikimediaProject, verbose_name=_("Wikimedia project"),
                                                related_name="user_wikimedia_project", blank=True)
