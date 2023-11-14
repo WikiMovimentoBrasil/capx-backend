@@ -92,7 +92,7 @@ class Profile(models.Model):
 
     CONTACT_METHOD = (
         ("email", _("Email")),
-        ("wiki", _("Discussion page")),
+        ("discussion", _("Discussion page")),
         ("wiki", _("Meta-Wiki talk page")),
         ("telegram", _("Telegram")),
         ("IRC", _("IRC")),
