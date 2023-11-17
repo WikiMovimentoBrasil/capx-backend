@@ -103,7 +103,6 @@ class Profile(models.Model):
     pronoun = models.CharField(verbose_name=_("Pronoun"), max_length=20, choices=PRONOUN, null=True, blank=True)
     profile_image = models.URLField(verbose_name=_("Profile image"), null=True, blank=True)
     display_name = models.CharField(verbose_name=_("Display name"), max_length=387, null=True, blank=True)
-    birthday = models.DateField(verbose_name=_("Birthday"), null=True, blank=True)
     about = models.TextField(verbose_name=_("About me"), max_length=2000, null=True, blank=True)
 
     # SOCIAL MEDIA
