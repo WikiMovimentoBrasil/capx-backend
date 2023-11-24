@@ -1,0 +1,1490 @@
+[
+    {
+        "model": "users.affiliate",
+        "pk": 1,
+        "fields": {
+            "code": "AM",
+            "name": "Wikimedia Armenia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 2,
+        "fields": {
+            "code": "AR",
+            "name": "Wikimedia Argentina"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 3,
+        "fields": {
+            "code": "AT",
+            "name": "Wikimedia Austria"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 4,
+        "fields": {
+            "code": "AU",
+            "name": "Wikimedia Australia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 5,
+        "fields": {
+            "code": "BD",
+            "name": "Wikimedia Bangladesh"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 6,
+        "fields": {
+            "code": "BE",
+            "name": "Wikimedia Belgium"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 7,
+        "fields": {
+            "code": "CA",
+            "name": "Wikimedia Canada"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 8,
+        "fields": {
+            "code": "CH",
+            "name": "Wikimedia Switzerland"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 9,
+        "fields": {
+            "code": "CL",
+            "name": "Wikimedia Chile"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 10,
+        "fields": {
+            "code": "CO",
+            "name": "Wikimedia Colombia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 11,
+        "fields": {
+            "code": "CZ",
+            "name": "Wikimedia Czech Republic"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 12,
+        "fields": {
+            "code": "DE",
+            "name": "Wikimedia Germany"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 13,
+        "fields": {
+            "code": "DK",
+            "name": "Wikimedia Denmark"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 14,
+        "fields": {
+            "code": "EE",
+            "name": "Wikimedia Estonia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 15,
+        "fields": {
+            "code": "ES",
+            "name": "Wikimedia Spain"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 16,
+        "fields": {
+            "code": "FI",
+            "name": "Wikimedia Finland"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 17,
+        "fields": {
+            "code": "FR",
+            "name": "Wikimedia France"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 18,
+        "fields": {
+            "code": "HU",
+            "name": "Wikimedia Hungary"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 19,
+        "fields": {
+            "code": "ID",
+            "name": "Wikimedia Indonesia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 20,
+        "fields": {
+            "code": "IL",
+            "name": "Wikimedia Israel"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 21,
+        "fields": {
+            "code": "IT",
+            "name": "Wikimedia Italy"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 22,
+        "fields": {
+            "code": "KR",
+            "name": "Wikimedia Korea"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 23,
+        "fields": {
+            "code": "MX",
+            "name": "Wikimedia Mexico"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 24,
+        "fields": {
+            "code": "NL",
+            "name": "Wikimedia Netherlands"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 25,
+        "fields": {
+            "code": "NO",
+            "name": "Wikimedia Norway"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 26,
+        "fields": {
+            "code": "PL",
+            "name": "Wikimedia Poland"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 27,
+        "fields": {
+            "code": "PT",
+            "name": "Wikimedia Portugal"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 28,
+        "fields": {
+            "code": "RS",
+            "name": "Wikimedia Serbia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 29,
+        "fields": {
+            "code": "RU",
+            "name": "Wikimedia Russia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 30,
+        "fields": {
+            "code": "SE",
+            "name": "Wikimedia Sweden"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 31,
+        "fields": {
+            "code": "TW",
+            "name": "Wikimedia Taiwan"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 32,
+        "fields": {
+            "code": "TH",
+            "name": "Wikimedia Thailand"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 33,
+        "fields": {
+            "code": "UA",
+            "name": "Wikimedia Ukraine"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 34,
+        "fields": {
+            "code": "UK",
+            "name": "Wikimedia United Kingdom"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 35,
+        "fields": {
+            "code": "DC",
+            "name": "Wikimedia District of Columbia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 36,
+        "fields": {
+            "code": "NY",
+            "name": "Wikimedia New York City"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 37,
+        "fields": {
+            "code": "VE",
+            "name": "Wikimedia Venezuela"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 38,
+        "fields": {
+            "code": "ZA",
+            "name": "Wikimedia South Africa"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 39,
+        "fields": {
+            "code": "ACD",
+            "name": "AfroCROWD User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 40,
+        "fields": {
+            "code": "A+F",
+            "name": "Art+Feminism"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 41,
+        "fields": {
+            "code": "ALB",
+            "name": "Wikimedia Community User Group Albania"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 42,
+        "fields": {
+            "code": "ARE",
+            "name": "Wikimedians of United Arab Emirates User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 43,
+        "fields": {
+            "code": "AZE",
+            "name": "Azerbaijani Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 44,
+        "fields": {
+            "code": "BA-SRP",
+            "name": "Wikimedians of Republic of Srpska"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 45,
+        "fields": {
+            "code": "BAK",
+            "name": "Wikimedians of Bashkortostan User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 46,
+        "fields": {
+            "code": "BAQ",
+            "name": "Basque Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 47,
+        "fields": {
+            "code": "BEN",
+            "name": "Wikimédiens du Bénin User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 48,
+        "fields": {
+            "code": "BLT",
+            "name": "Black Lunch Table Wikimedians"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 49,
+        "fields": {
+            "code": "BOL",
+            "name": "Wikimedistas de Bolivia User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 50,
+        "fields": {
+            "code": "BLR",
+            "name": "Wikimedia Community User Group Belarus"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 51,
+        "fields": {
+            "code": "CEE",
+            "name": "Wikimedia Community User Group CEE Spring"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 52,
+        "fields": {
+            "code": "CMW",
+            "name": "Wikimedians of Cameroon User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 53,
+        "fields": {
+            "code": "CIV",
+            "name": "Wikimedia Community User Group Côte d\"Ivoire"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 54,
+        "fields": {
+            "code": "CPH",
+            "name": "Commons Photographers User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 55,
+        "fields": {
+            "code": "COD",
+            "name": "Wikimedians of Democratic Republic of Congo User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 56,
+        "fields": {
+            "code": "DZA",
+            "name": "Algerian Wikimedians User Group aka WikiDZ"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 57,
+        "fields": {
+            "code": "EGY",
+            "name": "Egypt Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 58,
+        "fields": {
+            "code": "ESP-WE",
+            "name": "Wikiesfera Grupo de Usuarixs"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 59,
+        "fields": {
+            "code": "ELiSo",
+            "name": "Esperanto kaj Libera Scio"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 60,
+        "fields": {
+            "code": "EZY",
+            "name": "Wikimedians of Erzya language User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 61,
+        "fields": {
+            "code": "GB-CYM",
+            "name": "Grŵp Defnyddwyr Cymuned Wicimedia Cymru"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 62,
+        "fields": {
+            "code": "GEO",
+            "name": "Wikimedia Community User Group Georgia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 63,
+        "fields": {
+            "code": "GHA",
+            "name": "Wikimedia Ghana User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 64,
+        "fields": {
+            "code": "GIN",
+            "name": "Wikimedia Community User Group Guinea Conakry"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 65,
+        "fields": {
+            "code": "GMG",
+            "name": "GLAM Macedonia User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 66,
+        "fields": {
+            "code": "GRC",
+            "name": "Wikimedia Community User Group Greece"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 67,
+        "fields": {
+            "code": "HDW",
+            "name": "Hindi Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 68,
+        "fields": {
+            "code": "H-GAPS",
+            "name": "H-GAPS User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 69,
+        "fields": {
+            "code": "HKG",
+            "name": "Wikimedia Community User Group Hong Kong"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 70,
+        "fields": {
+            "code": "HTI",
+            "name": "Wikimedia Community User Group Haiti"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 71,
+        "fields": {
+            "code": "IRL",
+            "name": "Wikimedia Community Ireland User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 72,
+        "fields": {
+            "code": "IRQ",
+            "name": "Iraqi Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 73,
+        "fields": {
+            "code": "IRN",
+            "name": "Iranian Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 74,
+        "fields": {
+            "code": "IN-KL",
+            "name": "Wikimedians of Kerala User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 75,
+        "fields": {
+            "code": "IN-MR",
+            "name": "Marathi Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 76,
+        "fields": {
+            "code": "IN-Tech",
+            "name": "Wikimedians of India technical user group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 77,
+        "fields": {
+            "code": "JWK",
+            "name": "Jenga Wikipedia ya Kiswahili"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 78,
+        "fields": {
+            "code": "KAZ",
+            "name": "Wikimedia Community of Kazakh language User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 79,
+        "fields": {
+            "code": "KVL",
+            "name": "Karavali Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 80,
+        "fields": {
+            "code": "LGBT",
+            "name": "Wikimedia LGBT+ User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 81,
+        "fields": {
+            "code": "LEV",
+            "name": "Wikimedians of the Levant User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 82,
+        "fields": {
+            "code": "LSP",
+            "name": "Les sans pagEs User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 83,
+        "fields": {
+            "code": "LVA",
+            "name": "Wikimedians of Latvia User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 84,
+        "fields": {
+            "code": "MAR",
+            "name": "Wikimedia MA User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 85,
+        "fields": {
+            "code": "MAI",
+            "name": "Maithili Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 86,
+        "fields": {
+            "code": "MAP",
+            "name": "Wikimaps User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 87,
+        "fields": {
+            "code": "MATH",
+            "name": "Wikimedia Community User Group Math"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 88,
+        "fields": {
+            "code": "MK-SK",
+            "name": "Shared Knowledge"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 89,
+        "fields": {
+            "code": "MLA",
+            "name": "Muj(lh)eres latinoamericanas en Wikimedia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 90,
+        "fields": {
+            "code": "MLI",
+            "name": "Wikimedians of Mali User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 91,
+        "fields": {
+            "code": "MLT",
+            "name": "Wikimedia Community User Group Malta"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 92,
+        "fields": {
+            "code": "MMR",
+            "name": "Myanmar Wikimedia Community User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 93,
+        "fields": {
+            "code": "MW-SG",
+            "name": "MediaWiki Stakeholders\" Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 94,
+        "fields": {
+            "code": "MYS",
+            "name": "Wikimedia Community User Group Malaysia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 95,
+        "fields": {
+            "code": "WNAIL",
+            "name": "Wikimedians of North American Indigenous Languages User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 96,
+        "fields": {
+            "code": "NPL",
+            "name": "Wikimedians of Nepal"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 97,
+        "fields": {
+            "code": "NGA",
+            "name": "Wikimedia Community User Group Nigeria"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 98,
+        "fields": {
+            "code": "NGA-HA",
+            "name": "Hausa Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 99,
+        "fields": {
+            "code": "NGA-IG",
+            "name": "Igbo Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 100,
+        "fields": {
+            "code": "IMD",
+            "name": "Indic MediaWiki Developers User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 101,
+        "fields": {
+            "code": "KWU",
+            "name": "Kurdish Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 102,
+        "fields": {
+            "code": "NGA-YO",
+            "name": "Yoruba Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 103,
+        "fields": {
+            "code": "NWR-Hist",
+            "name": "North-West Russia Wiki-Historians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 104,
+        "fields": {
+            "code": "NZL",
+            "name": "Wikimedia User Group of Aotearoa New Zealand"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 105,
+        "fields": {
+            "code": "OFWA",
+            "name": "Open Foundation West Africa"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 106,
+        "fields": {
+            "code": "PAN",
+            "name": "Punjabi Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 107,
+        "fields": {
+            "code": "PER",
+            "name": "Wikimedians of Peru User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 108,
+        "fields": {
+            "code": "PH-WC",
+            "name": "Philippine Wikimedia Community User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 109,
+        "fields": {
+            "code": "LKA",
+            "name": "Wikimedia Community User Group Sri Lanka"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 110,
+        "fields": {
+            "code": "ODW",
+            "name": "Odia Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 111,
+        "fields": {
+            "code": "ROU-MDA",
+            "name": "Wikimedians of Romania and Moldova User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 112,
+        "fields": {
+            "code": "RU-Don",
+            "name": "Don Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 113,
+        "fields": {
+            "code": "RU-NC",
+            "name": "Wikipedians of North Caucasus User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 114,
+        "fields": {
+            "code": "SAT",
+            "name": "Wikimedians of Santali Language User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 115,
+        "fields": {
+            "code": "STE",
+            "name": "Wikimedia Stewards User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 116,
+        "fields": {
+            "code": "SQI",
+            "name": "Wikimedians of Albanian Language User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 117,
+        "fields": {
+            "code": "SUD",
+            "name": "Wikimedia Community User Group Sudan"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 118,
+        "fields": {
+            "code": "SVK",
+            "name": "Wikimedians of Slovakia User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 119,
+        "fields": {
+            "code": "SVN",
+            "name": "Wikipedians of Slovenia User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 120,
+        "fields": {
+            "code": "TAT",
+            "name": "Wikimedia Community of Tatar language User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 121,
+        "fields": {
+            "code": "TUN",
+            "name": "Wikimedia TN User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 122,
+        "fields": {
+            "code": "TUR",
+            "name": "Wikimedia Community User Group Turkey"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 123,
+        "fields": {
+            "code": "TRK",
+            "name": "Wikimedians of Turkic Languages User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 124,
+        "fields": {
+            "code": "TWG",
+            "name": "Tremendous Wiktionary User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 125,
+        "fields": {
+            "code": "TZA",
+            "name": "Wikimedia Community User Group Tanzania"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 126,
+        "fields": {
+            "code": "TZM",
+            "name": "Wikimedians of Tamazight User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 127,
+        "fields": {
+            "code": "UGA",
+            "name": "Wikimedia Community User Group Uganda"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 128,
+        "fields": {
+            "code": "US-CAS",
+            "name": "Cascadia Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 129,
+        "fields": {
+            "code": "US-GAP",
+            "name": "Georgia Piedmont Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 130,
+        "fields": {
+            "code": "US-LA",
+            "name": "Wikimedians of Los Angeles User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 131,
+        "fields": {
+            "code": "US-NC",
+            "name": "North Carolina Wikipedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 132,
+        "fields": {
+            "code": "US-NE",
+            "name": "New England Wikimedians"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 133,
+        "fields": {
+            "code": "US-OH",
+            "name": "Ohio Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 134,
+        "fields": {
+            "code": "US-SAN",
+            "name": "San Diego Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 135,
+        "fields": {
+            "code": "VNM",
+            "name": "Vietnam Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 136,
+        "fields": {
+            "code": "WAM",
+            "name": "Wikipedia Asian Month User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 137,
+        "fields": {
+            "code": "WKB",
+            "name": "Wikibase Community User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 138,
+        "fields": {
+            "code": "WBL",
+            "name": "WikiBlind User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 139,
+        "fields": {
+            "code": "WBG",
+            "name": "West Bengal Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 140,
+        "fields": {
+            "code": "WKC",
+            "name": "Wiki Cemeteries User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 141,
+        "fields": {
+            "code": "WCS",
+            "name": "WikiClassics User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 142,
+        "fields": {
+            "code": "WDG",
+            "name": "WikiDonne User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 143,
+        "fields": {
+            "code": "WGR",
+            "name": "Wikigrannies User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 144,
+        "fields": {
+            "code": "WGU",
+            "name": "Wikimujeres Grupo de Usuarias"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 145,
+        "fields": {
+            "code": "WIS",
+            "name": "Wikimedians of the Caribbean User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 146,
+        "fields": {
+            "code": "WKJ",
+            "name": "WikiJournal"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 147,
+        "fields": {
+            "code": "WK?",
+            "name": "Whose Knowledge?"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 148,
+        "fields": {
+            "code": "WNA",
+            "name": "WikiConference North America"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 149,
+        "fields": {
+            "code": "W&E",
+            "name": "Wikipedia & Education User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 150,
+        "fields": {
+            "code": "WMB",
+            "name": "Grupo de Usuários Wiki Movimento Brasil"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 151,
+        "fields": {
+            "code": "WOW",
+            "name": "Wikimedians for Offline Wikis User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 152,
+        "fields": {
+            "code": "WPL",
+            "name": "Wikimedia and Libraries User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 153,
+        "fields": {
+            "code": "WREN",
+            "name": "Wikimedians in Residence Exchange Network User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 154,
+        "fields": {
+            "code": "WSC",
+            "name": "Wikisource Community User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 155,
+        "fields": {
+            "code": "WSD",
+            "name": "Wikimedians for Sustainable Development"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 156,
+        "fields": {
+            "code": "WAL",
+            "name": "Wikimedians of Western Armenian Language User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 157,
+        "fields": {
+            "code": "WKT",
+            "name": "Wikitongues User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 158,
+        "fields": {
+            "code": "WWH",
+            "name": "Wiki World Heritage User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 159,
+        "fields": {
+            "code": "WUL",
+            "name": "Wikimedians of the Uzbek language User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 160,
+        "fields": {
+            "code": "WDU",
+            "name": "Wikimedistas de Uruguay"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 161,
+        "fields": {
+            "code": "WKW",
+            "name": "WikiWomen\"s User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 162,
+        "fields": {
+            "code": "DWU",
+            "name": "Dagbani Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 163,
+        "fields": {
+            "code": "AWUG",
+            "name": "Arabic Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 164,
+        "fields": {
+            "code": "WSP",
+            "name": "Wikimedia Small Projects in Spanish User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 165,
+        "fields": {
+            "code": "PWU",
+            "name": "Paiwan Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 166,
+        "fields": {
+            "code": "RU-SPU",
+            "name": "Wikimedia Community of Saint Petersburg User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 167,
+        "fields": {
+            "code": "DCW",
+            "name": "Deoband Community Wikimedia User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 168,
+        "fields": {
+            "code": "GWU",
+            "name": "Gungbe Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 169,
+        "fields": {
+            "code": "RWA",
+            "name": "Wikimedia Community User Group Rwanda"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 170,
+        "fields": {
+            "code": "WIR",
+            "name": "Women in Religion User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 171,
+        "fields": {
+            "code": "TWU",
+            "name": "Tyap Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 172,
+        "fields": {
+            "code": "LAG",
+            "name": "Wikimedians of Lagos User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 173,
+        "fields": {
+            "code": "KAS",
+            "name": "Kashmiri Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 174,
+        "fields": {
+            "code": "WCK",
+            "name": "Wikimedia Community User Group Kenya"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 175,
+        "fields": {
+            "code": "SWU",
+            "name": "Saudi Wikimedia User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 176,
+        "fields": {
+            "code": "PH-ADV",
+            "name": "Wiki Advocates Philippines User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 177,
+        "fields": {
+            "code": "TGO",
+            "name": "Wikimedia Community User Group Togo"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 178,
+        "fields": {
+            "code": "TJK",
+            "name": "Tajik Wikimedians User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 179,
+        "fields": {
+            "code": "US-IN",
+            "name": "Wikimedians of Indiana User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 180,
+        "fields": {
+            "code": "JPN",
+            "name": "Wikimedians of Japan User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 181,
+        "fields": {
+            "code": "BFA",
+            "name": "Wikimédiens du Burkina Faso User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 182,
+        "fields": {
+            "code": "ECU",
+            "name": "Wikimedistas de Ecuador User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 183,
+        "fields": {
+            "code": "TCD",
+            "name": "Wikimedians of Tchad User Group"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 184,
+        "fields": {
+            "code": "ZMB",
+            "name": "Wikimedia Community User Group Zambia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 185,
+        "fields": {
+            "code": "CAT",
+            "name": "Amical Wikimedia"
+        }
+    },
+    {
+        "model": "users.affiliate",
+        "pk": 186,
+        "fields": {
+            "code": "WPM",
+            "name": "Wiki Project Med"
+        }
+    }
+]
