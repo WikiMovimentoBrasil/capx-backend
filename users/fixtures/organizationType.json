@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "type_code": "C",
-            "type_name": "Chapters"
+            "type_name": "Chapter"
         }
     },
     {
@@ -12,7 +12,7 @@
         "pk": 2,
         "fields": {
             "type_code": "U",
-            "type_name": "Wikimedia user groups"
+            "type_name": "Wikimedia user group"
         }
     },
     {
@@ -20,7 +20,7 @@
         "pk": 3,
         "fields": {
             "type_code": "T",
-            "type_name": "Thematic organizations"
+            "type_name": "Thematic organization"
         }
     }
 ]
