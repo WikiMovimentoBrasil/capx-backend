@@ -1,1490 +1,1676 @@
 [
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 1,
         "fields": {
-            "code": "AM",
-            "name": "Wikimedia Armenia"
+            "organization_type": 1,
+            "organization_code": "AM",
+            "organization_name": "Wikimedia Armenia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 2,
         "fields": {
-            "code": "AR",
-            "name": "Wikimedia Argentina"
+            "organization_type": 1,
+            "organization_code": "AR",
+            "organization_name": "Wikimedia Argentina"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 3,
         "fields": {
-            "code": "AT",
-            "name": "Wikimedia Austria"
+            "organization_type": 1,
+            "organization_code": "AT",
+            "organization_name": "Wikimedia Austria"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 4,
         "fields": {
-            "code": "AU",
-            "name": "Wikimedia Australia"
+            "organization_type": 1,
+            "organization_code": "AU",
+            "organization_name": "Wikimedia Australia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 5,
         "fields": {
-            "code": "BD",
-            "name": "Wikimedia Bangladesh"
+            "organization_type": 1,
+            "organization_code": "BD",
+            "organization_name": "Wikimedia Bangladesh"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 6,
         "fields": {
-            "code": "BE",
-            "name": "Wikimedia Belgium"
+            "organization_type": 1,
+            "organization_code": "BE",
+            "organization_name": "Wikimedia Belgium"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 7,
         "fields": {
-            "code": "CA",
-            "name": "Wikimedia Canada"
+            "organization_type": 1,
+            "organization_code": "CA",
+            "organization_name": "Wikimedia Canada"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 8,
         "fields": {
-            "code": "CH",
-            "name": "Wikimedia Switzerland"
+            "organization_type": 1,
+            "organization_code": "CH",
+            "organization_name": "Wikimedia Switzerland"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 9,
         "fields": {
-            "code": "CL",
-            "name": "Wikimedia Chile"
+            "organization_type": 1,
+            "organization_code": "CL",
+            "organization_name": "Wikimedia Chile"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 10,
         "fields": {
-            "code": "CO",
-            "name": "Wikimedia Colombia"
+            "organization_type": 1,
+            "organization_code": "CO",
+            "organization_name": "Wikimedia Colombia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 11,
         "fields": {
-            "code": "CZ",
-            "name": "Wikimedia Czech Republic"
+            "organization_type": 1,
+            "organization_code": "CZ",
+            "organization_name": "Wikimedia Czech Republic"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 12,
         "fields": {
-            "code": "DE",
-            "name": "Wikimedia Germany"
+            "organization_type": 1,
+            "organization_code": "DE",
+            "organization_name": "Wikimedia Germany"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 13,
         "fields": {
-            "code": "DK",
-            "name": "Wikimedia Denmark"
+            "organization_type": 1,
+            "organization_code": "DK",
+            "organization_name": "Wikimedia Denmark"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 14,
         "fields": {
-            "code": "EE",
-            "name": "Wikimedia Estonia"
+            "organization_type": 1,
+            "organization_code": "EE",
+            "organization_name": "Wikimedia Estonia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 15,
         "fields": {
-            "code": "ES",
-            "name": "Wikimedia Spain"
+            "organization_type": 1,
+            "organization_code": "ES",
+            "organization_name": "Wikimedia Spain"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 16,
         "fields": {
-            "code": "FI",
-            "name": "Wikimedia Finland"
+            "organization_type": 1,
+            "organization_code": "FI",
+            "organization_name": "Wikimedia Finland"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 17,
         "fields": {
-            "code": "FR",
-            "name": "Wikimedia France"
+            "organization_type": 1,
+            "organization_code": "FR",
+            "organization_name": "Wikimedia France"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 18,
         "fields": {
-            "code": "HU",
-            "name": "Wikimedia Hungary"
+            "organization_type": 1,
+            "organization_code": "HU",
+            "organization_name": "Wikimedia Hungary"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 19,
         "fields": {
-            "code": "ID",
-            "name": "Wikimedia Indonesia"
+            "organization_type": 1,
+            "organization_code": "ID",
+            "organization_name": "Wikimedia Indonesia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 20,
         "fields": {
-            "code": "IL",
-            "name": "Wikimedia Israel"
+            "organization_type": 1,
+            "organization_code": "IL",
+            "organization_name": "Wikimedia Israel"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 21,
         "fields": {
-            "code": "IT",
-            "name": "Wikimedia Italy"
+            "organization_type": 1,
+            "organization_code": "IT",
+            "organization_name": "Wikimedia Italy"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 22,
         "fields": {
-            "code": "KR",
-            "name": "Wikimedia Korea"
+            "organization_type": 1,
+            "organization_code": "KR",
+            "organization_name": "Wikimedia Korea"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 23,
         "fields": {
-            "code": "MX",
-            "name": "Wikimedia Mexico"
+            "organization_type": 1,
+            "organization_code": "MX",
+            "organization_name": "Wikimedia Mexico"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 24,
         "fields": {
-            "code": "NL",
-            "name": "Wikimedia Netherlands"
+            "organization_type": 1,
+            "organization_code": "NL",
+            "organization_name": "Wikimedia Netherlands"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 25,
         "fields": {
-            "code": "NO",
-            "name": "Wikimedia Norway"
+            "organization_type": 1,
+            "organization_code": "NO",
+            "organization_name": "Wikimedia Norway"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 26,
         "fields": {
-            "code": "PL",
-            "name": "Wikimedia Poland"
+            "organization_type": 1,
+            "organization_code": "PL",
+            "organization_name": "Wikimedia Poland"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 27,
         "fields": {
-            "code": "PT",
-            "name": "Wikimedia Portugal"
+            "organization_type": 1,
+            "organization_code": "PT",
+            "organization_name": "Wikimedia Portugal"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 28,
         "fields": {
-            "code": "RS",
-            "name": "Wikimedia Serbia"
+            "organization_type": 1,
+            "organization_code": "RS",
+            "organization_name": "Wikimedia Serbia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 29,
         "fields": {
-            "code": "RU",
-            "name": "Wikimedia Russia"
+            "organization_type": 1,
+            "organization_code": "RU",
+            "organization_name": "Wikimedia Russia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 30,
         "fields": {
-            "code": "SE",
-            "name": "Wikimedia Sweden"
+            "organization_type": 1,
+            "organization_code": "SE",
+            "organization_name": "Wikimedia Sweden"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 31,
         "fields": {
-            "code": "TW",
-            "name": "Wikimedia Taiwan"
+            "organization_type": 1,
+            "organization_code": "TW",
+            "organization_name": "Wikimedia Taiwan"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 32,
         "fields": {
-            "code": "TH",
-            "name": "Wikimedia Thailand"
+            "organization_type": 1,
+            "organization_code": "TH",
+            "organization_name": "Wikimedia Thailand"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 33,
         "fields": {
-            "code": "UA",
-            "name": "Wikimedia Ukraine"
+            "organization_type": 1,
+            "organization_code": "UA",
+            "organization_name": "Wikimedia Ukraine"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 34,
         "fields": {
-            "code": "UK",
-            "name": "Wikimedia United Kingdom"
+            "organization_type": 1,
+            "organization_code": "UK",
+            "organization_name": "Wikimedia United Kingdom"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 35,
         "fields": {
-            "code": "DC",
-            "name": "Wikimedia District of Columbia"
+            "organization_type": 1,
+            "organization_code": "DC",
+            "organization_name": "Wikimedia District of Columbia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 36,
         "fields": {
-            "code": "NY",
-            "name": "Wikimedia New York City"
+            "organization_type": 1,
+            "organization_code": "NY",
+            "organization_name": "Wikimedia New York City"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 37,
         "fields": {
-            "code": "VE",
-            "name": "Wikimedia Venezuela"
+            "organization_type": 1,
+            "organization_code": "VE",
+            "organization_name": "Wikimedia Venezuela"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 38,
         "fields": {
-            "code": "ZA",
-            "name": "Wikimedia South Africa"
+            "organization_type": 1,
+            "organization_code": "ZA",
+            "organization_name": "Wikimedia South Africa"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 39,
         "fields": {
-            "code": "ACD",
-            "name": "AfroCROWD User Group"
+            "organization_type": 2,
+            "organization_code": "ACD",
+            "organization_name": "AfroCROWD User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 40,
         "fields": {
-            "code": "A+F",
-            "name": "Art+Feminism"
+            "organization_type": 2,
+            "organization_code": "A+F",
+            "organization_name": "Art+Feminism"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 41,
         "fields": {
-            "code": "ALB",
-            "name": "Wikimedia Community User Group Albania"
+            "organization_type": 2,
+            "organization_code": "ALB",
+            "organization_name": "Wikimedia Community User Group Albania"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 42,
         "fields": {
-            "code": "ARE",
-            "name": "Wikimedians of United Arab Emirates User Group"
+            "organization_type": 2,
+            "organization_code": "ARE",
+            "organization_name": "Wikimedians of United Arab Emirates User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 43,
         "fields": {
-            "code": "AZE",
-            "name": "Azerbaijani Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "AZE",
+            "organization_name": "Azerbaijani Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 44,
         "fields": {
-            "code": "BA-SRP",
-            "name": "Wikimedians of Republic of Srpska"
+            "organization_type": 2,
+            "organization_code": "BA-SRP",
+            "organization_name": "Wikimedians of Republic of Srpska"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 45,
         "fields": {
-            "code": "BAK",
-            "name": "Wikimedians of Bashkortostan User Group"
+            "organization_type": 2,
+            "organization_code": "BAK",
+            "organization_name": "Wikimedians of Bashkortostan User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 46,
         "fields": {
-            "code": "BAQ",
-            "name": "Basque Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "BAQ",
+            "organization_name": "Basque Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 47,
         "fields": {
-            "code": "BEN",
-            "name": "Wikimédiens du Bénin User Group"
+            "organization_type": 2,
+            "organization_code": "BEN",
+            "organization_name": "Wikimédiens du Bénin User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 48,
         "fields": {
-            "code": "BLT",
-            "name": "Black Lunch Table Wikimedians"
+            "organization_type": 2,
+            "organization_code": "BLT",
+            "organization_name": "Black Lunch Table Wikimedians"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 49,
         "fields": {
-            "code": "BOL",
-            "name": "Wikimedistas de Bolivia User Group"
+            "organization_type": 2,
+            "organization_code": "BOL",
+            "organization_name": "Wikimedistas de Bolivia User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 50,
         "fields": {
-            "code": "BLR",
-            "name": "Wikimedia Community User Group Belarus"
+            "organization_type": 2,
+            "organization_code": "BLR",
+            "organization_name": "Wikimedia Community User Group Belarus"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 51,
         "fields": {
-            "code": "CEE",
-            "name": "Wikimedia Community User Group CEE Spring"
+            "organization_type": 2,
+            "organization_code": "CEE",
+            "organization_name": "Wikimedia Community User Group CEE Spring"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 52,
         "fields": {
-            "code": "CMW",
-            "name": "Wikimedians of Cameroon User Group"
+            "organization_type": 2,
+            "organization_code": "CMW",
+            "organization_name": "Wikimedians of Cameroon User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 53,
         "fields": {
-            "code": "CIV",
-            "name": "Wikimedia Community User Group Côte d\"Ivoire"
+            "organization_type": 2,
+            "organization_code": "CIV",
+            "organization_name": "Wikimedia Community User Group Côte d\"Ivoire"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 54,
         "fields": {
-            "code": "CPH",
-            "name": "Commons Photographers User Group"
+            "organization_type": 2,
+            "organization_code": "CPH",
+            "organization_name": "Commons Photographers User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 55,
         "fields": {
-            "code": "COD",
-            "name": "Wikimedians of Democratic Republic of Congo User Group"
+            "organization_type": 2,
+            "organization_code": "COD",
+            "organization_name": "Wikimedians of Democratic Republic of Congo User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 56,
         "fields": {
-            "code": "DZA",
-            "name": "Algerian Wikimedians User Group aka WikiDZ"
+            "organization_type": 2,
+            "organization_code": "DZA",
+            "organization_name": "Algerian Wikimedians User Group aka WikiDZ"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 57,
         "fields": {
-            "code": "EGY",
-            "name": "Egypt Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "EGY",
+            "organization_name": "Egypt Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 58,
         "fields": {
-            "code": "ESP-WE",
-            "name": "Wikiesfera Grupo de Usuarixs"
+            "organization_type": 2,
+            "organization_code": "ESP-WE",
+            "organization_name": "Wikiesfera Grupo de Usuarixs"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 59,
         "fields": {
-            "code": "ELiSo",
-            "name": "Esperanto kaj Libera Scio"
+            "organization_type": 2,
+            "organization_code": "ELiSo",
+            "organization_name": "Esperanto kaj Libera Scio"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 60,
         "fields": {
-            "code": "EZY",
-            "name": "Wikimedians of Erzya language User Group"
+            "organization_type": 2,
+            "organization_code": "EZY",
+            "organization_name": "Wikimedians of Erzya language User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 61,
         "fields": {
-            "code": "GB-CYM",
-            "name": "Grŵp Defnyddwyr Cymuned Wicimedia Cymru"
+            "organization_type": 2,
+            "organization_code": "GB-CYM",
+            "organization_name": "Grŵp Defnyddwyr Cymuned Wicimedia Cymru"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 62,
         "fields": {
-            "code": "GEO",
-            "name": "Wikimedia Community User Group Georgia"
+            "organization_type": 2,
+            "organization_code": "GEO",
+            "organization_name": "Wikimedia Community User Group Georgia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 63,
         "fields": {
-            "code": "GHA",
-            "name": "Wikimedia Ghana User Group"
+            "organization_type": 2,
+            "organization_code": "GHA",
+            "organization_name": "Wikimedia Ghana User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 64,
         "fields": {
-            "code": "GIN",
-            "name": "Wikimedia Community User Group Guinea Conakry"
+            "organization_type": 2,
+            "organization_code": "GIN",
+            "organization_name": "Wikimedia Community User Group Guinea Conakry"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 65,
         "fields": {
-            "code": "GMG",
-            "name": "GLAM Macedonia User Group"
+            "organization_type": 2,
+            "organization_code": "GMG",
+            "organization_name": "GLAM Macedonia User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 66,
         "fields": {
-            "code": "GRC",
-            "name": "Wikimedia Community User Group Greece"
+            "organization_type": 2,
+            "organization_code": "GRC",
+            "organization_name": "Wikimedia Community User Group Greece"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 67,
         "fields": {
-            "code": "HDW",
-            "name": "Hindi Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "HDW",
+            "organization_name": "Hindi Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 68,
         "fields": {
-            "code": "H-GAPS",
-            "name": "H-GAPS User Group"
+            "organization_type": 2,
+            "organization_code": "H-GAPS",
+            "organization_name": "H-GAPS User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 69,
         "fields": {
-            "code": "HKG",
-            "name": "Wikimedia Community User Group Hong Kong"
+            "organization_type": 2,
+            "organization_code": "HKG",
+            "organization_name": "Wikimedia Community User Group Hong Kong"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 70,
         "fields": {
-            "code": "HTI",
-            "name": "Wikimedia Community User Group Haiti"
+            "organization_type": 2,
+            "organization_code": "HTI",
+            "organization_name": "Wikimedia Community User Group Haiti"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 71,
         "fields": {
-            "code": "IRL",
-            "name": "Wikimedia Community Ireland User Group"
+            "organization_type": 2,
+            "organization_code": "IRL",
+            "organization_name": "Wikimedia Community Ireland User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 72,
         "fields": {
-            "code": "IRQ",
-            "name": "Iraqi Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "IRQ",
+            "organization_name": "Iraqi Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 73,
         "fields": {
-            "code": "IRN",
-            "name": "Iranian Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "IRN",
+            "organization_name": "Iranian Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 74,
         "fields": {
-            "code": "IN-KL",
-            "name": "Wikimedians of Kerala User Group"
+            "organization_type": 2,
+            "organization_code": "IN-KL",
+            "organization_name": "Wikimedians of Kerala User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 75,
         "fields": {
-            "code": "IN-MR",
-            "name": "Marathi Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "IN-MR",
+            "organization_name": "Marathi Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 76,
         "fields": {
-            "code": "IN-Tech",
-            "name": "Wikimedians of India technical user group"
+            "organization_type": 2,
+            "organization_code": "IN-Tech",
+            "organization_name": "Wikimedians of India technical user group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 77,
         "fields": {
-            "code": "JWK",
-            "name": "Jenga Wikipedia ya Kiswahili"
+            "organization_type": 2,
+            "organization_code": "JWK",
+            "organization_name": "Jenga Wikipedia ya Kiswahili"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 78,
         "fields": {
-            "code": "KAZ",
-            "name": "Wikimedia Community of Kazakh language User Group"
+            "organization_type": 2,
+            "organization_code": "KAZ",
+            "organization_name": "Wikimedia Community of Kazakh language User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 79,
         "fields": {
-            "code": "KVL",
-            "name": "Karavali Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "KVL",
+            "organization_name": "Karavali Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 80,
         "fields": {
-            "code": "LGBT",
-            "name": "Wikimedia LGBT+ User Group"
+            "organization_type": 2,
+            "organization_code": "LGBT",
+            "organization_name": "Wikimedia LGBT+ User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 81,
         "fields": {
-            "code": "LEV",
-            "name": "Wikimedians of the Levant User Group"
+            "organization_type": 2,
+            "organization_code": "LEV",
+            "organization_name": "Wikimedians of the Levant User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 82,
         "fields": {
-            "code": "LSP",
-            "name": "Les sans pagEs User Group"
+            "organization_type": 2,
+            "organization_code": "LSP",
+            "organization_name": "Les sans pagEs User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 83,
         "fields": {
-            "code": "LVA",
-            "name": "Wikimedians of Latvia User Group"
+            "organization_type": 2,
+            "organization_code": "LVA",
+            "organization_name": "Wikimedians of Latvia User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 84,
         "fields": {
-            "code": "MAR",
-            "name": "Wikimedia MA User Group"
+            "organization_type": 2,
+            "organization_code": "MAR",
+            "organization_name": "Wikimedia MA User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 85,
         "fields": {
-            "code": "MAI",
-            "name": "Maithili Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "MAI",
+            "organization_name": "Maithili Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 86,
         "fields": {
-            "code": "MAP",
-            "name": "Wikimaps User Group"
+            "organization_type": 2,
+            "organization_code": "MAP",
+            "organization_name": "Wikimaps User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 87,
         "fields": {
-            "code": "MATH",
-            "name": "Wikimedia Community User Group Math"
+            "organization_type": 2,
+            "organization_code": "MATH",
+            "organization_name": "Wikimedia Community User Group Math"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 88,
         "fields": {
-            "code": "MK-SK",
-            "name": "Shared Knowledge"
+            "organization_type": 2,
+            "organization_code": "MK-SK",
+            "organization_name": "Shared Knowledge"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 89,
         "fields": {
-            "code": "MLA",
-            "name": "Muj(lh)eres latinoamericanas en Wikimedia"
+            "organization_type": 2,
+            "organization_code": "MLA",
+            "organization_name": "Muj(lh)eres latinoamericanas en Wikimedia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 90,
         "fields": {
-            "code": "MLI",
-            "name": "Wikimedians of Mali User Group"
+            "organization_type": 2,
+            "organization_code": "MLI",
+            "organization_name": "Wikimedians of Mali User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 91,
         "fields": {
-            "code": "MLT",
-            "name": "Wikimedia Community User Group Malta"
+            "organization_type": 2,
+            "organization_code": "MLT",
+            "organization_name": "Wikimedia Community User Group Malta"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 92,
         "fields": {
-            "code": "MMR",
-            "name": "Myanmar Wikimedia Community User Group"
+            "organization_type": 2,
+            "organization_code": "MMR",
+            "organization_name": "Myanmar Wikimedia Community User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 93,
         "fields": {
-            "code": "MW-SG",
-            "name": "MediaWiki Stakeholders\" Group"
+            "organization_type": 2,
+            "organization_code": "MW-SG",
+            "organization_name": "MediaWiki Stakeholders\" Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 94,
         "fields": {
-            "code": "MYS",
-            "name": "Wikimedia Community User Group Malaysia"
+            "organization_type": 2,
+            "organization_code": "MYS",
+            "organization_name": "Wikimedia Community User Group Malaysia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 95,
         "fields": {
-            "code": "WNAIL",
-            "name": "Wikimedians of North American Indigenous Languages User Group"
+            "organization_type": 2,
+            "organization_code": "WNAIL",
+            "organization_name": "Wikimedians of North American Indigenous Languages User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 96,
         "fields": {
-            "code": "NPL",
-            "name": "Wikimedians of Nepal"
+            "organization_type": 2,
+            "organization_code": "NPL",
+            "organization_name": "Wikimedians of Nepal"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 97,
         "fields": {
-            "code": "NGA",
-            "name": "Wikimedia Community User Group Nigeria"
+            "organization_type": 2,
+            "organization_code": "NGA",
+            "organization_name": "Wikimedia Community User Group Nigeria"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 98,
         "fields": {
-            "code": "NGA-HA",
-            "name": "Hausa Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "NGA-HA",
+            "organization_name": "Hausa Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 99,
         "fields": {
-            "code": "NGA-IG",
-            "name": "Igbo Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "NGA-IG",
+            "organization_name": "Igbo Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 100,
         "fields": {
-            "code": "IMD",
-            "name": "Indic MediaWiki Developers User Group"
+            "organization_type": 2,
+            "organization_code": "IMD",
+            "organization_name": "Indic MediaWiki Developers User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 101,
         "fields": {
-            "code": "KWU",
-            "name": "Kurdish Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "KWU",
+            "organization_name": "Kurdish Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 102,
         "fields": {
-            "code": "NGA-YO",
-            "name": "Yoruba Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "NGA-YO",
+            "organization_name": "Yoruba Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 103,
         "fields": {
-            "code": "NWR-Hist",
-            "name": "North-West Russia Wiki-Historians User Group"
+            "organization_type": 2,
+            "organization_code": "NWR-Hist",
+            "organization_name": "North-West Russia Wiki-Historians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 104,
         "fields": {
-            "code": "NZL",
-            "name": "Wikimedia User Group of Aotearoa New Zealand"
+            "organization_type": 2,
+            "organization_code": "NZL",
+            "organization_name": "Wikimedia User Group of Aotearoa New Zealand"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 105,
         "fields": {
-            "code": "OFWA",
-            "name": "Open Foundation West Africa"
+            "organization_type": 2,
+            "organization_code": "OFWA",
+            "organization_name": "Open Foundation West Africa"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 106,
         "fields": {
-            "code": "PAN",
-            "name": "Punjabi Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "PAN",
+            "organization_name": "Punjabi Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 107,
         "fields": {
-            "code": "PER",
-            "name": "Wikimedians of Peru User Group"
+            "organization_type": 2,
+            "organization_code": "PER",
+            "organization_name": "Wikimedians of Peru User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 108,
         "fields": {
-            "code": "PH-WC",
-            "name": "Philippine Wikimedia Community User Group"
+            "organization_type": 2,
+            "organization_code": "PH-WC",
+            "organization_name": "Philippine Wikimedia Community User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 109,
         "fields": {
-            "code": "LKA",
-            "name": "Wikimedia Community User Group Sri Lanka"
+            "organization_type": 2,
+            "organization_code": "LKA",
+            "organization_name": "Wikimedia Community User Group Sri Lanka"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 110,
         "fields": {
-            "code": "ODW",
-            "name": "Odia Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "ODW",
+            "organization_name": "Odia Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 111,
         "fields": {
-            "code": "ROU-MDA",
-            "name": "Wikimedians of Romania and Moldova User Group"
+            "organization_type": 2,
+            "organization_code": "ROU-MDA",
+            "organization_name": "Wikimedians of Romania and Moldova User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 112,
         "fields": {
-            "code": "RU-Don",
-            "name": "Don Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "RU-Don",
+            "organization_name": "Don Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 113,
         "fields": {
-            "code": "RU-NC",
-            "name": "Wikipedians of North Caucasus User Group"
+            "organization_type": 2,
+            "organization_code": "RU-NC",
+            "organization_name": "Wikipedians of North Caucasus User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 114,
         "fields": {
-            "code": "SAT",
-            "name": "Wikimedians of Santali Language User Group"
+            "organization_type": 2,
+            "organization_code": "SAT",
+            "organization_name": "Wikimedians of Santali Language User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 115,
         "fields": {
-            "code": "STE",
-            "name": "Wikimedia Stewards User Group"
+            "organization_type": 2,
+            "organization_code": "STE",
+            "organization_name": "Wikimedia Stewards User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 116,
         "fields": {
-            "code": "SQI",
-            "name": "Wikimedians of Albanian Language User Group"
+            "organization_type": 2,
+            "organization_code": "SQI",
+            "organization_name": "Wikimedians of Albanian Language User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 117,
         "fields": {
-            "code": "SUD",
-            "name": "Wikimedia Community User Group Sudan"
+            "organization_type": 2,
+            "organization_code": "SUD",
+            "organization_name": "Wikimedia Community User Group Sudan"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 118,
         "fields": {
-            "code": "SVK",
-            "name": "Wikimedians of Slovakia User Group"
+            "organization_type": 2,
+            "organization_code": "SVK",
+            "organization_name": "Wikimedians of Slovakia User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 119,
         "fields": {
-            "code": "SVN",
-            "name": "Wikipedians of Slovenia User Group"
+            "organization_type": 2,
+            "organization_code": "SVN",
+            "organization_name": "Wikipedians of Slovenia User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 120,
         "fields": {
-            "code": "TAT",
-            "name": "Wikimedia Community of Tatar language User Group"
+            "organization_type": 2,
+            "organization_code": "TAT",
+            "organization_name": "Wikimedia Community of Tatar language User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 121,
         "fields": {
-            "code": "TUN",
-            "name": "Wikimedia TN User Group"
+            "organization_type": 2,
+            "organization_code": "TUN",
+            "organization_name": "Wikimedia TN User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 122,
         "fields": {
-            "code": "TUR",
-            "name": "Wikimedia Community User Group Turkey"
+            "organization_type": 2,
+            "organization_code": "TUR",
+            "organization_name": "Wikimedia Community User Group Turkey"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 123,
         "fields": {
-            "code": "TRK",
-            "name": "Wikimedians of Turkic Languages User Group"
+            "organization_type": 2,
+            "organization_code": "TRK",
+            "organization_name": "Wikimedians of Turkic Languages User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 124,
         "fields": {
-            "code": "TWG",
-            "name": "Tremendous Wiktionary User Group"
+            "organization_type": 2,
+            "organization_code": "TWG",
+            "organization_name": "Tremendous Wiktionary User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 125,
         "fields": {
-            "code": "TZA",
-            "name": "Wikimedia Community User Group Tanzania"
+            "organization_type": 2,
+            "organization_code": "TZA",
+            "organization_name": "Wikimedia Community User Group Tanzania"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 126,
         "fields": {
-            "code": "TZM",
-            "name": "Wikimedians of Tamazight User Group"
+            "organization_type": 2,
+            "organization_code": "TZM",
+            "organization_name": "Wikimedians of Tamazight User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 127,
         "fields": {
-            "code": "UGA",
-            "name": "Wikimedia Community User Group Uganda"
+            "organization_type": 2,
+            "organization_code": "UGA",
+            "organization_name": "Wikimedia Community User Group Uganda"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 128,
         "fields": {
-            "code": "US-CAS",
-            "name": "Cascadia Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "US-CAS",
+            "organization_name": "Cascadia Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 129,
         "fields": {
-            "code": "US-GAP",
-            "name": "Georgia Piedmont Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "US-GAP",
+            "organization_name": "Georgia Piedmont Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 130,
         "fields": {
-            "code": "US-LA",
-            "name": "Wikimedians of Los Angeles User Group"
+            "organization_type": 2,
+            "organization_code": "US-LA",
+            "organization_name": "Wikimedians of Los Angeles User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 131,
         "fields": {
-            "code": "US-NC",
-            "name": "North Carolina Wikipedians User Group"
+            "organization_type": 2,
+            "organization_code": "US-NC",
+            "organization_name": "North Carolina Wikipedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 132,
         "fields": {
-            "code": "US-NE",
-            "name": "New England Wikimedians"
+            "organization_type": 2,
+            "organization_code": "US-NE",
+            "organization_name": "New England Wikimedians"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 133,
         "fields": {
-            "code": "US-OH",
-            "name": "Ohio Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "US-OH",
+            "organization_name": "Ohio Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 134,
         "fields": {
-            "code": "US-SAN",
-            "name": "San Diego Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "US-SAN",
+            "organization_name": "San Diego Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 135,
         "fields": {
-            "code": "VNM",
-            "name": "Vietnam Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "VNM",
+            "organization_name": "Vietnam Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 136,
         "fields": {
-            "code": "WAM",
-            "name": "Wikipedia Asian Month User Group"
+            "organization_type": 2,
+            "organization_code": "WAM",
+            "organization_name": "Wikipedia Asian Month User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 137,
         "fields": {
-            "code": "WKB",
-            "name": "Wikibase Community User Group"
+            "organization_type": 2,
+            "organization_code": "WKB",
+            "organization_name": "Wikibase Community User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 138,
         "fields": {
-            "code": "WBL",
-            "name": "WikiBlind User Group"
+            "organization_type": 2,
+            "organization_code": "WBL",
+            "organization_name": "WikiBlind User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 139,
         "fields": {
-            "code": "WBG",
-            "name": "West Bengal Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "WBG",
+            "organization_name": "West Bengal Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 140,
         "fields": {
-            "code": "WKC",
-            "name": "Wiki Cemeteries User Group"
+            "organization_type": 2,
+            "organization_code": "WKC",
+            "organization_name": "Wiki Cemeteries User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 141,
         "fields": {
-            "code": "WCS",
-            "name": "WikiClassics User Group"
+            "organization_type": 2,
+            "organization_code": "WCS",
+            "organization_name": "WikiClassics User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 142,
         "fields": {
-            "code": "WDG",
-            "name": "WikiDonne User Group"
+            "organization_type": 2,
+            "organization_code": "WDG",
+            "organization_name": "WikiDonne User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 143,
         "fields": {
-            "code": "WGR",
-            "name": "Wikigrannies User Group"
+            "organization_type": 2,
+            "organization_code": "WGR",
+            "organization_name": "Wikigrannies User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 144,
         "fields": {
-            "code": "WGU",
-            "name": "Wikimujeres Grupo de Usuarias"
+            "organization_type": 2,
+            "organization_code": "WGU",
+            "organization_name": "Wikimujeres Grupo de Usuarias"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 145,
         "fields": {
-            "code": "WIS",
-            "name": "Wikimedians of the Caribbean User Group"
+            "organization_type": 2,
+            "organization_code": "WIS",
+            "organization_name": "Wikimedians of the Caribbean User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 146,
         "fields": {
-            "code": "WKJ",
-            "name": "WikiJournal"
+            "organization_type": 2,
+            "organization_code": "WKJ",
+            "organization_name": "WikiJournal"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 147,
         "fields": {
-            "code": "WK?",
-            "name": "Whose Knowledge?"
+            "organization_type": 2,
+            "organization_code": "WK?",
+            "organization_name": "Whose Knowledge?"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 148,
         "fields": {
-            "code": "WNA",
-            "name": "WikiConference North America"
+            "organization_type": 2,
+            "organization_code": "WNA",
+            "organization_name": "WikiConference North America"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 149,
         "fields": {
-            "code": "W&E",
-            "name": "Wikipedia & Education User Group"
+            "organization_type": 2,
+            "organization_code": "W&E",
+            "organization_name": "Wikipedia & Education User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 150,
         "fields": {
-            "code": "WMB",
-            "name": "Grupo de Usuários Wiki Movimento Brasil"
+            "organization_type": 2,
+            "organization_code": "WMB",
+            "organization_name": "Grupo de Usuários Wiki Movimento Brasil"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 151,
         "fields": {
-            "code": "WOW",
-            "name": "Wikimedians for Offline Wikis User Group"
+            "organization_type": 2,
+            "organization_code": "WOW",
+            "organization_name": "Wikimedians for Offline Wikis User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 152,
         "fields": {
-            "code": "WPL",
-            "name": "Wikimedia and Libraries User Group"
+            "organization_type": 2,
+            "organization_code": "WPL",
+            "organization_name": "Wikimedia and Libraries User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 153,
         "fields": {
-            "code": "WREN",
-            "name": "Wikimedians in Residence Exchange Network User Group"
+            "organization_type": 2,
+            "organization_code": "WREN",
+            "organization_name": "Wikimedians in Residence Exchange Network User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 154,
         "fields": {
-            "code": "WSC",
-            "name": "Wikisource Community User Group"
+            "organization_type": 2,
+            "organization_code": "WSC",
+            "organization_name": "Wikisource Community User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 155,
         "fields": {
-            "code": "WSD",
-            "name": "Wikimedians for Sustainable Development"
+            "organization_type": 2,
+            "organization_code": "WSD",
+            "organization_name": "Wikimedians for Sustainable Development"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 156,
         "fields": {
-            "code": "WAL",
-            "name": "Wikimedians of Western Armenian Language User Group"
+            "organization_type": 2,
+            "organization_code": "WAL",
+            "organization_name": "Wikimedians of Western Armenian Language User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 157,
         "fields": {
-            "code": "WKT",
-            "name": "Wikitongues User Group"
+            "organization_type": 2,
+            "organization_code": "WKT",
+            "organization_name": "Wikitongues User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 158,
         "fields": {
-            "code": "WWH",
-            "name": "Wiki World Heritage User Group"
+            "organization_type": 2,
+            "organization_code": "WWH",
+            "organization_name": "Wiki World Heritage User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 159,
         "fields": {
-            "code": "WUL",
-            "name": "Wikimedians of the Uzbek language User Group"
+            "organization_type": 2,
+            "organization_code": "WUL",
+            "organization_name": "Wikimedians of the Uzbek language User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 160,
         "fields": {
-            "code": "WDU",
-            "name": "Wikimedistas de Uruguay"
+            "organization_type": 2,
+            "organization_code": "WDU",
+            "organization_name": "Wikimedistas de Uruguay"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 161,
         "fields": {
-            "code": "WKW",
-            "name": "WikiWomen\"s User Group"
+            "organization_type": 2,
+            "organization_code": "WKW",
+            "organization_name": "WikiWomen\"s User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 162,
         "fields": {
-            "code": "DWU",
-            "name": "Dagbani Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "DWU",
+            "organization_name": "Dagbani Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 163,
         "fields": {
-            "code": "AWUG",
-            "name": "Arabic Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "AWUG",
+            "organization_name": "Arabic Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 164,
         "fields": {
-            "code": "WSP",
-            "name": "Wikimedia Small Projects in Spanish User Group"
+            "organization_type": 2,
+            "organization_code": "WSP",
+            "organization_name": "Wikimedia Small Projects in Spanish User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 165,
         "fields": {
-            "code": "PWU",
-            "name": "Paiwan Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "PWU",
+            "organization_name": "Paiwan Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 166,
         "fields": {
-            "code": "RU-SPU",
-            "name": "Wikimedia Community of Saint Petersburg User Group"
+            "organization_type": 2,
+            "organization_code": "RU-SPU",
+            "organization_name": "Wikimedia Community of Saint Petersburg User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 167,
         "fields": {
-            "code": "DCW",
-            "name": "Deoband Community Wikimedia User Group"
+            "organization_type": 2,
+            "organization_code": "DCW",
+            "organization_name": "Deoband Community Wikimedia User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 168,
         "fields": {
-            "code": "GWU",
-            "name": "Gungbe Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "GWU",
+            "organization_name": "Gungbe Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 169,
         "fields": {
-            "code": "RWA",
-            "name": "Wikimedia Community User Group Rwanda"
+            "organization_type": 2,
+            "organization_code": "RWA",
+            "organization_name": "Wikimedia Community User Group Rwanda"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 170,
         "fields": {
-            "code": "WIR",
-            "name": "Women in Religion User Group"
+            "organization_type": 2,
+            "organization_code": "WIR",
+            "organization_name": "Women in Religion User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 171,
         "fields": {
-            "code": "TWU",
-            "name": "Tyap Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "TWU",
+            "organization_name": "Tyap Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 172,
         "fields": {
-            "code": "LAG",
-            "name": "Wikimedians of Lagos User Group"
+            "organization_type": 2,
+            "organization_code": "LAG",
+            "organization_name": "Wikimedians of Lagos User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 173,
         "fields": {
-            "code": "KAS",
-            "name": "Kashmiri Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "KAS",
+            "organization_name": "Kashmiri Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 174,
         "fields": {
-            "code": "WCK",
-            "name": "Wikimedia Community User Group Kenya"
+            "organization_type": 2,
+            "organization_code": "WCK",
+            "organization_name": "Wikimedia Community User Group Kenya"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 175,
         "fields": {
-            "code": "SWU",
-            "name": "Saudi Wikimedia User Group"
+            "organization_type": 2,
+            "organization_code": "SWU",
+            "organization_name": "Saudi Wikimedia User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 176,
         "fields": {
-            "code": "PH-ADV",
-            "name": "Wiki Advocates Philippines User Group"
+            "organization_type": 2,
+            "organization_code": "PH-ADV",
+            "organization_name": "Wiki Advocates Philippines User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 177,
         "fields": {
-            "code": "TGO",
-            "name": "Wikimedia Community User Group Togo"
+            "organization_type": 2,
+            "organization_code": "TGO",
+            "organization_name": "Wikimedia Community User Group Togo"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 178,
         "fields": {
-            "code": "TJK",
-            "name": "Tajik Wikimedians User Group"
+            "organization_type": 2,
+            "organization_code": "TJK",
+            "organization_name": "Tajik Wikimedians User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 179,
         "fields": {
-            "code": "US-IN",
-            "name": "Wikimedians of Indiana User Group"
+            "organization_type": 2,
+            "organization_code": "US-IN",
+            "organization_name": "Wikimedians of Indiana User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 180,
         "fields": {
-            "code": "JPN",
-            "name": "Wikimedians of Japan User Group"
+            "organization_type": 2,
+            "organization_code": "JPN",
+            "organization_name": "Wikimedians of Japan User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 181,
         "fields": {
-            "code": "BFA",
-            "name": "Wikimédiens du Burkina Faso User Group"
+            "organization_type": 2,
+            "organization_code": "BFA",
+            "organization_name": "Wikimédiens du Burkina Faso User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 182,
         "fields": {
-            "code": "ECU",
-            "name": "Wikimedistas de Ecuador User Group"
+            "organization_type": 2,
+            "organization_code": "ECU",
+            "organization_name": "Wikimedistas de Ecuador User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 183,
         "fields": {
-            "code": "TCD",
-            "name": "Wikimedians of Tchad User Group"
+            "organization_type": 2,
+            "organization_code": "TCD",
+            "organization_name": "Wikimedians of Tchad User Group"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 184,
         "fields": {
-            "code": "ZMB",
-            "name": "Wikimedia Community User Group Zambia"
+            "organization_type": 2,
+            "organization_code": "ZMB",
+            "organization_name": "Wikimedia Community User Group Zambia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 185,
         "fields": {
-            "code": "CAT",
-            "name": "Amical Wikimedia"
+            "organization_type": 3,
+            "organization_code": "CAT",
+            "organization_name": "Amical Wikimedia"
         }
     },
     {
-        "model": "users.organization",
+        "model": "users.Organization",
         "pk": 186,
         "fields": {
-            "code": "WPM",
-            "name": "Wiki Project Med"
+            "organization_type": 3,
+            "organization_code": "WPM",
+            "organization_name": "Wiki Project Med"
         }
     }
 ]

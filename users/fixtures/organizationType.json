@@ -1,0 +1,26 @@
+[
+    {
+        "model": "users.OrganizationType",
+        "pk": 1,
+        "fields": {
+            "type_code": "C",
+            "type_name": "Chapters"
+        }
+    },
+    {
+        "model": "users.OrganizationType",
+        "pk": 2,
+        "fields": {
+            "type_code": "U",
+            "type_name": "Wikimedia user groups"
+        }
+    },
+    {
+        "model": "users.OrganizationType",
+        "pk": 3,
+        "fields": {
+            "type_code": "T",
+            "type_name": "Thematic organizations"
+        }
+    }
+]
