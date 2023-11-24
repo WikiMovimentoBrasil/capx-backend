@@ -43,6 +43,8 @@ class OrganizationType(models.Model):
     type_code = models.CharField(verbose_name=_("Type code"), max_length=20, unique=True)
     type_name = models.CharField(verbose_name=_("Type name"), max_length=140)
 
+    def __str__(self):
+        return self.type_name
 
 class Organization(models.Model):
     organization_name = models.CharField(
