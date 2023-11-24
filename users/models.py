@@ -45,18 +45,26 @@ class OrganizationType(models.Model):
 
 
 class Organization(models.Model):
-    organization_name = models.CharField(verbose_name=_("Organization name"), max_length=256, unique=True,
-                                         error_messages={"unique": _("There's another organization with that name.")})
-    organization_description = models.TextField(verbose_name=_("Organization description"), max_length=1024)
-    organization_code = models.CharField(verbose_name=_("Organization code"), max_length=20, null=True, blank=True)
+    organization_name = models.CharField(
+        verbose_name=_("Organization name"), 
+        max_length=256, unique=True,
+        error_messages={"unique": _("There's another organization with that name.")})
+    organization_description = models.TextField(
+        verbose_name=_("Organization description"), 
+        max_length=1024, null=True, blank=True)
+    organization_code = models.CharField(
+        verbose_name=_("Organization code"), 
+        max_length=20, unique=True, 
+        error_messages={"unique": _("There's another organization with that code.")})
     organization_website = models.URLField(
         verbose_name=_("Organization website"),
-        unique=True,
+        unique=True, null=True, blank=True,
         error_messages={"unique": _("This website is already used by another organization.")})
-    organization_type = models.ForeignKey(OrganizationType, verbose_name=_("Organization type"),
-                                          on_delete=models.RESTRICT)
-    organization_location = models.ManyToManyField(Region, verbose_name=_("Region"),
-                                                   related_name="organization_region", blank=True)
+    organization_type = models.ForeignKey(OrganizationType, 
+        verbose_name=_("Organization type"), on_delete=models.RESTRICT)
+    organization_location = models.ManyToManyField(Region, 
+        verbose_name=_("Region"),
+        related_name="organization_region", blank=True)
 
     def __str__(self):
         if self.organization_code:
