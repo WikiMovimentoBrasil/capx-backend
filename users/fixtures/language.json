@@ -1,0 +1,34 @@
+[
+    {
+        "model": "users.Language",
+        "pk": 1,
+        "fields": {
+            "language_code": "en",
+            "language_name": "English"
+        }
+    },
+    {
+        "model": "users.Language",
+        "pk": 2,
+        "fields": {
+            "language_code": "pt",
+            "language_name": "Portuguese"
+        }
+    },
+    {
+        "model": "users.Language",
+        "pk": 3,
+        "fields": {
+            "language_code": "fr",
+            "language_name": "French"
+        }
+    },
+    {
+        "model": "users.Language",
+        "pk": 4,
+        "fields": {
+            "language_code": "es",
+            "language_name": "Spanish"
+        }
+    }
+]
