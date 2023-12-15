@@ -65,6 +65,11 @@ Before you begin, ensure you have met the following requirements:
 8. Install initial data:
    ``` bash
    python manage.py loaddata fixtures/initial_data.json
+   python manage.py loaddata users/fixtures/region.json
+   python manage.py loaddata users/fixtures/language.json
+   python manage.py loaddata users/fixtures/organizationType.json
+      python manage.py loaddata users/fixtures/organization.json
+   
 
 9. Start the development server:
    ```bash
