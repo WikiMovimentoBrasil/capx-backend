@@ -28,7 +28,7 @@ class RegionModelTest(TestCase):
 
     def test_unique_region_name(self):
         Region.objects.create(region_name="Asia")
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(IntegrityError):
             Region.objects.create(region_name="Asia")
 
 
@@ -47,9 +47,9 @@ class LanguageModelTest(TestCase):
 
     def test_unique_language_code(self):
         # Test that language_code is unique
-        Language.objects.create(language_name="Spanish", language_code="es")
-        with self.assertRaises(ValidationError):
-            Language.objects.create(language_name="Hausa", language_code="es")
+        Language.objects.create(language_name="English", language_code="en")
+        with self.assertRaises(IntegrityError):
+            Language.objects.create(language_name="Hausa", language_code="en")
 
 
 class WikimediaProjectModelTest(TestCase):
@@ -66,9 +66,9 @@ class WikimediaProjectModelTest(TestCase):
         self.assertEqual(str(self.wikimedia_project), "Wikipedia")
 
     def test_unique_wikimedia_project_code(self):
-        WikimediaProject.objects.create(wikimedia_project_name="Wikimedia Commons", wikimedia_project_code="wiki")
+        WikimediaProject.objects.create(wikimedia_project_name="Wikimedia Commons", wikimedia_project_code="commonswiki")
         with self.assertRaises(IntegrityError):
-            WikimediaProject.objects.create(wikimedia_project_name="Wikidata", wikimedia_project_code="wiki")
+            WikimediaProject.objects.create(wikimedia_project_name="Wikidata", wikimedia_project_code="commonswiki")
 
 
 class AreaOfInterestModelTest(TestCase):
@@ -134,7 +134,7 @@ class OrganizationModelTest(TestCase):
             organization_code="CL",
             organization_type=self.organization_type,
         )
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(IntegrityError):
             Organization.objects.create(
                 organization_name="Wikimedia Chile",
                 organization_code="CH",
@@ -151,7 +151,7 @@ class OrganizationModelTest(TestCase):
             organization_code="CH",
             organization_type=self.organization_type,
         )
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(IntegrityError):
             Organization.objects.create(
                 organization_name="Wikimedia Chile",
                 organization_code="CH",
@@ -196,7 +196,7 @@ class CustomUserModelTest(TestCase):
 
     def test_username_uniqueness(self):
         # Test the uniqueness of the username
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(IntegrityError):
             another_user = CustomUser.objects.create_user(
                 username="Abrahmovic",
                 email="another@example.com",
