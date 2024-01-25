@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'skills',
     'map',
     'events',
+    'bugs',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
