@@ -1,7 +1,11 @@
-SECRET_KEY = '<YOUR VERY SECRET KEY>'
-DEBUG = False
-ALLOWED_HOSTS = ['<YOUR HOSTS>']
+import os
+import configparser
+from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 
+SECRET_KEY = '<YOUR VERY SECRET KEY>'
+DEBUG = True #Change to False when in production
+ALLOWED_HOSTS = ['<YOUR HOSTS>']
 HOME = os.environ.get('HOME') or ""
 
 SOCIAL_AUTH_MEDIAWIKI_KEY = '<YOUR MEDIAWIKI KEY>'
@@ -34,3 +38,10 @@ else:
         }
     }
     print('replica.my.cnf file not found')
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('pt-br', _('Brazilian Portuguese')),
+    ('pt', _('Portuguese')),
+    ('es', _('Spanish')),
+)

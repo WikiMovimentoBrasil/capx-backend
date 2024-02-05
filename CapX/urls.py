@@ -21,6 +21,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('users.urls')),
+    path('', include('skills.urls')),
     path('', include('social_django.urls')),
 ]
 
