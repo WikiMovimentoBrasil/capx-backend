@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('service_description', models.TextField(max_length=1000, verbose_name='Description')),
                 ('service_wikidata_item', models.CharField(blank=True, max_length=30, null=True, validators=[django.core.validators.RegexValidator(message='Field must be in the format "Q123456789"', regex='^Q\\d+$')], verbose_name='Wikidata item associated')),
                 ('service_date_of_creation', models.DateTimeField(default=django.utils.timezone.now)),
-                ('service_type', models.ManyToManyField(to='skills.service', verbose_name='Service type')),
+                ('service_type', models.ManyToManyField(blank=True, to='skills.service', verbose_name='Service type'),),
             ],
         ),
         migrations.RemoveField(
@@ -79,7 +79,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='skill',
             name='skill_type',
-            field=models.ManyToManyField(to='skills.skill', verbose_name='Skill type'),
+            field=models.ManyToManyField(blank=True, to='skills.skill', verbose_name='Skill type')
         ),
         migrations.AddField(
             model_name='skill',
