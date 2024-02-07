@@ -1,6 +1,15 @@
 from django.contrib import admin
 from .models import Bug, Attachment
 
-# Register your models here.
-admin.site.register(Bug)
-admin.site.register(Attachment)
+
+class AttachmentInline(admin.TabularInline):
+    model = Attachment
+    extra = 1  # Number of extra empty forms
+
+
+class BugAdmin(admin.ModelAdmin):
+    inlines = [AttachmentInline, ]
+
+
+admin.site.register(Bug, BugAdmin)
+
