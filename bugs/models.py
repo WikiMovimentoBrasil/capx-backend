@@ -21,8 +21,8 @@ class Bug(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
-    bug_type = models.CharField(choices=BUG_TYPES, max_length=20)
-    status = models.CharField(choices=BUG_STATUSES, max_length=20)
+    bug_type = models.CharField(choices=BUG_TYPES, max_length=20, blank=True, null=True)
+    status = models.CharField(choices=BUG_STATUSES, max_length=20, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -32,7 +32,7 @@ class Bug(models.Model):
 class Attachment(models.Model):
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE, related_name="attachments", null=True, blank=True)
     file = models.FileField(
-        upload_to='attachments/'
+        upload_to='attachments/', null=True, blank=True
     )
     uploaded_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
