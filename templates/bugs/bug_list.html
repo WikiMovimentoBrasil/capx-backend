@@ -1,0 +1,11 @@
+{% extends 'base.html' %}  <!-- If you have a base template -->
+
+{% block content %}
+<h2>All Bugs</h2>
+<ul>
+    {% for bug in bugs %}
+        <li><a href="{% url 'bugs:bug_detail' bug.id %}">{{ bug.title }}</a></li>
+
+    {% endfor %}
+</ul>
+{% endblock %}
