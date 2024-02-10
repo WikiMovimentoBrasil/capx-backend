@@ -19,6 +19,8 @@ replica_path = HOME + '/replica.my.cnf'
 if os.path.exists(replica_path):
     config = configparser.ConfigParser()
     config.read(replica_path)
+    elasticsearch = configparser.ConfigParser()
+    elasticsearch.read(HOME + '/.elasticsearch.ini')
 
     DATABASES = {
         'default': {
@@ -30,11 +32,23 @@ if os.path.exists(replica_path):
             'PORT': '',
         }
     }
+    ELASTICSEARCH_DSL={
+        'default': {
+            'hosts': 'http://elasticsearch.svc.tools.eqiad1.wikimedia.cloud:80',
+            'http_auth': (elasticsearch['username'] , elasticsearch['password'])
+        }
+    }
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+    ELASTICSEARCH_DSL={
+        'default': {
+            'hosts': 'https://localhost:9200',
+            'http_auth': ('elastic', '<ELASTICSEARCH_PASSWORD>')
         }
     }
     print('replica.my.cnf file not found')

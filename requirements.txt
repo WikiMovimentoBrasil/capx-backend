@@ -5,3 +5,4 @@ mysqlclient
 pymysql
 requests
 django-modeltranslation
+elasticsearch-dsl>=8.0.0,<9.0.0
