@@ -44,7 +44,7 @@
 .formfield span { vertical-align: top; }
 .formfield input, select, textarea {
     width: 100%;
-    border: none;
+    border: 1px solid black;
     background-color: var(--light-color);
     color: var(--dark-color);
     font-weight: normal;
