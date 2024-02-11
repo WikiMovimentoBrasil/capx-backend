@@ -47,8 +47,7 @@ else:
     }
     ELASTICSEARCH_DSL={
         'default': {
-            'hosts': 'https://localhost:9200',
-            'http_auth': ('elastic', '<ELASTICSEARCH_PASSWORD>')
+            'hosts': 'http://localhost:9200'
         }
     }
     print('replica.my.cnf file not found')
