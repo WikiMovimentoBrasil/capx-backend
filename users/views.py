@@ -21,6 +21,13 @@ def profile(request):
             return redirect('profile')  # Redirect to view profile after successful edit
     else:
         form = ProfileForm(instance=profile)
+        form.order_fields(field_order=[
+            'pronoun',
+            'display_name',
+            'profile_image',
+            'birthday',
+            'about_me',
+        ])
     return render(request, 'users/profile.html', {'form': form})
 
 
