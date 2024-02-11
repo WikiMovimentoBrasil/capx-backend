@@ -39,6 +39,6 @@ jobs:
         echo "ALLOWED_HOSTS = ['localhost', '127.0.0.1']" >> CapX/settings_local.py
         echo "BASE_DIR = '${GITHUB_WORKSPACE}'" >> CapX/settings_local.py
         echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'db.sqlite3'}}" >> CapX/settings_local.py
-        echo "ELASTICSEARCH_DSL = {'default': {'hosts': '${ELASTIC_SEARCH_URL}'}}" >> CapX/settings_local.py
+        echo "ELASTICSEARCH_DSL = {'default': {'hosts': 'http://localhost:${{ job.services.elasticsearch.ports[9200] }}'}}" >> CapX/settings_local.py
         FILE_CONTENT=$(cat CapX/settings_local.py)
         echo "$FILE_CONTENT"
