@@ -26,10 +26,6 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
     - name: Verify Elasticsearch connection from host
       env:
         ELASTIC_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
@@ -44,4 +40,5 @@ jobs:
         echo "BASE_DIR = '${GITHUB_WORKSPACE}'" >> CapX/settings_local.py
         echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'db.sqlite3'}}" >> CapX/settings_local.py
         echo "ELASTICSEARCH_DSL = {'default': {'hosts': '${ELASTIC_SEARCH_URL}'}}" >> CapX/settings_local.py
-        cat CapX/settings_local.py >> $GITHUB_OUTPUT
+        FILE_CONTENT=$(cat CapX/settings_local.py)
+        echo "$FILE_CONTENT"
