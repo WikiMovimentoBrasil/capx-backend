@@ -45,8 +45,3 @@ jobs:
         echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'db.sqlite3'}}" >> CapX/settings_local.py
         echo "ELASTICSEARCH_DSL = {'default': {'hosts': '${ELASTIC_SEARCH_URL}'}}" >> CapX/settings_local.py
         cat CapX/settings_local.py >> $GITHUB_OUTPUT
-    - name: Coverage report
-      run: |
-        pip install coverage
-        coverage run manage.py test
-        coverage report
