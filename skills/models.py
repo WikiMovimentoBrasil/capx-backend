@@ -1,18 +1,25 @@
 from django.db import models
-from django.utils.translation import gettext_lazy as _
-from django.core.validators import RegexValidator
-from django.utils import timezone
 
-
-qid_form_validator = RegexValidator(regex=r"^Q\d+$", message=_("Field must be in the format \"Q123456789\""))
-
+class Skill_Family(models.Model):
+    name = models.CharField(max_length=128)
+    profile_image = models.URLField(max_length=256)
+    profile_header = models.URLField(max_length=256)
+    description = models.CharField(max_length=512)
+    wiki_link = models.URLField(max_length=256)
+    date_of_creation = models.DateField()
+    date_of_last_edit = models.DateField()
+    def __str__(self):
+        return self.name
 
 class Skill(models.Model):
-    skill_name = models.CharField(_("Name"), max_length=128)
-    skill_description = models.CharField(_("Description"), max_length=1000)
-    skill_type = models.ManyToManyField("self", verbose_name=_("Skill type"), symmetrical=False, blank=True)
-    skill_wikidata_item = models.CharField(_("Wikidata item associated"), max_length=30, null=True, blank=True, validators=[qid_form_validator])
-    skill_date_of_creation = models.DateTimeField(default=timezone.now)
-
+    name = models.CharField(max_length=128)
+    profile_image = models.URLField(max_length=256)
+    profile_header = models.URLField(max_length=256)
+    description = models.CharField(max_length=512)
+    wiki_link = models.URLField(max_length=256)
+    date_of_creation = models.DateField()
+    date_of_last_edit = models.DateField()
+    self_learning = models.URLField(max_length=256)
+    family = models.ForeignKey(Skill_Family, null=False, on_delete=models.CASCADE)
     def __str__(self):
-        return self.skill_name
+        return self.name

@@ -1,125 +1,125 @@
 [
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 1,
     "fields": {
       "region_name": "Universe"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 2,
     "fields": {
       "region_name": "Earth"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 3,
     "fields": {
       "region_name": "Africa"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 4,
     "fields": {
       "region_name": "Asia"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 5,
     "fields": {
       "region_name": "Europe"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 6,
     "fields": {
       "region_name": "America"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 7,
     "fields": {
       "region_name": "Oceania"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 8,
     "fields": {
       "region_name": "Antartica"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 9,
     "fields": {
       "region_name": "Central and Eastern Europe and Central Asia (CEECA)"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 10,
     "fields": {
       "region_name": "East, Southeast Asia, and Pacific (ESEAP)"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 11,
     "fields": {
       "region_name": "Latin America and The Caribbean (LAC)"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 12,
     "fields": {
       "region_name": "Middle East and North Africa (MENA)"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 13,
     "fields": {
       "region_name": "North America (NA)"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 14,
     "fields": {
       "region_name": "Northern and Western Europe (NWE)"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 15,
     "fields": {
       "region_name": "South Asia (SA)"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 16,
     "fields": {
       "region_name": "Sub-Saharan Africa (SSA)"
     }
   },
   {
-    "model": "users.region",
+    "model": "user_profile.region",
     "pk": 17,
     "fields": {
       "region_name": "Brazil"
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 1,
     "fields": {
       "from_region_id": 2,
@@ -127,7 +127,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 2,
     "fields": {
       "from_region_id": 3,
@@ -135,7 +135,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 3,
     "fields": {
       "from_region_id": 4,
@@ -143,7 +143,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 4,
     "fields": {
       "from_region_id": 5,
@@ -151,7 +151,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 5,
     "fields": {
       "from_region_id": 6,
@@ -159,7 +159,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 6,
     "fields": {
       "from_region_id": 8,
@@ -167,7 +167,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 7,
     "fields": {
       "from_region_id": 7,
@@ -175,7 +175,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 8,
     "fields": {
       "from_region_id": 9,
@@ -183,7 +183,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 9,
     "fields": {
       "from_region_id": 9,
@@ -191,7 +191,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 10,
     "fields": {
       "from_region_id": 10,
@@ -199,7 +199,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 11,
     "fields": {
       "from_region_id": 10,
@@ -207,7 +207,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 12,
     "fields": {
       "from_region_id": 11,
@@ -215,7 +215,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 13,
     "fields": {
       "from_region_id": 12,
@@ -223,7 +223,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 14,
     "fields": {
       "from_region_id": 12,
@@ -231,7 +231,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 15,
     "fields": {
       "from_region_id": 13,
@@ -239,7 +239,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 16,
     "fields": {
       "from_region_id": 14,
@@ -247,7 +247,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 17,
     "fields": {
       "from_region_id": 15,
@@ -255,7 +255,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 18,
     "fields": {
       "from_region_id": 16,
@@ -263,7 +263,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 19,
     "fields": {
       "from_region_id": 17,
@@ -271,7 +271,7 @@
     }
   },
   {
-    "model": "users.region_parent_region",
+    "model": "user_profile.region_parent_region",
     "pk": 20,
     "fields": {
       "from_region_id": 17,
@@ -279,7 +279,7 @@
     }
   },
   {
-    "model": "users.language",
+    "model": "user_profile.language",
     "pk": 1,
     "fields": {
       "language_name": "Brazilian Portuguese",
@@ -287,7 +287,7 @@
     }
   },
   {
-    "model": "users.language",
+    "model": "user_profile.language",
     "pk": 2,
     "fields": {
       "language_name": "Portuguese",
@@ -295,7 +295,7 @@
     }
   },
   {
-    "model": "users.language",
+    "model": "user_profile.language",
     "pk": 3,
     "fields": {
       "language_name": "English",
@@ -303,7 +303,7 @@
     }
   },
   {
-    "model": "users.language",
+    "model": "user_profile.language",
     "pk": 4,
     "fields": {
       "language_name": "Spanish",
@@ -311,7 +311,7 @@
     }
   },
   {
-    "model": "users.language",
+    "model": "user_profile.language",
     "pk": 5,
     "fields": {
       "language_name": "French",
@@ -319,7 +319,7 @@
     }
   },
   {
-    "model": "users.language",
+    "model": "user_profile.language",
     "pk": 6,
     "fields": {
       "language_name": "German",
@@ -327,7 +327,7 @@
     }
   },
   {
-    "model": "users.language",
+    "model": "user_profile.language",
     "pk": 7,
     "fields": {
       "language_name": "Japanese",
@@ -335,7 +335,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 1,
     "fields": {
       "wikimedia_project_name": "Wikipedia",
@@ -343,7 +343,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 2,
     "fields": {
       "wikimedia_project_name": "Wikimedia Commons",
@@ -351,7 +351,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 3,
     "fields": {
       "wikimedia_project_name": "Wikidata",
@@ -359,7 +359,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 4,
     "fields": {
       "wikimedia_project_name": "Wikiversity",
@@ -367,7 +367,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 5,
     "fields": {
       "wikimedia_project_name": "Wikibooks",
@@ -375,7 +375,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 6,
     "fields": {
       "wikimedia_project_name": "Wikisource",
@@ -383,7 +383,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 7,
     "fields": {
       "wikimedia_project_name": "Wikiquote",
@@ -391,7 +391,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 8,
     "fields": {
       "wikimedia_project_name": "Wiktionary",
@@ -399,7 +399,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 9,
     "fields": {
       "wikimedia_project_name": "Wikispecies",
@@ -407,7 +407,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 10,
     "fields": {
       "wikimedia_project_name": "Wikivoyage",
@@ -415,7 +415,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 11,
     "fields": {
       "wikimedia_project_name": "Wikifunctions",
@@ -423,7 +423,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 12,
     "fields": {
       "wikimedia_project_name": "Meta-Wiki",
@@ -431,7 +431,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 13,
     "fields": {
       "wikimedia_project_name": "MediaWiki",
@@ -439,7 +439,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 14,
     "fields": {
       "wikimedia_project_name": "Wikimedia Incubator",
@@ -447,7 +447,7 @@
     }
   },
   {
-    "model": "users.wikimediaproject",
+    "model": "user_profile.wikimediaproject",
     "pk": 15,
     "fields": {
       "wikimedia_project_name": "Wikimania",
@@ -455,28 +455,28 @@
     }
   },
   {
-    "model": "users.areaofinterest",
+    "model": "user_profile.areaofinterest",
     "pk": 1,
     "fields": {
       "area_name": "GLAM"
     }
   },
   {
-    "model": "users.areaofinterest",
+    "model": "user_profile.areaofinterest",
     "pk": 2,
     "fields": {
       "area_name": "Education"
     }
   },
   {
-    "model": "users.areaofinterest",
+    "model": "user_profile.areaofinterest",
     "pk": 3,
     "fields": {
       "area_name": "Technology"
     }
   },
   {
-    "model": "users.areaofinterest",
+    "model": "user_profile.areaofinterest",
     "pk": 4,
     "fields": {
       "area_name": "Diversity"

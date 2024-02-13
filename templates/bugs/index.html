@@ -6,7 +6,7 @@
 {% block title %}{% trans "Homepage" %}{% endblock %}
 
 {% block content %}
-<h1>Django Image Uploading</h1>
+<h1>CapX Bug Reporting</h1>
 <ul>
   {% for bug in object_list %}
     <h2>{{ bug.title }}</h2>
@@ -15,11 +15,3 @@
 </ul>
 {% endblock %}
 
-{#<h1>Bug List</h1>#}
-{#<ul>#}
-{#    {% for bug in bug_list%}#}
-{##}
-{#    <li><a href="{% url 'bug:bug_detail' bug.id %}">{{ bug.description }}</a></li>#}
-{##}
-{#    {% endfor %}#}
-{#</ul>#}

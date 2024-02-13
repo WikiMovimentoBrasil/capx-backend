@@ -29,8 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
-    'modeltranslation',
-    'django_elasticsearch_dsl'
+    'modeltranslation'
 ]
 
 MIDDLEWARE = [
