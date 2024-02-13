@@ -22,18 +22,19 @@ Before you begin, ensure you have met the following requirements:
 
 - Python 3
 - Django 4.2.5
+- MySQL
 
 ### Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/WikiMovimentoBrasil/capx.git
+   https://github.com/WikiMovimentoBrasil/capx-dev.git
 
 2. Navigate to the project directory:
 
    ```bash
-   cd capx
+   cd capx-dev
 
 3. Create a virtual environment (optional but recommended):
 
@@ -64,6 +65,11 @@ Before you begin, ensure you have met the following requirements:
 8. Install initial data:
    ``` bash
    python manage.py loaddata fixtures/initial_data.json
+   python manage.py loaddata users/fixtures/region.json
+   python manage.py loaddata users/fixtures/language.json
+   python manage.py loaddata users/fixtures/organizationType.json
+      python manage.py loaddata users/fixtures/organization.json
+   
 
 9. Start the development server:
    ```bash
