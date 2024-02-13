@@ -10,3 +10,4 @@ CapX/settings_local.py
 *.pkl
 *.coverage
 htmlcov/
+media/
