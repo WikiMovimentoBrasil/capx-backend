@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse,  get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .forms import  BugForm
 
 from django.views.generic import ListView, CreateView  # new
@@ -42,8 +43,9 @@ def bug_form(request):
     return render(request, 'bugs/register_bug.html', {'form': form})
 
 
+@login_required
 def bug_list(request):
-    bugs = Bug.objects.all()  # Get all bugs from the database
+    bugs = Bug.objects.filter(user=request.user)  # Get all bugs from the database
     return render(request, 'bugs/bug_list.html', {'bugs': bugs})
 
 
