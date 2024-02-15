@@ -123,7 +123,7 @@ class Profile(models.Model):
     telegram = models.CharField(verbose_name=_("Telegram"), max_length=128, null=True, blank=True)
     github = models.CharField(verbose_name=_("GitHub"), max_length=128, null=True, blank=True)
     irc = models.CharField(verbose_name=_("IRC"), max_length=128, null=True, blank=True)
-    wiki_unified = models.CharField(verbose_name=_("Wikimedia user account"), max_length=128, null=True, blank=True)
+    wiki_alt = models.CharField(verbose_name=_("Wikimedia alternative account"), max_length=128, null=True, blank=True)
     wiki_develop = models.CharField(verbose_name=_("Wikimedia developer account"), max_length=128, null=True, blank=True)
 
     # CONTACT
