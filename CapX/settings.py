@@ -91,6 +91,7 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'homepage'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_PROTECTED_USER_FIELDS=["groups"]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
