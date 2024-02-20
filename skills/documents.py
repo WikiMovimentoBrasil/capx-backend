@@ -6,7 +6,7 @@ from .models import Skill
 class SkillDocument(Document):
 
     class Index:
-        name = 'skills'
+        name = 'capx_skills'
         settings = {'number_of_shards': 1, 'number_of_replicas': 0}
 
     class Django:

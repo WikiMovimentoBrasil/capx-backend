@@ -9,7 +9,7 @@ class ProfileDocument(Document):
     })
 
     class Index:
-        name = 'profile'
+        name = 'capx_profile'
         settings = {'number_of_shards': 1, 'number_of_replicas': 0}
 
     class Django:
