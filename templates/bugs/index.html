@@ -5,13 +5,16 @@
 
 {% block title %}{% trans "Homepage" %}{% endblock %}
 
-{% block content %}
-<h1>CapX Bug Reporting</h1>
+<h2>All Bugs</h2>
 <ul>
-  {% for bug in object_list %}
-    <h2>{{ bug.title }}</h2>
-    # <img src="{{ post.cover.url}}" alt="{{ post.title }}">
-  {% endfor %}
+    {% for bug in bugs %}
+        <li><a href="{% url 'bugs:bug_detail' bug.id %}">{{ bug.title }}</a></li>
+
+    {% endfor %}
 </ul>
+
+
+<a href="{% url 'bugs:bug_detail' bug.id %}">{{ bug.title }}</a>
+<a href="{% url 'bugs:register_bug' %}">Submit a new bug</a>
 {% endblock %}
 
