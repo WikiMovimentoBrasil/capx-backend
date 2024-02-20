@@ -7,12 +7,12 @@
         <span class="nav_logo_text">{% trans "Capacity Exchange" %}</span>
     </a>
     <div class="nav_section menu_links">
-        <a href="{% url 'homepage' %}">{% trans "Skills" %}</a>
+        <a href="{% url 'skill_list' %}">{% trans "Skills" %}</a>
         <a href="{% url 'homepage' %}">{% trans "Profile" %}</a>
         <a href="{% url 'bugs:bug_list' %}">{% trans "Feedback" %}</a>
         <div class="search-container">
-            <form>
-                <input type="text" placeholder="Search.." name="search">
+            <form action="{% url 'search' %}" method="get">
+                <input type="text" placeholder="Search.." name="query">
                 <button class="nav_search_btn">
                     <img class="nav_search_icon" src="{% static 'images/magnifying-glass-solid.svg' %}" alt="{% trans 'Search in Capacity Exchange' %}" aria-label="{% trans 'Search in Capacity Exchange' %}">
                 </button>
