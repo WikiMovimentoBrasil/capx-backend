@@ -13,6 +13,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 SOCIAL_AUTH_MEDIAWIKI_URL = 'https://meta.wikimedia.org/w/index.php'
 SOCIAL_AUTH_MEDIAWIKI_KEY = os.environ.get("SOCIAL_AUTH_MEDIAWIKI_KEY")
 SOCIAL_AUTH_MEDIAWIKI_SECRET = os.environ.get("SOCIAL_AUTH_MEDIAWIKI_SECRET")
+SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'oob'
 
 
 if os.path.exists(HOME + '/replica.my.cnf'):
