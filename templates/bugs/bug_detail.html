@@ -19,4 +19,8 @@
 {% else %}
     <p>No attachments found.</p>
 {% endif %}
+
+  <a href="{% url 'bugs:update_bug' bug.id %}" onclick="return confirm('Are you sure?');">Update Bug</a> ||
+     <a href="{% url 'bugs:delete_bug' bug.id %}" onclick="return confirm('Are you sure?');">Delete Bug</a>
+
 {% endblock %}
