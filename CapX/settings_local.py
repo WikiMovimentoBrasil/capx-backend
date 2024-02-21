@@ -18,7 +18,7 @@ SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'oob'
 
 if os.path.exists(HOME + '/replica.my.cnf'):
     ALLOWED_HOSTS = ['capacity-exchange.toolforge.org','toolforge.org']
-    SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'http://capacity-exchange.toolforge.org/oauth/complete/mediawiki/'
+    SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'https://%s.toolforge.org/oauth/complete/mediawiki/' % TOOL_NAME
 
     DATABASES = {
         'default': {
