@@ -31,7 +31,7 @@ if os.path.exists(HOME + '/replica.my.cnf'):
         }
     }
 
-    ELASTICSEARCH_DSL={
+    OPENSEARCH_DSL={
         'default': {
             'hosts': 'http://elasticsearch.svc.tools.eqiad1.wikimedia.cloud:80',
             'http_auth': (
@@ -52,7 +52,7 @@ else:
         }
     }
 
-    ELASTICSEARCH_DSL={
+    OPENSEARCH_DSL={
         'default': {
             'hosts': 'http://localhost:9200'
         }
