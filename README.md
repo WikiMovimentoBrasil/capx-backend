@@ -88,9 +88,9 @@ Before you begin, ensure you have met the following requirements:
 
 10. Start the development server:
 
-   ```bash
-   python manage.py runserver
-   ```
+    ```bash
+    python manage.py runserver
+    ```
 
 You should now be able to access the project at http://localhost:8000/ in your web browser.
 
@@ -104,4 +104,4 @@ Contributions are welcome! To contribute to the Capacity Exchange, follow these 
 5. Create a pull request on GitHub
 
 ## License
-This project is licensed under the [MIT License](https://opensource.org/license/mit) - see the LICENSE file for details.
+This project is licensed under the GNU AGPLv3 - see the LICENSE file for details.
