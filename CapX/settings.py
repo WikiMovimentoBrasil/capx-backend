@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'modeltranslation',
-    'django_elasticsearch_dsl'
+    'django_opensearch_dsl'
 ]
 
 MIDDLEWARE = [

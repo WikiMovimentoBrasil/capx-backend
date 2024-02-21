@@ -1,6 +1,6 @@
 from django.http import HttpResponseServerError
 from django.shortcuts import render
-from elasticsearch.exceptions import ConnectionError
+from opensearch.exceptions import ConnectionError
 from users.documents import ProfileDocument
 from skills.documents import SkillDocument
 
