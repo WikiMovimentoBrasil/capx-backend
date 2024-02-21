@@ -22,58 +22,75 @@ Before you begin, ensure you have met the following requirements:
 
 - Python 3
 - Django 4.2.5
-- MySQL
 
 ### Installation
 
 1. Clone the repository:
 
    ```bash
-   https://github.com/WikiMovimentoBrasil/capx-dev.git
+   git clone https://github.com/WikiMovimentoBrasil/capx-dev.git
+   ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd capx-dev
+   cd capx
+   ```
 
 3. Create a virtual environment (optional but recommended):
 
    ```bash
    python -m venv venv
+   ```
 
 4. Activate the virtual environment:
     * On Windows:
    ```bash
-   venv\Scripts\activate
+   venv\Scripts\activate.bat
    ```
+   
     * On macOS and Linux:
    ```bash
    source venv/bin/activate
+   ```
 
 5. Install project dependencies:
    ```bash
    pip install -r requirements.txt
+   ```
 
 6. Create the database and apply migrations:
    ```bash
    python manage.py migrate
+   ```
    
 7. Create a superuser to have full control over the database:
-   ``` bash
+   ```bash
    python manage.py createsuperuser
+   ```
 
 8. Install initial data:
-   ``` bash
+   ```bash
    python manage.py loaddata fixtures/initial_data.json
    python manage.py loaddata users/fixtures/region.json
    python manage.py loaddata users/fixtures/language.json
    python manage.py loaddata users/fixtures/organizationType.json
-      python manage.py loaddata users/fixtures/organization.json
-   
+   python manage.py loaddata users/fixtures/organization.json
+   ```
 
-9. Start the development server:
+9. Create a ```.env``` with the following envvars
+
    ```bash
-    python manage.py runserver
+   SOCIAL_AUTH_MEDIAWIKI_KEY="<YOUR MEDIAWIKI OAUTH KEY>"
+   SOCIAL_AUTH_MEDIAWIKI_SECRET="<YOUR MEDIAWIKI OAUTH SECRET>"
+   SECRET_KEY="<CREATE YOUR OWN RANDOM KEY>"
+   ```
+
+10. Start the development server:
+
+   ```bash
+   python manage.py runserver
+   ```
 
 You should now be able to access the project at http://localhost:8000/ in your web browser.
 
