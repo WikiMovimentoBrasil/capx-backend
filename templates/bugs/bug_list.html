@@ -1,4 +1,4 @@
-{% extends 'base.html' %}  <!-- If you have a base template -->
+{% extends 'base.html' %}
 
 {% block content %}
 <h2>All Bugs</h2>
@@ -8,4 +8,6 @@
 
     {% endfor %}
 </ul>
+
+      <a href="{% url 'bugs:register_bug' %}">Report a Bug</a>
 {% endblock %}
