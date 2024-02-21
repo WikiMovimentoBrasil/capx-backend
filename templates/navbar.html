@@ -8,7 +8,7 @@
     </a>
     <div class="nav_section menu_links">
         <a href="{% url 'skill_list' %}">{% trans "Skills" %}</a>
-        <a href="{% url 'homepage' %}">{% trans "Profile" %}</a>
+        <a href="{% url 'profile' %}">{% trans "Profile" %}</a>
         <a href="{% url 'bugs:bug_list' %}">{% trans "Feedback" %}</a>
         <div class="search-container">
             <form action="{% url 'search' %}" method="get">
@@ -24,8 +24,8 @@
         <img class="nav_menu_icon open" src="{% static 'images/xmark-solid.svg' %}" alt="{% trans 'Close menu' %}" aria-label="{% trans 'Close menu' %}">
     </div>
     <div class="nav_section dropdown_menu">
-        <a href="{% url 'homepage' %}">{% trans "Skills" %}</a>
-        <a href="{% url 'homepage' %}">{% trans "Profile" %}</a>
+        <a href="{% url 'skill_list' %}">{% trans "Skills" %}</a>
+        <a href="{% url 'profile' %}">{% trans "Profile" %}</a>
         <a href="{% url 'bugs:bug_list' %}">{% trans "Feedback" %}</a>
     </div>
 </nav>

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Homepage" %}{% endblock %}
+
+{% block styles %}<link rel="stylesheet" type="text/css" href="{% static 'css/forms.css' %}">{% endblock %}
+
+{% block content %}
+
+<div class="w3-row-padding w3-content" style="max-width:800px">
+    <div class="w3-container w3-margin-top">
+        <div class="w3-container">
+            <h1>{% trans "Profile" %}</h1>
+        </div>
+    </div>
+    <div class="w3-margin-top w3-section">
+        <div class="w3-container">
+            <form method="post">
+                {% csrf_token %}
+                <div class="w3-section formfield">
+                    {{ form.as_div }}
+                    <button type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
