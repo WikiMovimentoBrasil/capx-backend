@@ -161,7 +161,4 @@ class Profile(models.Model):
 @receiver(post_save, sender=CustomUser)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        try:
-            Profile.objects.create(user=instance)
-        except AuthorizationException as e:
-            print("OpenSearch update failed:", e)
+        Profile.objects.create(user=instance)
