@@ -1,4 +1,5 @@
 .idea
+.env
 __pycache__/
 */__pycache__
 *.pyc
@@ -6,5 +7,4 @@ venv/
 Lib/
 Scripts/
 *.sqlite3
-CapX/settings_local.py
 *.pkl

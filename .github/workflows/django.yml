@@ -32,10 +32,10 @@ jobs:
         pip install -r requirements.txt
     - name: Verify Elasticsearch connection from host
       env:
-        ELASTIC_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
+        OPEN_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
       run: |
-        echo $ELASTIC_SEARCH_URL
-        curl -fsSL "$ELASTIC_SEARCH_URL/_cat/health?h=status"
+        echo $OPEN_SEARCH_URL
+        curl -fsSL "$OPEN_SEARCH_URL/_cat/health?h=status"
     - name: Create settings_local.py
       run: |
         echo "SECRET_KEY = 'SECRET_KEY'" > CapX/settings_local.py
@@ -43,7 +43,7 @@ jobs:
         echo "ALLOWED_HOSTS = ['localhost', '127.0.0.1']" >> CapX/settings_local.py
         echo "BASE_DIR = '${GITHUB_WORKSPACE}'" >> CapX/settings_local.py
         echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'db.sqlite3'}}" >> CapX/settings_local.py
-        echo "ELASTICSEARCH_DSL = {'default': {'hosts': 'http://localhost:${{ job.services.elasticsearch.ports[9200] }}'}}" >> CapX/settings_local.py
+        echo "OPENSEARCH_DSL = {'default': {'hosts': 'http://localhost:${{ job.services.elasticsearch.ports[9200] }}'}}" >> CapX/settings_local.py
     - name: Coverage report
       run: |
         pip install coverage

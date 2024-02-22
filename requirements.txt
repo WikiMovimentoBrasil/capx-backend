@@ -1,9 +1,9 @@
 django
 social-auth-app-django
 whitenoise
-mysqlclient
 pymysql
 requests
+opensearch-py
+python-dotenv
 django-modeltranslation
-elasticsearch-dsl>=7.0.0,<8.0.0
-django-elasticsearch-dsl
+django-opensearch-dsl
