@@ -70,8 +70,8 @@ class BugFormViewTest(TestCase):
 class BugListTests(TestCase):
     def setUp(cls):
         # Create two users, one regular and one superuser
-        cls.user = User.objects.create_user(username='testuser', password='12345')
-        cls.superuser = User.objects.create_superuser(username='admin', email='admin@example.com', password='admin123')
+        cls.user = CustomUser.objects.create_user(username='testuser', password='12345')
+        cls.superuser = CustomUser.objects.create_superuser(username='admin', email='admin@example.com', password='admin123')
         # Create bugs for each user
         Bug.objects.create(title="User Bug", description="A bug by a regular user", user=self.user)
         Bug.objects.create(title="Admin Bug", description="A bug by an admin", user=self.superuser)
