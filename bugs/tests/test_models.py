@@ -1,8 +1,9 @@
+from PIL import Image
+import io
 from django.test import TestCase
-from django.db import IntegrityError
-from django.core.exceptions import ValidationError
 from ..models import Bug, Attachment
 from users.models import CustomUser
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class BugModelTest(TestCase):
     @classmethod
@@ -20,7 +21,7 @@ class BugModelTest(TestCase):
             status='to_do'
         )
 
-    def test_bug_content(self):
+    def test_bug_creation(self):
         bug = Bug.objects.get(id=1)
         expected_user = f'{bug.user}'
         expected_title = f'{bug.title}'
@@ -33,3 +34,37 @@ class BugModelTest(TestCase):
         self.assertEqual(expected_description, 'Sample Description')
         self.assertEqual(expected_bug_type, 'error')
         self.assertEqual(expected_status, 'to_do')
+
+
+class AttachmentModelTest(TestCase):
+    def setUp(self):
+        # Setup a user and a bug for the attachment
+        self.user = CustomUser.objects.create_user(username="testuser", password='12345')
+        self.bug = Bug.objects.create(
+            user=self.user,
+            title="Sample Bug",
+            description="This is a sample description.",
+            bug_type="error",
+            status="to_do"
+        )
+
+    def test_attachment_creation(self):
+        file = io.BytesIO()
+        image = Image.new("RGB", (100, 100), color="red")
+        image.save(file, "PNG")
+        file.name = 'test_image.png'
+        file.seek(0)
+        return file
+        # Create a simple text file in memory
+        self.file_content = SimpleUploadedFile("test_image.png", content=file.read(), content_type="image/png")
+
+        self.attachment = Attachment.objects.create(
+            bug=self.bug,
+            file=self.file_content
+        )
+
+        self.assertTrue(isinstance(self.attachment, Attachment))
+        self.assertIn("attachments/", self.attachment.file.name)
+        expected_str = f"Attachment for {self.attachment.bug.bug_type} - {self.attachment.uploaded_at.strftime('%Y-%m-%d')}"
+        self.assertEqual(str(self.attachment), expected_str)
+
