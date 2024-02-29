@@ -141,8 +141,8 @@ class BugUpdateViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Create two users: a regular user and a superuser
-        cls.user = User.objects.create_user(username='user', password='password')
-        cls.superuser = User.objects.create_superuser(username='admin', email='admin@example.com', password='adminpassword')
+        cls.user = CustomUser.objects.create_user(username='user', password='password')
+        cls.superuser = CustomUser.objects.create_superuser(username='admin', email='admin@example.com', password='adminpassword')
         # Create a bug
         cls.bug = Bug.objects.create(title="Original Title", description="Original description", user=cls.user)
 
