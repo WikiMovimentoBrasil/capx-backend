@@ -186,9 +186,9 @@ class BugDeleteViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Create a user without delete permissions
-        cls.user = CustomUser.create_user(username='user', password='password')
+        cls.user = CustomUser.objects.create_user(username='user', password='password')
         # Create a user with delete permissions
-        cls.user_with_permission = User.objects.create_user(username='admin', password='adminpassword')
+        cls.user_with_permission = CustomUser.objects.create_user(username='admin', password='adminpassword')
         delete_permission = Permission.objects.get(codename='delete_bug')
         cls.user_with_permission.user_permissions.add(delete_permission)
 
