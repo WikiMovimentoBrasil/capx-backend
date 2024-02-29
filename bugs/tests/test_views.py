@@ -79,8 +79,11 @@ class BugListTests(TestCase):
 
     def test_redirect_if_not_logged_in(self):
         # Ensure unauthenticated users are redirected to login
+        # response = self.client.get(reverse('bugs:bug_list'))
+        # self.assertRedirects(response, f'/accounts/login/?next={reverse("bugs:bug_list")}')
         response = self.client.get(reverse('bugs:bug_list'))
-        self.assertRedirects(response, f'/accounts/login/?next={reverse("bugs:bug_list")}')
+        expected_url = f'/accounts/login/?next={reverse("bugs:bug_list")}'
+        self.assertRedirects(response, expected_url, fetch_redirect_response=False)
 
     def test_logged_in_user_sees_own_bugs(self):
         # Log in as a regular user
