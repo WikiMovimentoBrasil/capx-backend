@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from ..models import Bug, Attachment
+from django.contrib.auth.models import Permission
 from users.models import CustomUser
 
 
@@ -179,5 +180,42 @@ class BugUpdateViewTests(TestCase):
         bug_id = self.bug.id
         response = self.client.post(reverse('bugs:update_bug', kwargs={'bug_id': bug_id}), {})
         self.assertRedirects(response, reverse('bugs:homepage'))
-        #messages = list(get_messages(response.wsgi_request))
-        #self.assertTrue(any(["not allowed to edit this bug" in str(message) for message in messages]))
+
+
+class BugDeleteViewTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # Create a user without delete permissions
+        cls.user = CustomUser.create_user(username='user', password='password')
+        # Create a user with delete permissions
+        cls.user_with_permission = User.objects.create_user(username='admin', password='adminpassword')
+        delete_permission = Permission.objects.get(codename='delete_bug')
+        cls.user_with_permission.user_permissions.add(delete_permission)
+
+        # Create a bug
+        cls.bug = Bug.objects.create(title="Test Bug", description="A test bug.", user=cls.user)
+
+    def test_redirect_if_not_logged_in(self):
+        bug_id = self.bug.id
+        response = self.client.get(reverse('bugs:delete_bug', kwargs={'bug_id': bug_id}))
+        self.assertEqual(response.status_code, 302)  # Expect a redirect to login page
+
+    def test_no_permission_user_cannot_delete_bug(self):
+        self.client.login(username='user', password='password')
+        bug_id = self.bug.id
+        response = self.client.get(reverse('bugs:delete_bug', kwargs={'bug_id': bug_id}))
+        self.assertEqual(response.status_code, 403)  # Forbidden access
+
+    def test_user_with_permission_can_delete_bug(self):
+        self.client.login(username='admin', password='adminpassword')
+        bug_id = self.bug.id
+        response = self.client.get(reverse('bugs:delete_bug', kwargs={'bug_id': bug_id}))
+        self.assertRedirects(response, reverse('bugs:homepage'))
+        # Check if the bug is deleted
+        self.assertEqual(Bug.objects.filter(pk=bug_id).count(), 0)
+
+    def test_delete_nonexistent_bug(self):
+        self.client.login(username='admin', password='adminpassword')
+        # Attempt to delete a bug that doesn't exist
+        response = self.client.get(reverse('bugs:delete_bug', kwargs={'bug_id': 9999}))
+        self.assertEqual(response.status_code, 404)  # Not found
