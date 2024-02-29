@@ -27,9 +27,6 @@ class HomePageViewTest(TestCase):
         response = self.client.get(reverse("bugs:homepage"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "bugs/bug_list.html")
-        # self.assertTemplateUsed(response, "bugs/bug_list.html")
-       # self.assertTemplateUsed(response, "users/homepage.html")
-
 
 class BugFormViewTest(TestCase):
     @classmethod
@@ -54,18 +51,18 @@ class BugFormViewTest(TestCase):
         # response = self.client.get(self.bug_form_url)
         self.assertNotEqual(response.status_code, 200)
 
-    # def test_view_uses_correct_template(self):
-    #     response = self.client.get(self.bug_form_url)
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertTemplateUsed(response, 'bugs/register_bug.html')
-    #
-    # def test_successful_form_submission(self):
-    #     response = self.client.post(self.bug_form_url, {'title': 'Test Bug', 'description': 'Just a test'})
-    #     self.assertEqual(Bug.objects.count(), 1)
-    #     self.assertRedirects(response, reverse('bugs:homepage'))
-    #     self.assertEqual(str(messages[0]), 'Bug submitted successfully!')
-    #
-    # def test_form_errors_for_invalid_data(self):
-    #     response = self.client.post(self.bug_form_url, {})
-    #     self.assertFormError(response, 'form', 'title', 'This field is required.')
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse("bugs:register_bug"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'bugs/register_bug.html')
+
+    def test_successful_form_submission(self):
+        response = self.client.post(reverse("bugs:register_bug"), {'title': 'Test Bug', 'description': 'Just a test'})
+        self.assertEqual(Bug.objects.count(), 1)
+        self.assertRedirects(response, reverse('bugs:homepage'))
+        self.assertEqual(str(messages[0]), 'Bug submitted successfully!')
+
+    def test_form_errors_for_invalid_data(self):
+        response = self.client.post(reverse("bugs:register_bug"), {})
+        self.assertFormError(response, 'form', 'title', 'This field is required.')
 
