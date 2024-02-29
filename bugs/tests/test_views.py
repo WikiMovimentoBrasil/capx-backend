@@ -68,6 +68,7 @@ class BugFormViewTest(TestCase):
 
 
 class BugListTests(TestCase):
+    @classmethod
     def setUp(cls):
         # Create two users, one regular and one superuser
         cls.user = CustomUser.objects.create_user(username='testuser', password='12345')
