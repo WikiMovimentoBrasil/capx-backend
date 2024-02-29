@@ -44,8 +44,7 @@ class BugFormViewTest(TestCase):
         self.client.logout()
         response = self.client.get(reverse("bugs:register_bug"))
         self.assertNotEqual(response.status_code, 200)
-        # response = self.client.get(self.bug_form_url)
-        # self.assertRedirects(response, f'/accounts/login/?next={reverse("bugs:register_bug")}')
+        self.assertRedirects(response, f'/login/?next={reverse("bugs:register_bug")}')
 
     def test_view_url_exists_at_desired_location(self):
         response = self.client.get(reverse("bugs:register_bug"))
@@ -79,11 +78,8 @@ class BugListTests(TestCase):
 
     def test_redirect_if_not_logged_in(self):
         # Ensure unauthenticated users are redirected to login
-        # response = self.client.get(reverse('bugs:bug_list'))
-        # self.assertRedirects(response, f'/accounts/login/?next={reverse("bugs:bug_list")}')
         response = self.client.get(reverse('bugs:bug_list'))
         expected_url = f'/login/?next={reverse("bugs:bug_list")}'
-        #login /?next = / bugs / bug_list /
         self.assertRedirects(response, expected_url, fetch_redirect_response=False)
 
     def test_logged_in_user_sees_own_bugs(self):
