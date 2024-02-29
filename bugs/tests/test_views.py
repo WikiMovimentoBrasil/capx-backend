@@ -38,7 +38,6 @@ class BugFormViewTest(TestCase):
     def setUp(self):
         # Log in the test user
         self.client.login(username='testuser', password='12345')
-        # self.bug_form_url = reverse("bugs:register_bug")
 
     def test_redirect_if_not_logged_in(self):
         self.client.logout()
@@ -100,4 +99,39 @@ class BugListTests(TestCase):
         # Check that the superuser sees all bugs
         self.assertEqual(response.status_code, 200)
         self.assertTrue('bugs' in response.context)
-        self.assertEqual(len(response.context['bugs']), 2)  # Assuming only 2 bugs were created in setUp
+        self.assertEqual(len(response.context['bugs']), 2)
+
+
+class BugDetailViewTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # Create a test user
+        cls.user = CustomUser.objects.create_user(username='testuser', password='12345')
+        # Create a test bug
+        cls.bug = Bug.objects.create(title="Test Bug", description="A test bug.", user=cls.user)
+        # Optionally, create an attachment for the bug
+        # Attachment.objects.create(bug=cls.bug, file=<YourFileHere>)
+
+    def setUp(self):
+        # Log in the test user
+        self.client.login(username='testuser', password='12345')
+
+    def test_bug_detail_view_with_authenticated_user(self):
+        # Access the bug detail page
+        response = self.client.get(reverse('bug_detail', kwargs={'bug_id': self.bug.pk}))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.bug.title)
+        # If you're testing attachments, also check for attachment data
+        # self.assertContains(response, <expected attachment detail>)
+
+    def test_bug_detail_view_with_invalid_bug_id(self):
+        # Access the bug detail page with an invalid bug ID
+        response = self.client.get(reverse('bug_detail', kwargs={'bug_id': 9999}))
+        self.assertEqual(response.status_code, 404)
+
+    def test_redirect_if_not_logged_in(self):
+        # Log out the user
+        self.client.logout()
+        # Try to access the bug detail page
+        response = self.client.get(reverse('bug_detail', kwargs={'bug_id': self.bug.pk}))
+        self.assertRedirects(response, f'/login/?next={reverse("bug_detail", kwargs={"bug_id": self.bug.pk})}', fetch_redirect_response=False)
