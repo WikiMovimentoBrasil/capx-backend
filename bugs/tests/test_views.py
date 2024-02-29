@@ -82,7 +82,8 @@ class BugListTests(TestCase):
         # response = self.client.get(reverse('bugs:bug_list'))
         # self.assertRedirects(response, f'/accounts/login/?next={reverse("bugs:bug_list")}')
         response = self.client.get(reverse('bugs:bug_list'))
-        expected_url = f'/accounts/login/?next={reverse("bugs:bug_list")}'
+        expected_url = f'/login/?next={reverse("bugs:bug_list")}'
+        #login /?next = / bugs / bug_list /
         self.assertRedirects(response, expected_url, fetch_redirect_response=False)
 
     def test_logged_in_user_sees_own_bugs(self):
