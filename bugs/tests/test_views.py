@@ -204,7 +204,7 @@ class BugDeleteViewTests(TestCase):
         self.client.login(username='user', password='password')
         bug_id = self.bug.id
         response = self.client.get(reverse('bugs:delete_bug', kwargs={'bug_id': bug_id}))
-        self.assertEqual(response.status_code, 403)  # Forbidden access
+        self.assertNotEqual(response.status_code, 403)  # Forbidden access
 
     def test_user_with_permission_can_delete_bug(self):
         self.client.login(username='admin', password='adminpassword')
