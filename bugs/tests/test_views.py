@@ -74,8 +74,8 @@ class BugListTests(TestCase):
         cls.user = CustomUser.objects.create_user(username='testuser', password='12345')
         cls.superuser = CustomUser.objects.create_superuser(username='admin', email='admin@example.com', password='admin123')
         # Create bugs for each user
-        Bug.objects.create(title="User Bug", description="A bug by a regular user", user=self.user)
-        Bug.objects.create(title="Admin Bug", description="A bug by an admin", user=self.superuser)
+        Bug.objects.create(title="User Bug", description="A bug by a regular user", user=cls.user)
+        Bug.objects.create(title="Admin Bug", description="A bug by an admin", user=cls.superuser)
 
     def test_redirect_if_not_logged_in(self):
         # Ensure unauthenticated users are redirected to login
