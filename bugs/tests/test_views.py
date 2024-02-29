@@ -8,7 +8,7 @@ class HomePageViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.test_user = CustomUser.objects.create_user(username='testuser', password='12345')
-        test_user.save()
+        cls.test_user.save()
 
     def setUp(self):
         # Log in the test user
@@ -32,7 +32,7 @@ class BugFormViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.test_user = CustomUser.objects.create_user(username='testuser', password='12345')
-        test_user.save()
+        cls.test_user.save()
 
     def setUp(self):
         # Log in the test user
