@@ -43,8 +43,9 @@ class BugFormViewTest(TestCase):
     def test_redirect_if_not_logged_in(self):
         self.client.logout()
         response = self.client.get(reverse("bugs:register_bug"))
+        expected_url = f'/login/?next={reverse("bugs:register_bug")}'
+        self.assertRedirects(response, expected_url, fetch_redirect_response=False)
         self.assertNotEqual(response.status_code, 200)
-        self.assertRedirects(response, f'/login/?next={reverse("bugs:register_bug")}')
 
     def test_view_url_exists_at_desired_location(self):
         response = self.client.get(reverse("bugs:register_bug"))
