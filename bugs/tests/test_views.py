@@ -135,3 +135,49 @@ class BugDetailViewTests(TestCase):
         # Try to access the bug detail page
         response = self.client.get(reverse('bugs:bug_detail', kwargs={'bug_id': self.bug.pk}))
         self.assertRedirects(response, f'/login/?next={reverse("bugs:bug_detail", kwargs={"bug_id": self.bug.pk})}', fetch_redirect_response=False)
+
+
+class BugUpdateViewTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # Create two users: a regular user and a superuser
+        cls.user = User.objects.create_user(username='user', password='password')
+        cls.superuser = User.objects.create_superuser(username='admin', email='admin@example.com', password='adminpassword')
+        # Create a bug
+        cls.bug = Bug.objects.create(title="Original Title", description="Original description", user=cls.user)
+
+    def test_redirect_if_not_logged_in(self):
+        bug_id = self.bug.id
+        response = self.client.get(reverse('bugs:update_bug', kwargs={'bug_id': bug_id}))
+        self.assertEqual(response.status_code, 302)  # Check for redirect (login page)
+
+    def test_user_can_update_own_bug(self):
+        self.client.login(username='user', password='password')
+        bug_id = self.bug.id
+        response = self.client.post(reverse('bugs:update_bug', kwargs={'bug_id': bug_id}), {
+            'title': 'Updated Title',
+            'description': 'Updated description',
+        })
+        self.bug.refresh_from_db()
+        self.assertEqual(self.bug.title, 'Updated Title')
+        self.assertRedirects(response, reverse('bugs:bug_detail', kwargs={'bug_id': bug_id}))
+
+    def test_superuser_can_update_any_bug(self):
+        self.client.login(username='admin', password='adminpassword')
+        bug_id = self.bug.id
+        response = self.client.post(reverse('bugs:update_bug', kwargs={'bug_id': bug_id}), {
+            'title': 'Superuser Updated Title',
+            'description': 'Superuser Updated description',
+        })
+        self.bug.refresh_from_db()
+        self.assertEqual(self.bug.title, 'Superuser Updated Title')
+
+    def test_user_cannot_update_others_bug(self):
+        # Create another user and try to update the bug created by the first user
+        other_user = User.objects.create_user(username='otheruser', password='password123')
+        self.client.login(username='otheruser', password='password123')
+        bug_id = self.bug.id
+        response = self.client.post(reverse('bugs:update_bug', kwargs={'bug_id': bug_id}), {})
+        self.assertRedirects(response, reverse('bugs:homepage'))
+        #messages = list(get_messages(response.wsgi_request))
+        #self.assertTrue(any(["not allowed to edit this bug" in str(message) for message in messages]))
