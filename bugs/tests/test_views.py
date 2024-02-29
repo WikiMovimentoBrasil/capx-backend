@@ -25,7 +25,7 @@ class HomePageViewTest(TestCase):
     def test_homepage_view_uses_the_right_template(self):
         self.client.login(username='testuser', password='12345')
         response = self.client.get(reverse("bugs:homepage"))
-        self.assertNotEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "bugs/register_bug.html")
         # self.assertTemplateUsed(response, "bugs/bug_list.html")
        # self.assertTemplateUsed(response, "users/homepage.html")
