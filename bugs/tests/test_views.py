@@ -174,7 +174,7 @@ class BugUpdateViewTests(TestCase):
 
     def test_user_cannot_update_others_bug(self):
         # Create another user and try to update the bug created by the first user
-        other_user = User.objects.create_user(username='otheruser', password='password123')
+        other_user = CustomUser.objects.create_user(username='otheruser', password='password123')
         self.client.login(username='otheruser', password='password123')
         bug_id = self.bug.id
         response = self.client.post(reverse('bugs:update_bug', kwargs={'bug_id': bug_id}), {})
