@@ -37,6 +37,7 @@ class BugFormViewTest(TestCase):
     def setUp(self):
         # Log in the test user
         self.client.login(username='testuser', password='testpass')
+        self.bug_form_url = reverse("bugs:register_bug")
 
     def test_redirect_if_not_logged_in(self):
         self.client.logout()
