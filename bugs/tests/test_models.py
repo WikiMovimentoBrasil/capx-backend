@@ -5,10 +5,11 @@ from ..models import Bug, Attachment
 from users.models import CustomUser
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+
 class BugModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        # Create a user for the foreign key requirement
+        # Create a user
         test_user = CustomUser.objects.create_user(username='testuser', password='12345')
         test_user.save()
 
@@ -55,7 +56,7 @@ class AttachmentModelTest(TestCase):
         file.name = 'test_image.png'
         file.seek(0)
         return file
-        # Create a simple text file in memory
+        # Create a simple image file
         self.file_content = SimpleUploadedFile("test_image.png", content=file.read(), content_type="image/png")
 
         self.attachment = Attachment.objects.create(

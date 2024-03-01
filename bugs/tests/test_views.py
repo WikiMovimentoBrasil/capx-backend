@@ -49,7 +49,6 @@ class BugFormViewTest(TestCase):
 
     def test_view_url_exists_at_desired_location(self):
         response = self.client.get(reverse("bugs:register_bug"))
-        # response = self.client.get(self.bug_form_url)
         self.assertEqual(response.status_code, 200)
 
     def test_view_uses_correct_template(self):
@@ -110,8 +109,6 @@ class BugDetailViewTests(TestCase):
         cls.user = CustomUser.objects.create_user(username='testuser', password='12345')
         # Create a test bug
         cls.bug = Bug.objects.create(title="Test Bug", description="A test bug.", user=cls.user)
-        # Optionally, create an attachment for the bug
-        # Attachment.objects.create(bug=cls.bug, file=<YourFileHere>)
 
     def setUp(self):
         # Log in the test user
@@ -122,8 +119,6 @@ class BugDetailViewTests(TestCase):
         response = self.client.get(reverse('bugs:bug_detail', kwargs={'bug_id': self.bug.pk}))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.bug.title)
-        # If you're testing attachments, also check for attachment data
-        # self.assertContains(response, <expected attachment detail>)
 
     def test_bug_detail_view_with_invalid_bug_id(self):
         # Access the bug detail page with an invalid bug ID
@@ -150,7 +145,7 @@ class BugUpdateViewTests(TestCase):
     def test_redirect_if_not_logged_in(self):
         bug_id = self.bug.id
         response = self.client.get(reverse('bugs:update_bug', kwargs={'bug_id': bug_id}))
-        self.assertEqual(response.status_code, 302)  # Check for redirect (login page)
+        self.assertEqual(response.status_code, 302)  # Check for redirect to login page
 
     def test_user_can_update_own_bug(self):
         self.client.login(username='user', password='password')
@@ -204,7 +199,7 @@ class BugDeleteViewTests(TestCase):
         self.client.login(username='user', password='password')
         bug_id = self.bug.id
         response = self.client.get(reverse('bugs:delete_bug', kwargs={'bug_id': bug_id}))
-        self.assertNotEqual(response.status_code, 403)  # Forbidden access
+        self.assertNotEqual(response.status_code, 403)
 
     def test_user_with_permission_can_delete_bug(self):
         self.client.login(username='admin', password='adminpassword')
@@ -218,4 +213,4 @@ class BugDeleteViewTests(TestCase):
         self.client.login(username='admin', password='adminpassword')
         # Attempt to delete a bug that doesn't exist
         response = self.client.get(reverse('bugs:delete_bug', kwargs={'bug_id': 9999}))
-        self.assertEqual(response.status_code, 404)  # Not found
+        self.assertEqual(response.status_code, 404)
