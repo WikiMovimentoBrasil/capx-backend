@@ -7,3 +7,4 @@ opensearch-py
 python-dotenv
 django-modeltranslation
 django-opensearch-dsl
+Pillow

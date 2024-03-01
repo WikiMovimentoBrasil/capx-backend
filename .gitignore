@@ -7,4 +7,8 @@ venv/
 Lib/
 Scripts/
 *.sqlite3
+CapX/settings_local.py
 *.pkl
+*.coverage
+htmlcov/
+media/

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block title %}{% trans "Homepage" %}{% endblock %}
+
+<h2>All Bugs</h2>
+<ul>
+    {% for bug in bugs %}
+        <li><a href="{% url 'bugs:bug_detail' bug.id %}">{{ bug.title }}</a></li>
+
+    {% endfor %}
+</ul>
+
+
+<a href="{% url 'bugs:bug_detail' bug.id %}">{{ bug.title }}</a>
+<a href="{% url 'bugs:register_bug' %}">Submit a new bug</a>
+{% endblock %}
+
+{#<h1>Bug List</h1>#}
+{#<ul>#}
+{#    {% for bug in bug_list%}#}
+{##}
+{#    <li><a href="{% url 'bug:bug_detail' bug.id %}">{{ bug.description }}</a></li>#}
+{##}
+{#    {% endfor %}#}
+{#</ul>#}

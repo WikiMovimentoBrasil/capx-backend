@@ -9,7 +9,7 @@
     <div class="nav_section menu_links">
         <a href="{% url 'skill_list' %}">{% trans "Skills" %}</a>
         <a href="{% url 'profile' %}">{% trans "Profile" %}</a>
-        <a href="{% url 'homepage' %}">{% trans "Feedback" %}</a>
+        <a href="{% url 'bugs:bug_list' %}">{% trans "Feedback" %}</a>
         <div class="search-container">
             <form action="{% url 'search' %}" method="get">
                 <input type="text" placeholder="Search.." name="query">
@@ -26,6 +26,6 @@
     <div class="nav_section dropdown_menu">
         <a href="{% url 'skill_list' %}">{% trans "Skills" %}</a>
         <a href="{% url 'profile' %}">{% trans "Profile" %}</a>
-        <a href="{% url 'homepage' %}">{% trans "Feedback" %}</a>
+        <a href="{% url 'bugs:bug_list' %}">{% trans "Feedback" %}</a>
     </div>
 </nav>

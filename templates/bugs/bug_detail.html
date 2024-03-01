@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ bug.title }}</h2>
+<p>Reported by: {{ bug.user.username }}</p>
+<p>Description: {{ bug.description }}</p>
+
+<h3>Attachments</h3>
+{% if attachments %}
+    <ul>
+        {% for attachment in attachments %}
+        <li>
+            <a href="{{ attachment.file.url }}">{{ attachment.file.name }}</a>
+            (uploaded on {{ attachment.uploaded_at }})
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No attachments found.</p>
+{% endif %}
+
+  <a href="{% url 'bugs:update_bug' bug.id %}" onclick="return confirm('Are you sure?');">Update Bug</a> ||
+     <a href="{% url 'bugs:delete_bug' bug.id %}" onclick="return confirm('Are you sure?');">Delete Bug</a>
+
+{% endblock %}
