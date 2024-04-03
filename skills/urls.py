@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import skill_list, skill_detail
+from .views import SkillAPIView, SkillDetails
 
 urlpatterns = [
-    path('skills/', skill_list),
-    path('skill/<int:id>/', skill_detail)
+    path('skills/', SkillAPIView.as_view()),
+    path('skill/<int:id>/', SkillDetails.as_view())
 ]
