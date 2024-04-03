@@ -8,3 +8,6 @@ python-dotenv
 django-modeltranslation
 django-opensearch-dsl
 Pillow
+djangorestframework
+markdown
+django-filter
