@@ -31,7 +31,10 @@ INSTALLED_APPS = [
     'social_django',
     'modeltranslation',
     'django_opensearch_dsl',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_social_auth',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -143,10 +146,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+#Rest
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "knox.auth.TokenAuthentication",
+    ),
 }
