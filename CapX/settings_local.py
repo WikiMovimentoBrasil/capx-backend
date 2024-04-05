@@ -16,8 +16,8 @@ SOCIAL_AUTH_MEDIAWIKI_SECRET = os.environ.get("SOCIAL_AUTH_MEDIAWIKI_SECRET")
 
 
 if os.path.exists(HOME + '/replica.my.cnf'):
-    ALLOWED_HOSTS = ['capacity-exchange.toolforge.org','toolforge.org']
-    SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'https://capacity-exchange.toolforge.org/oauth/complete/mediawiki/'
+    ALLOWED_HOSTS = ['capx-backend.toolforge.org','toolforge.org']
+    SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'https://capx.toolforge.org/oauth/'
 
     DATABASES = {
         'default': {
