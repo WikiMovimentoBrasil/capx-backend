@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+from datetime import timedelta
 from .settings_local import *
 
 # Application definition
@@ -151,7 +152,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "knox.auth.TokenAuthentication",
-    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'knox.auth.TokenAuthentication',
+    ],
 }
+REST_AUTH_SERIALIZERS = {
+    "TOKEN_SERIALIZER": "users.serializers.KnoxSerializer",
+}
+REST_AUTH_TOKEN_MODEL = "knox.models.AuthToken"
+REST_AUTH_TOKEN_CREATOR = "users.utils.create_knox_token"
+REST_KNOX = {'TOKEN_TTL': timedelta(days=30)}

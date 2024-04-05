@@ -1,8 +1,8 @@
 from django.http import JsonResponse, Http404
-from rest_framework import status
-from rest_framework.response import Response
 from .models import Skill
 from .serializers import SkillSerializer
+from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
@@ -42,6 +42,7 @@ class SkillDetails(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    #TODO: Only staff
     def delete(self, request, id):
         skill = self.get_object(id)
         skill.delete()
