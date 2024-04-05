@@ -4,8 +4,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 from django.utils.translation import gettext_lazy as _
 
-DEBUG = True #Change to False when in production
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 HOME = os.environ.get('HOME') or ""
@@ -16,6 +14,7 @@ SOCIAL_AUTH_MEDIAWIKI_SECRET = os.environ.get("SOCIAL_AUTH_MEDIAWIKI_SECRET")
 
 
 if os.path.exists(HOME + '/replica.my.cnf'):
+    DEBUG = False
     ALLOWED_HOSTS = ['capx-backend.toolforge.org','toolforge.org']
     SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'https://capx.toolforge.org/oauth/'
 
@@ -41,6 +40,7 @@ if os.path.exists(HOME + '/replica.my.cnf'):
     }
 
 else:
+    DEBUG = True
     ALLOWED_HOSTS = ['127.0.0.1']
     SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'http://127.0.0.1:8000/oauth/complete/mediawiki/'
 
