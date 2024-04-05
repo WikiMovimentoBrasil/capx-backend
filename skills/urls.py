@@ -1,7 +1,11 @@
-from django.urls import path
-from .views import SkillAPIView, SkillDetails
+from django.urls import path, include
+from .views import SkillViewSet
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register('skill', SkillViewSet, basename='skill')
 
 urlpatterns = [
-    path('skill/', SkillAPIView.as_view()),
-    path('skill/<int:id>/', SkillDetails.as_view())
+    path('viewset/', include(router.urls)),
+    path('viewset/<int:pk>/', include(router.urls)),
 ]

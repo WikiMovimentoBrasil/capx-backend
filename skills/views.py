@@ -1,49 +1,28 @@
-from django.http import JsonResponse, Http404
 from .models import Skill
 from .serializers import SkillSerializer
-from rest_framework import status
+from rest_framework import status, viewsets, permissions
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 
-class SkillAPIView(APIView):
+class SkillViewSet(viewsets.ModelViewSet):
+    serializer_class = SkillSerializer
+    queryset = Skill.objects.all()
+    permission_classes = (permissions.IsAdminUser,)
 
-    def get(self, request):
-        skills = Skill.objects.all()
-        serializer = SkillSerializer(skills, many=True)
-        return Response(serializer.data)
+    def get_permissions(self):
+        if self.request.method in ['DELETE']:
+            return [permissions.IsAdminUser()]
+        return [permissions.IsAuthenticated()]
 
-    def post(self, request):
-        serializer = SkillSerializer(data=request.data)
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # Check if this skill is referenced by any other item's skill_type
+        if Skill.objects.filter(skill_type=instance).exists():
+            return Response(
+                {"detail": "This skill is referenced by other items and cannot be deleted."},
+                status=status.HTTP_403_FORBIDDEN
+            )
 
-class SkillDetails(APIView):
-
-    def get_object(self, id):
-        try:
-            return Skill.objects.get(id=id)
-        except Skill.DoesNotExist:
-            raise Http404
-
-    def get(self, request, id):
-        skill = self.get_object(id)
-        serializer = SkillSerializer(skill)
-        return Response(serializer.data)
-
-    def put(self, request, id):
-        skill = self.get_object(id)
-        serializer = SkillSerializer(skill, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    #TODO: Only staff
-    def delete(self, request, id):
-        skill = self.get_object(id)
-        skill.delete()
+        self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
