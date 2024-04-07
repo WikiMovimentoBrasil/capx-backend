@@ -20,14 +20,23 @@ from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from .search import search
+from rest_framework.routers import DefaultRouter
+from skills.views import SkillViewSet
+from users.views import ProfileViewSet
+
+
+router = DefaultRouter()
+router.register('skill', SkillViewSet, basename='skill')
+router.register('profile', ProfileViewSet, basename='profile')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('search/', search, name='search'),
     path('', include('users.urls')),
-    path('', include('skills.urls')),
     path('', include('social_django.urls')),
-    path('bugs/', include('bugs.urls'))
+    path('bugs/', include('bugs.urls')),
+    path('viewset/', include(router.urls)),
+    path('viewset/<int:pk>/', include(router.urls)),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

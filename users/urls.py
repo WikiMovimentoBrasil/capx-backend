@@ -1,8 +1,10 @@
 from django.urls import path, include
-from users import views
+from .views import ProfileViewSet
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register('profile', ProfileViewSet, basename='profile')
 
 urlpatterns = [
-    path("profile/", views.profile, name="profile"),
     path('api/login/', include('rest_social_auth.urls_knox')),
-    path("", views.homepage, name="homepage"),
 ]
