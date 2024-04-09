@@ -19,6 +19,9 @@ class BugViewSet(viewsets.ModelViewSet):
         if self.request.method in ['DELETE']:
             return [permissions.IsAdminUser()]
         return [permissions.IsAuthenticated()]
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class AttachmentViewSet(viewsets.ModelViewSet):
