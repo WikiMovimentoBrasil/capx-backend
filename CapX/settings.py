@@ -21,7 +21,6 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'users',
     'skills',
-    'map',
     'events',
     'bugs',
     'django.contrib.admin',
