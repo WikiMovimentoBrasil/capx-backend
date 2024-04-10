@@ -24,12 +24,14 @@ from rest_framework.routers import DefaultRouter
 from skills.views import SkillViewSet
 from users.views import ProfileViewSet, UsersViewSet
 from bugs.views import BugViewSet, AttachmentViewSet
+from orgs.views import OrganizationViewSet
 
 
 router = DefaultRouter()
 router.register('skill', SkillViewSet, basename='skill')
 router.register('users', UsersViewSet, basename='users')
 router.register('profile', ProfileViewSet, basename='profile')
+router.register('organizations', OrganizationViewSet, basename='organizations')
 router.register('bugs', BugViewSet, basename='bugs')
 router.register('attachment', AttachmentViewSet, basename='attachment')
 
