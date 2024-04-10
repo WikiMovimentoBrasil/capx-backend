@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .views import Organization
+from .models import Organization
 from .serializers import OrganizationSerializer
 
 
