@@ -1,40 +1,37 @@
-from django.shortcuts import render, reverse, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout as auth_logout
-from .forms import ProfileForm
-# TODO pensar nas telas básicas
-# TODO criar alguns dados no BD para ter dados para puxar para resultados na tela
+from .models import Profile
+from .serializers import ProfileSerializer
+from rest_framework import status, viewsets
+from rest_framework.response import Response
+from rest_framework.exceptions import PermissionDenied
 
 
-def homepage(request):
-    context = {}
-    return render(request, "users/index.html", context)
+class UsersViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = ProfileSerializer
+    queryset = Profile.objects.all()
 
 
-@login_required()
-def profile(request):
-    profile = request.user.profile
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')  # Redirect to view profile after successful edit
-    else:
-        form = ProfileForm(instance=profile)
-        form.order_fields(field_order=[
-            'pronoun',
-            'display_name',
-            'profile_image',
-            'birthday',
-            'about_me',
-        ])
-    return render(request, 'users/profile.html', {'form': form})
+class ProfileViewSet(viewsets.ModelViewSet):
+    serializer_class = ProfileSerializer
+    queryset = Profile.objects.all()
+    http_method_names = ['get', 'put', 'head', 'options']
 
+    def get_queryset(self):
+        # Only allow the logged-in user to access their own profile
+        return Profile.objects.filter(user=self.request.user)
 
-def login_oauth(request):
-    return redirect(reverse('social:begin', kwargs={"backend": "mediawiki"}))
+    def create(self, request):
+        response = {'message': 'Create function is not offered in this path.'}
+        return Response(response, status=status.HTTP_403_FORBIDDEN)
 
+    def destroy(self, request, pk=None):
+        response = {'message': 'Delete function is not offered in this path.'}
+        return Response(response, status=status.HTTP_403_FORBIDDEN)
 
-def logout(request):
-    auth_logout(request)
-    return redirect(reverse('homepage'))
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        # Check if the requesting user is the owner of the profile
+        if instance.user == request.user:
+            return super().update(request, *args, **kwargs)
+        else:
+            raise PermissionDenied("You do not have permission to update this profile.")

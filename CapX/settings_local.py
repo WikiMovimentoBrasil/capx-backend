@@ -1,10 +1,7 @@
 import os
-import configparser
 from pathlib import Path
 from dotenv import load_dotenv
 from django.utils.translation import gettext_lazy as _
-
-DEBUG = True #Change to False when in production
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
@@ -13,12 +10,12 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 SOCIAL_AUTH_MEDIAWIKI_URL = 'https://meta.wikimedia.org/w/index.php'
 SOCIAL_AUTH_MEDIAWIKI_KEY = os.environ.get("SOCIAL_AUTH_MEDIAWIKI_KEY")
 SOCIAL_AUTH_MEDIAWIKI_SECRET = os.environ.get("SOCIAL_AUTH_MEDIAWIKI_SECRET")
-SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'oob'
 
 
 if os.path.exists(HOME + '/replica.my.cnf'):
-    ALLOWED_HOSTS = ['capacity-exchange.toolforge.org','toolforge.org']
-    SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'https://capacity-exchange.toolforge.org/oauth/complete/mediawiki/'
+    DEBUG = False
+    ALLOWED_HOSTS = ['capx-backend.toolforge.org','toolforge.org']
+    SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'https://capx.toolforge.org/oauth/'
 
     DATABASES = {
         'default': {
@@ -42,6 +39,7 @@ if os.path.exists(HOME + '/replica.my.cnf'):
     }
 
 else:
+    DEBUG = True
     ALLOWED_HOSTS = ['127.0.0.1']
     SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'http://127.0.0.1:8000/oauth/complete/mediawiki/'
 

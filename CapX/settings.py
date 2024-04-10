@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
-from pathlib import Path
+import mimetypes
+from datetime import timedelta
 from .settings_local import *
 
 # Application definition
@@ -19,7 +20,6 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'users',
     'skills',
-    'map',
     'events',
     'bugs',
     'django.contrib.admin',
@@ -30,7 +30,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'modeltranslation',
-    'django_opensearch_dsl'
+    'django_opensearch_dsl',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_social_auth',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -115,31 +119,36 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("text/javascript", ".js", True)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# media
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-DEBUG = True
+# Rest
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'knox.auth.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
+REST_AUTH_SERIALIZERS = {
+    "TOKEN_SERIALIZER": "users.serializers.KnoxSerializer",
+}
+REST_AUTH_TOKEN_MODEL = "knox.models.AuthToken"
+REST_AUTH_TOKEN_CREATOR = "users.utils.create_knox_token"
+REST_KNOX = {'TOKEN_TTL': timedelta(days=30)}

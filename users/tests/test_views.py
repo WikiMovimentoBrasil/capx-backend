@@ -1,97 +1,59 @@
-from django.test import TestCase
+import profile
 from django.urls import reverse
-from ..models import CustomUser
+from django.test import TestCase
+from rest_framework import status
+from rest_framework.test import APIClient
+from users.models import Profile, CustomUser
+from users.serializers import ProfileSerializer
 
+class ProfileViewSetTestCase(TestCase):
+    def setUp(self):
+        self.user = CustomUser.objects.create_user(username='test', password='123')
+        self.client = APIClient()
+        self.client.force_authenticate(self.user)
 
-class HomePageViewTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        pass
+    def test_get_users_list(self):
+        response = self.client.get('/users/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_homepage_view_url_exists_at_desired_location(self):
-        response = self.client.get("/")
-        self.assertEqual(response.status_code, 200)
+        profiles = Profile.objects.all()
+        serializer = ProfileSerializer(profiles, many=True)
+        self.assertEqual(response.data, serializer.data)
 
-    def test_homepage_view_url_accessible_by_name(self):
-        response = self.client.get(reverse("homepage"))
-        self.assertEqual(response.status_code, 200)
+    def test_get_profile_detail(self):
+        response = self.client.get('/profile/' + str(self.user.pk) + '/')
+        profiles = Profile.objects.all()
+        serializer = ProfileSerializer(profiles.first())
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, serializer.data)
 
-    def test_homepage_view_uses_the_right_template(self):
-        response = self.client.get(reverse("homepage"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "users/index.html")
+    def test_update_profile(self):
+        url = '/profile/' + str(self.user.pk) + '/'
+        updated_data = {
+            'about': 'first user ever!',
+        }
+        response = self.client.put(url, updated_data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+        profiles = Profile.objects.all()
+        serializer = ProfileSerializer(profiles.first())
+        self.assertEqual(serializer.data['about'], updated_data['about'])
 
-class ProfileViewTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.user = CustomUser.objects._create_user(
-            username="Abrahmovic",
-            email="abrahmovic@hot.com",
-            password="Movic202310",
-            first_name="Abrah",
-            middle_name="Omo",
-            last_name="Movic",
-        )
+    def test_destroy_profile(self):
+        response = self.client.delete('/profile/' + str(self.user.pk) + '/')
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    def test_profile_view_exists_as_an_unauthenticated_user(self):
-        response = self.client.get(reverse('profile'))
-        self.assertNotEqual(response.status_code, 200)
+    def test_create_profile(self):
+        response = self.client.post('/profile/')
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
-    def test_profile_view_status_code_as_an_authenticated_user(self):
-        self.client.login(
-            username="Abrahmovic",
-            password= "Movic202310"
-        )
+    def test_update_other_profile(self):
+        user = CustomUser.objects.create_user(username='test2', password='123')
+        self.assertNotEqual(user.pk, self.user.pk)
 
-        response = self.client.get("/profile/")
-        self.assertEqual(response.status_code, 200)
-
-    def test_profile_view_url_accessible_by_name_as_an_authenticated_user(self):
-        self.client.login(
-            username="Abrahmovic",
-            password="Movic202310"
-        )
-        response = self.client.get(reverse("profile"))
-        self.assertEqual(response.status_code, 200)
-    def test_profile_view_uses_correct_template_as_an_authenticated_user(self):
-        self.client.login(
-            username="Abrahmovic",
-            password="Movic202310"
-        )
-        response = self.client.get(reverse('profile'))
-        self.assertTemplateUsed(response, 'users/profile.html')
-
-
-class OAuthLoginViewTest(TestCase):
-    def test_login_oauth_redirect(self):
-        response = self.client.get(reverse('login'))
-        self.assertEqual(response.status_code, 302)
-        expected_url = reverse('social:begin', kwargs={"backend": "mediawiki"})
-        self.assertEqual(response.url, expected_url)
-        self.assertRedirects(response, expected_url, fetch_redirect_response=False)
-
-class LogoutViewTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.user = CustomUser.objects._create_user(
-            username="Abrahmovic",
-            email="abrahmovic@hot.com",
-            password="Movic202310",
-            first_name="Abrah",
-            middle_name="Omo",
-            last_name="Movic",
-        )
-
-    def test_logout_view(self):
-        self.client.login(
-            username="Abrahmovic",
-            password="Movic202310"
-        )
-        response = self.client.get(reverse('logout'))
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('homepage'))
-        self.assertFalse('_auth_user_id' in self.client.session)
-
-
-
+        url = '/profile/' + str(user.pk) + '/'
+        updated_data = {
+            'about': 'second user ever!',
+        }
+        response = self.client.put(url, updated_data)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
