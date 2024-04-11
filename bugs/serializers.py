@@ -17,21 +17,6 @@ class BugSerializer(serializers.ModelSerializer):
         ]
 
 
-class BugStaffSerializer(serializers.ModelSerializer):
-    author = serializers.ReadOnlyField(source='user.username')
-
-    class Meta:
-        model = Bug
-        fields = [
-            'id',
-            'author',
-            'title',
-            'description',
-            'created_at',
-            'updated_at',
-        ]
-
-
 class AttachmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attachment
