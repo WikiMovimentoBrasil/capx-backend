@@ -43,8 +43,8 @@ class ProfileSerializer(serializers.ModelSerializer):
             'language',
             'affiliation',
             'wikimedia_project',
-            'area_of_interest',
             'skills_known',
+            'skills_available',
             'skills_wanted',
         ]
 

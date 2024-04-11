@@ -2,7 +2,7 @@ from rest_framework.test import APITestCase, APIClient, APIRequestFactory
 from rest_framework import status
 from bugs.models import Bug, Attachment
 from users.models import CustomUser
-from bugs.serializers import BugSerializer, BugStaffSerializer, AttachmentSerializer
+from bugs.serializers import BugSerializer, AttachmentSerializer
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 

@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.db import IntegrityError
 from django.core.exceptions import ValidationError
-from ..models import Region, Language, WikimediaProject, AreaOfInterest, OrganizationType, Organization, CustomUser, \
+from ..models import Region, Language, WikimediaProject, Organization, CustomUser, \
     Profile
 
 # TODO: Add the tests for the skills relationship with the profile model
@@ -71,113 +71,6 @@ class WikimediaProjectModelTest(TestCase):
             WikimediaProject.objects.create(wikimedia_project_name="Wikidata", wikimedia_project_code="commonswiki")
 
 
-class AreaOfInterestModelTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.area_of_interest = AreaOfInterest.objects.create(
-            area_name="Diversity"
-        )
-
-    def test_area_of_interest_creation(self):
-        self.assertEqual(self.area_of_interest.area_name, "Diversity")
-        self.assertEqual(str(self.area_of_interest), "Diversity")
-
-
-class OrganizationTypeModelTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.organization_type = OrganizationType.objects.create(
-            type_code="C",
-            type_name="Chapter"
-        )
-
-    def test_organization_type_creation(self):
-        self.assertEqual(self.organization_type.type_name, "Chapter")
-        self.assertEqual(str(self.organization_type.type_name), "Chapter")
-
-
-class OrganizationModelTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.region = Region.objects.create(
-            region_name="Canada",
-        )
-        cls.organization_type = OrganizationType.objects.create(
-            type_code="C",
-            type_name="Chapter"
-        )
-        cls.organization = Organization.objects.create(
-            organization_name="Wikimedia Canada",
-            organization_description="Wikimedia national body in Canada",
-            organization_code="CA",
-            organization_website="https://www.wikimedia.ca/",
-            organization_type=cls.organization_type,
-        )
-
-        cls.organization.organization_location.add(cls.region)
-
-    def test_organization_creation(self):
-        self.assertEqual(self.organization.organization_name, "Wikimedia Canada")
-        self.assertEqual(self.organization.organization_description, "Wikimedia national body in Canada")
-        self.assertEqual(self.organization.organization_code, "CA")
-        self.assertURLEqual(self.organization.organization_website, "https://www.wikimedia.ca/")
-        self.assertEqual(self.organization.organization_type, self.organization_type)
-        self.assertIn(self.region, self.organization.organization_location.all())
-
-    def test_unique_organization_name(self):
-        self.organization_type2 = OrganizationType.objects.create(
-            type_code="T",
-            type_name="Thematic organization"
-        )
-        Organization.objects.create(
-            organization_name="Wikimedia Chile",
-            organization_code="CL",
-            organization_type=self.organization_type,
-        )
-        with self.assertRaises(IntegrityError):
-            Organization.objects.create(
-                organization_name="Wikimedia Chile",
-                organization_code="CH",
-                organization_type=self.organization_type2,
-            )
-
-    def test_unique_organization_code(self):
-        self.organization_type3 = OrganizationType.objects.create(
-            type_code="U",
-            type_name="Wikimedia user group"
-        )
-        Organization.objects.create(
-            organization_name="Wikimedia Switzerland",
-            organization_code="CH",
-            organization_type=self.organization_type,
-        )
-        with self.assertRaises(IntegrityError):
-            Organization.objects.create(
-                organization_name="Wikimedia Chile",
-                organization_code="CH",
-                organization_type=self.organization_type3,
-            )
-
-    def test_organization_string_representation(self):
-        if self.organization.organization_code:
-            expected_object_name = f'{self.organization.organization_name} ({self.organization.organization_code})'
-            self.assertEqual(str(self.organization), expected_object_name)
-        else:
-            self.assertEqual(str(self.organization.organization_name), "Wikimedia Canada")
-
-    def test_str_with_organization_code(self):
-        expected_object_name = f'{self.organization.organization_name} ({self.organization.organization_code})'
-        self.assertEqual(str(self.organization), expected_object_name)
-
-    def test_str_with_no_organization_code(self):
-        self.organization_without_code = Organization.objects.create(
-            organization_name="Wikimedia Armenia",
-            organization_type=self.organization_type,
-        )
-        self.assertEqual(str(self.organization_without_code.organization_name), "Wikimedia Armenia")
-
-
-
 class CustomUserModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -215,22 +108,7 @@ class ProfileModelTest(TestCase):
             language_name="French",
             language_code="fr"
         )
-        cls.organization_type = OrganizationType.objects.create(
-            type_code="C",
-            type_name="Chapter"
-        )
-        cls.organization = Organization.objects.create(
-            organization_name="Wikimedia Canada",
-            organization_description="Wikimedia national body in Canada",
-            organization_code="CA",
-            organization_website="https://www.wikimedia.ca/",
-            organization_type=cls.organization_type,
-        )
 
-        cls.organization.organization_location.add(cls.region)
-        cls.area_of_interest = AreaOfInterest.objects.create(
-            area_name="Diversity"
-        )
         cls.wikimedia_project = WikimediaProject.objects.create(
             wikimedia_project_name="Wikipedia",
             wikimedia_project_code="wiki"
@@ -270,9 +148,7 @@ class ProfileModelTest(TestCase):
         profile = self.user.profile
         profile.region.set([self.region])
         profile.language.set([self.language])
-        profile.affiliation.set([self.organization])
         profile.wikimedia_project.set([self.wikimedia_project])
-        profile.area_of_interest.set([self.area_of_interest])
         profile.save()
 
         updated_profile = Profile.objects.get(id=profile.id)
@@ -281,7 +157,6 @@ class ProfileModelTest(TestCase):
         affiliation = [organization.organization_name for organization in updated_profile.affiliation.all()]
         wikimedia_project = [wikimedia_project.wikimedia_project_name for wikimedia_project in
                              updated_profile.wikimedia_project.all()]
-        area_of_interest = [area_of_interest.area_name for area_of_interest in updated_profile.area_of_interest.all()]
 
         self.assertIn('Canada', region)
         self.assertIn("French", language)

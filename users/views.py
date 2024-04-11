@@ -5,9 +5,14 @@ from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 
 
-class UsersViewSet(viewsets.ReadOnlyModelViewSet):
+class UsersViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
+    http_method_names = ['get', 'head', 'options']
+
+    
+
+    
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -32,6 +37,12 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
         # Check if the requesting user is the owner of the profile
         if instance.user == request.user:
-            return super().update(request, *args, **kwargs)
+            # Verify if there are any matches between skill_known and skill_available
+            if set(list(instance.skills_known.all())) & set(list(instance.skills_available.all())):
+                response = {'message': 'You cannot update the profile with matching skills.'}
+                return Response(response, status=status.HTTP_409_CONFLICT)
+            else:
+                return super().update(request, *args, **kwargs)
         else:
-            raise PermissionDenied("You do not have permission to update this profile.")
+            response = {'message': 'You do not have permission to update this profile.'}
+            return Response(response, status=status.HTTP_403_FORBIDDEN)

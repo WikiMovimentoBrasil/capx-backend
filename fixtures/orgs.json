@@ -1,0 +1,1518 @@
+[
+    {
+        "model": "orgs.OrganizationType",
+        "fields": {
+            "type_code": "C",
+            "type_name": "Chapter"
+        }
+    },
+    {
+        "model": "orgs.OrganizationType",
+        "fields": {
+            "type_code": "U",
+            "type_name": "Wikimedia user group"
+        }
+    },
+    {
+        "model": "orgs.OrganizationType",
+        "fields": {
+            "type_code": "T",
+            "type_name": "Thematic organization"
+        }
+    },
+    {
+        "model": "orgs.OrganizationType",
+        "fields": {
+            "type_code": "G",
+            "type_name": "Gathering group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "AM",
+            "display_name": "Wikimedia Armenia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "AR",
+            "display_name": "Wikimedia Argentina"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "AT",
+            "display_name": "Wikimedia Austria"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "AU",
+            "display_name": "Wikimedia Australia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "BD",
+            "display_name": "Wikimedia Bangladesh"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "BE",
+            "display_name": "Wikimedia Belgium"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "CA",
+            "display_name": "Wikimedia Canada"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "CH",
+            "display_name": "Wikimedia Switzerland"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "CL",
+            "display_name": "Wikimedia Chile"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "CO",
+            "display_name": "Wikimedia Colombia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "CZ",
+            "display_name": "Wikimedia Czech Republic"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "DE",
+            "display_name": "Wikimedia Germany"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "DK",
+            "display_name": "Wikimedia Denmark"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "EE",
+            "display_name": "Wikimedia Estonia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "ES",
+            "display_name": "Wikimedia Spain"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "FI",
+            "display_name": "Wikimedia Finland"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "FR",
+            "display_name": "Wikimedia France"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "HU",
+            "display_name": "Wikimedia Hungary"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "ID",
+            "display_name": "Wikimedia Indonesia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "IL",
+            "display_name": "Wikimedia Israel"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "IT",
+            "display_name": "Wikimedia Italy"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "KR",
+            "display_name": "Wikimedia Korea"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "MX",
+            "display_name": "Wikimedia Mexico"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "NL",
+            "display_name": "Wikimedia Netherlands"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "NO",
+            "display_name": "Wikimedia Norway"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "PL",
+            "display_name": "Wikimedia Poland"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "PT",
+            "display_name": "Wikimedia Portugal"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "RS",
+            "display_name": "Wikimedia Serbia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "RU",
+            "display_name": "Wikimedia Russia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "SE",
+            "display_name": "Wikimedia Sweden"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "TW",
+            "display_name": "Wikimedia Taiwan"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "TH",
+            "display_name": "Wikimedia Thailand"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "UA",
+            "display_name": "Wikimedia Ukraine"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "UK",
+            "display_name": "Wikimedia United Kingdom"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "DC",
+            "display_name": "Wikimedia District of Columbia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "NY",
+            "display_name": "Wikimedia New York City"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "VE",
+            "display_name": "Wikimedia Venezuela"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 1,
+            "acronym": "ZA",
+            "display_name": "Wikimedia South Africa"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "ACD",
+            "display_name": "AfroCROWD User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "A+F",
+            "display_name": "Art+Feminism"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "ALB",
+            "display_name": "Wikimedia Community User Group Albania"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "ARE",
+            "display_name": "Wikimedians of United Arab Emirates User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "AZE",
+            "display_name": "Azerbaijani Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "BA-SRP",
+            "display_name": "Wikimedians of Republic of Srpska"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "BAK",
+            "display_name": "Wikimedians of Bashkortostan User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "BAQ",
+            "display_name": "Basque Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "BEN",
+            "display_name": "Wikimédiens du Bénin User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "BLT",
+            "display_name": "Black Lunch Table Wikimedians"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "BOL",
+            "display_name": "Wikimedistas de Bolivia User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "BLR",
+            "display_name": "Wikimedia Community User Group Belarus"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "CEE",
+            "display_name": "Wikimedia Community User Group CEE Spring"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "CMW",
+            "display_name": "Wikimedians of Cameroon User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "CIV",
+            "display_name": "Wikimedia Community User Group Côte d\"Ivoire"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "CPH",
+            "display_name": "Commons Photographers User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "COD",
+            "display_name": "Wikimedians of Democratic Republic of Congo User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "DZA",
+            "display_name": "Algerian Wikimedians User Group aka WikiDZ"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "EGY",
+            "display_name": "Egypt Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "ESP-WE",
+            "display_name": "Wikiesfera Grupo de Usuarixs"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "ELiSo",
+            "display_name": "Esperanto kaj Libera Scio"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "EZY",
+            "display_name": "Wikimedians of Erzya language User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "GB-CYM",
+            "display_name": "Grŵp Defnyddwyr Cymuned Wicimedia Cymru"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "GEO",
+            "display_name": "Wikimedia Community User Group Georgia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "GHA",
+            "display_name": "Wikimedia Ghana User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "GIN",
+            "display_name": "Wikimedia Community User Group Guinea Conakry"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "GMG",
+            "display_name": "GLAM Macedonia User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "GRC",
+            "display_name": "Wikimedia Community User Group Greece"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "HDW",
+            "display_name": "Hindi Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "H-GAPS",
+            "display_name": "H-GAPS User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "HKG",
+            "display_name": "Wikimedia Community User Group Hong Kong"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "HTI",
+            "display_name": "Wikimedia Community User Group Haiti"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "IRL",
+            "display_name": "Wikimedia Community Ireland User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "IRQ",
+            "display_name": "Iraqi Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "IRN",
+            "display_name": "Iranian Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "IN-KL",
+            "display_name": "Wikimedians of Kerala User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "IN-MR",
+            "display_name": "Marathi Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "IN-Tech",
+            "display_name": "Wikimedians of India technical user group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "JWK",
+            "display_name": "Jenga Wikipedia ya Kiswahili"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "KAZ",
+            "display_name": "Wikimedia Community of Kazakh language User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "KVL",
+            "display_name": "Karavali Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "LGBT",
+            "display_name": "Wikimedia LGBT+ User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "LEV",
+            "display_name": "Wikimedians of the Levant User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "LSP",
+            "display_name": "Les sans pagEs User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "LVA",
+            "display_name": "Wikimedians of Latvia User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "MAR",
+            "display_name": "Wikimedia MA User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "MAI",
+            "display_name": "Maithili Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "MAP",
+            "display_name": "Wikimaps User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "MATH",
+            "display_name": "Wikimedia Community User Group Math"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "MK-SK",
+            "display_name": "Shared Knowledge"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "MLA",
+            "display_name": "Muj(lh)eres latinoamericanas en Wikimedia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "MLI",
+            "display_name": "Wikimedians of Mali User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "MLT",
+            "display_name": "Wikimedia Community User Group Malta"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "MMR",
+            "display_name": "Myanmar Wikimedia Community User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "MW-SG",
+            "display_name": "MediaWiki Stakeholders\" Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "MYS",
+            "display_name": "Wikimedia Community User Group Malaysia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WNAIL",
+            "display_name": "Wikimedians of North American Indigenous Languages User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "NPL",
+            "display_name": "Wikimedians of Nepal"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "NGA",
+            "display_name": "Wikimedia Community User Group Nigeria"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "NGA-HA",
+            "display_name": "Hausa Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "NGA-IG",
+            "display_name": "Igbo Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "IMD",
+            "display_name": "Indic MediaWiki Developers User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "KWU",
+            "display_name": "Kurdish Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "NGA-YO",
+            "display_name": "Yoruba Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "NWR-Hist",
+            "display_name": "North-West Russia Wiki-Historians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "NZL",
+            "display_name": "Wikimedia User Group of Aotearoa New Zealand"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "OFWA",
+            "display_name": "Open Foundation West Africa"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "PAN",
+            "display_name": "Punjabi Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "PER",
+            "display_name": "Wikimedians of Peru User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "PH-WC",
+            "display_name": "Philippine Wikimedia Community User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "LKA",
+            "display_name": "Wikimedia Community User Group Sri Lanka"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "ODW",
+            "display_name": "Odia Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "ROU-MDA",
+            "display_name": "Wikimedians of Romania and Moldova User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "RU-Don",
+            "display_name": "Don Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "RU-NC",
+            "display_name": "Wikipedians of North Caucasus User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "SAT",
+            "display_name": "Wikimedians of Santali Language User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "STE",
+            "display_name": "Wikimedia Stewards User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "SQI",
+            "display_name": "Wikimedians of Albanian Language User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "SUD",
+            "display_name": "Wikimedia Community User Group Sudan"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "SVK",
+            "display_name": "Wikimedians of Slovakia User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "SVN",
+            "display_name": "Wikipedians of Slovenia User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "TAT",
+            "display_name": "Wikimedia Community of Tatar language User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "TUN",
+            "display_name": "Wikimedia TN User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "TUR",
+            "display_name": "Wikimedia Community User Group Turkey"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "TRK",
+            "display_name": "Wikimedians of Turkic Languages User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "TWG",
+            "display_name": "Tremendous Wiktionary User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "TZA",
+            "display_name": "Wikimedia Community User Group Tanzania"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "TZM",
+            "display_name": "Wikimedians of Tamazight User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "UGA",
+            "display_name": "Wikimedia Community User Group Uganda"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "US-CAS",
+            "display_name": "Cascadia Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "US-GAP",
+            "display_name": "Georgia Piedmont Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "US-LA",
+            "display_name": "Wikimedians of Los Angeles User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "US-NC",
+            "display_name": "North Carolina Wikipedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "US-NE",
+            "display_name": "New England Wikimedians"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "US-OH",
+            "display_name": "Ohio Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "US-SAN",
+            "display_name": "San Diego Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "VNM",
+            "display_name": "Vietnam Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WAM",
+            "display_name": "Wikipedia Asian Month User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WKB",
+            "display_name": "Wikibase Community User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WBL",
+            "display_name": "WikiBlind User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WBG",
+            "display_name": "West Bengal Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WKC",
+            "display_name": "Wiki Cemeteries User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WCS",
+            "display_name": "WikiClassics User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WDG",
+            "display_name": "WikiDonne User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WGR",
+            "display_name": "Wikigrannies User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WGU",
+            "display_name": "Wikimujeres Grupo de Usuarias"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WIS",
+            "display_name": "Wikimedians of the Caribbean User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WKJ",
+            "display_name": "WikiJournal"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WK?",
+            "display_name": "Whose Knowledge?"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WNA",
+            "display_name": "WikiConference North America"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "W&E",
+            "display_name": "Wikipedia & Education User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WMB",
+            "display_name": "Grupo de Usuários Wiki Movimento Brasil"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WOW",
+            "display_name": "Wikimedians for Offline Wikis User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WPL",
+            "display_name": "Wikimedia and Libraries User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WREN",
+            "display_name": "Wikimedians in Residence Exchange Network User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WSC",
+            "display_name": "Wikisource Community User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WSD",
+            "display_name": "Wikimedians for Sustainable Development"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WAL",
+            "display_name": "Wikimedians of Western Armenian Language User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WKT",
+            "display_name": "Wikitongues User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WWH",
+            "display_name": "Wiki World Heritage User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WUL",
+            "display_name": "Wikimedians of the Uzbek language User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WDU",
+            "display_name": "Wikimedistas de Uruguay"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WKW",
+            "display_name": "WikiWomen\"s User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "DWU",
+            "display_name": "Dagbani Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "AWUG",
+            "display_name": "Arabic Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WSP",
+            "display_name": "Wikimedia Small Projects in Spanish User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "PWU",
+            "display_name": "Paiwan Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "RU-SPU",
+            "display_name": "Wikimedia Community of Saint Petersburg User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "DCW",
+            "display_name": "Deoband Community Wikimedia User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "GWU",
+            "display_name": "Gungbe Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "RWA",
+            "display_name": "Wikimedia Community User Group Rwanda"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WIR",
+            "display_name": "Women in Religion User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "TWU",
+            "display_name": "Tyap Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "LAG",
+            "display_name": "Wikimedians of Lagos User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "KAS",
+            "display_name": "Kashmiri Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "WCK",
+            "display_name": "Wikimedia Community User Group Kenya"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "SWU",
+            "display_name": "Saudi Wikimedia User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "PH-ADV",
+            "display_name": "Wiki Advocates Philippines User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "TGO",
+            "display_name": "Wikimedia Community User Group Togo"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "TJK",
+            "display_name": "Tajik Wikimedians User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "US-IN",
+            "display_name": "Wikimedians of Indiana User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "JPN",
+            "display_name": "Wikimedians of Japan User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "BFA",
+            "display_name": "Wikimédiens du Burkina Faso User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "ECU",
+            "display_name": "Wikimedistas de Ecuador User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "TCD",
+            "display_name": "Wikimedians of Tchad User Group"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 2,
+            "acronym": "ZMB",
+            "display_name": "Wikimedia Community User Group Zambia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 3,
+            "acronym": "CAT",
+            "display_name": "Amical Wikimedia"
+        }
+    },
+    {
+        "model": "orgs.Organization",
+        "fields": {
+            "type": 3,
+            "acronym": "WPM",
+            "display_name": "Wiki Project Med"
+        }
+    }
+]
