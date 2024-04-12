@@ -48,7 +48,7 @@ class Profile(models.Model):
     profile_image = models.URLField(verbose_name=_("Profile image"), null=True, blank=True)
     display_name = models.CharField(verbose_name=_("Display name"), max_length=387, blank=True)
     birthday = models.DateField(verbose_name=_("Birthday"), null=True, blank=True)
-    about = models.TextField(verbose_name=_("About me"), max_length=2000, blank=True)
+    about = models.TextField(verbose_name=_("About me"), max_length=2000, blank=True, default="")
 
     # SOCIAL MEDIA
     twitter = models.CharField(verbose_name=_("Twitter"), max_length=128, blank=True)
