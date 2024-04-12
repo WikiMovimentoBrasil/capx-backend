@@ -21,7 +21,7 @@ class Organization(models.Model):
     acronym = models.CharField(max_length=10, unique=True)
     type = models.ForeignKey(OrganizationType, on_delete=models.RESTRICT)
     territory = models.ManyToManyField(Region)
-    managers = models.ManyToManyField('users.CustomUser', related_name='managers')
+    managers = models.ManyToManyField('users.CustomUser', related_name='managers', blank=True)
     social_media = models.URLField(blank=True, null=True)
     home_project = models.URLField(blank=True, null=True)
     update_date = models.DateTimeField(default=timezone.now)
