@@ -28,13 +28,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(models.Model):
-    PRONOUN = (
+    PRONOUNS = (
         ("he-him", _("He/Him")),
         ("she-her", _("She/Her")),
         ("they-them", _("They/Them"))
     )
 
-    CONTACT_METHOD = (
+    CONTACT_METHODS = (
         ("email", _("Email")),
         ("discussion", _("Discussion page")),
         ("wiki", _("Meta-Wiki talk page")),
@@ -44,25 +44,25 @@ class Profile(models.Model):
 
     # PERSONAL INFORMATION
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, editable=False)
-    pronoun = models.CharField(verbose_name=_("Pronoun"), max_length=20, choices=PRONOUN, null=True, blank=True)
+    pronoun = models.CharField(verbose_name=_("Pronoun"), max_length=20, choices=PRONOUNS, blank=True)
     profile_image = models.URLField(verbose_name=_("Profile image"), null=True, blank=True)
-    display_name = models.CharField(verbose_name=_("Display name"), max_length=387, null=True, blank=True)
+    display_name = models.CharField(verbose_name=_("Display name"), max_length=387, blank=True)
     birthday = models.DateField(verbose_name=_("Birthday"), null=True, blank=True)
-    about = models.TextField(verbose_name=_("About me"), max_length=2000, null=True, blank=True)
+    about = models.TextField(verbose_name=_("About me"), max_length=2000, blank=True)
 
     # SOCIAL MEDIA
-    twitter = models.CharField(verbose_name=_("Twitter"), max_length=128, null=True, blank=True)
-    facebook = models.CharField(verbose_name=_("Facebook"), max_length=128, null=True, blank=True)
-    instagram = models.CharField(verbose_name=_("Instagram"), max_length=128, null=True, blank=True)
-    telegram = models.CharField(verbose_name=_("Telegram"), max_length=128, null=True, blank=True)
-    github = models.CharField(verbose_name=_("GitHub"), max_length=128, null=True, blank=True)
-    irc = models.CharField(verbose_name=_("IRC"), max_length=128, null=True, blank=True)
-    wiki_alt = models.CharField(verbose_name=_("Wikimedia alternative account"), max_length=128, null=True, blank=True)
-    wiki_develop = models.CharField(verbose_name=_("Wikimedia developer account"), max_length=128, null=True, blank=True)
+    twitter = models.CharField(verbose_name=_("Twitter"), max_length=128, blank=True)
+    facebook = models.CharField(verbose_name=_("Facebook"), max_length=128, blank=True)
+    instagram = models.CharField(verbose_name=_("Instagram"), max_length=128, blank=True)
+    telegram = models.CharField(verbose_name=_("Telegram"), max_length=128, blank=True)
+    github = models.CharField(verbose_name=_("GitHub"), max_length=128, blank=True)
+    irc = models.CharField(verbose_name=_("IRC"), max_length=128, blank=True)
+    wiki_alt = models.CharField(verbose_name=_("Wikimedia alternative account"), max_length=128, blank=True)
+    wiki_develop = models.CharField(verbose_name=_("Wikimedia developer account"), max_length=128, blank=True)
 
     # CONTACT
     contact_method = models.CharField(verbose_name=_("Preferred contact method"), max_length=10,
-                                      choices=CONTACT_METHOD, null=True, blank=True)
+                                      choices=CONTACT_METHODS, blank=True)
 
     # LOCALIZATION
     region = models.ManyToManyField(Region, verbose_name=_("Region"), related_name="user_region", blank=True)

@@ -1,10 +1,9 @@
+import secrets
 from django.test import TestCase
 from django.db import IntegrityError
 from django.core.exceptions import ValidationError
 from ..models import Region, Language, WikimediaProject, Organization, CustomUser, \
     Profile
-
-# TODO: Add the tests for the skills relationship with the profile model
 
 
 class RegionModelTest(TestCase):
@@ -77,7 +76,7 @@ class CustomUserModelTest(TestCase):
         cls.user = CustomUser.objects._create_user(
             username="Abrahmovic",
             email="abrahmovic@hot.com",
-            password="Movic202310",
+            password=str(secrets.randbits(16)),
             first_name="Abrah",
             middle_name="Omo",
             last_name="Movic",
@@ -93,7 +92,7 @@ class CustomUserModelTest(TestCase):
             another_user = CustomUser.objects.create_user(
                 username="Abrahmovic",
                 email="another@example.com",
-                password="Movic202310",
+                password=str(secrets.randbits(16)),
             )
             another_user.full_clean()
 
@@ -116,7 +115,7 @@ class ProfileModelTest(TestCase):
         cls.user = CustomUser.objects._create_user(
             username="Abrahmovic",
             email="abrahmovic@hot.com",
-            password="Movic202310",
+            password=str(secrets.randbits(16)),
             first_name="Abrah",
             middle_name="Omo",
             last_name="Movic",
@@ -154,7 +153,6 @@ class ProfileModelTest(TestCase):
         updated_profile = Profile.objects.get(id=profile.id)
         region = [region.region_name for region in updated_profile.region.all()]
         language = [language.language_name for language in updated_profile.language.all()]
-        affiliation = [organization.organization_name for organization in updated_profile.affiliation.all()]
         wikimedia_project = [wikimedia_project.wikimedia_project_name for wikimedia_project in
                              updated_profile.wikimedia_project.all()]
 

@@ -10,10 +10,6 @@ class UsersViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     http_method_names = ['get', 'head', 'options']
 
-    
-
-    
-
 
 class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer

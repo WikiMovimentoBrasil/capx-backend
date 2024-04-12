@@ -1,8 +1,6 @@
-from rest_framework.test import APITestCase, APIClient, APIRequestFactory
+from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
-from bugs.models import Bug, Attachment
 from users.models import CustomUser
-from bugs.serializers import BugSerializer, AttachmentSerializer
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 
@@ -81,12 +79,12 @@ class AttachmentViewSetTestCase(APITestCase):
             'file': SimpleUploadedFile('updated_attachment.txt', b'updated attachment content'),
             'bug': '1',
         }
-        response = self.client.put(f'/attachment/1/', attachment_data)
+        response = self.client.put('/attachment/1/', attachment_data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['file'].split('/')[-1].split('_')[0], 'updated')
 
     def test_attachment_delete(self):
-        response = self.client.delete(f'/attachment/1/')
+        response = self.client.delete('/attachment/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
 

@@ -55,8 +55,7 @@ class AttachmentModelTest(TestCase):
         image.save(file, "PNG")
         file.name = 'test_image.png'
         file.seek(0)
-        return file
-        # Create a simple image file
+        
         self.file_content = SimpleUploadedFile("test_image.png", content=file.read(), content_type="image/png")
 
         self.attachment = Attachment.objects.create(
