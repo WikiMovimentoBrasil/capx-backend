@@ -22,8 +22,14 @@ class Organization(models.Model):
     type = models.ForeignKey(OrganizationType, on_delete=models.RESTRICT, null=True)
     territory = models.ManyToManyField(Region, blank=True, related_name='territory')
     managers = models.ManyToManyField('users.CustomUser', related_name='managers', blank=True)
-    social_media = models.URLField(blank=True, null=True)
-    home_project = models.URLField(blank=True, null=True)
+    meta_page = models.URLField(blank=True, null=True, validators=[RegexValidator(
+        regex=r'^https:\/\/meta\.wikimedia\.org\/wiki\/.*?$',
+        message='Invalid URL format. The format should be https://meta.wikimedia.org/wiki/PageName'
+    )])
+    home_project = models.URLField(blank=True, null=True, validators=[RegexValidator(
+        regex=r'^https:\/\/[\w-]+\.wikimedia\.org\/$',
+        message='Invalid URL format. The format should be https://xx.wikimedia.org/'
+    )])
     update_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
