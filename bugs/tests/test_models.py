@@ -1,5 +1,6 @@
 from PIL import Image
 import io
+import secrets
 from django.test import TestCase
 from ..models import Bug, Attachment
 from users.models import CustomUser
@@ -10,7 +11,7 @@ class BugModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Create a user
-        test_user = CustomUser.objects.create_user(username='testuser', password='12345')
+        test_user = CustomUser.objects.create_user(username='testuser', password=str(secrets.randbits(16)))
         test_user.save()
 
         # Create a Bug instance to use in tests
@@ -40,7 +41,7 @@ class BugModelTest(TestCase):
 class AttachmentModelTest(TestCase):
     def setUp(self):
         # Setup a user and a bug for the attachment
-        self.user = CustomUser.objects.create_user(username="testuser", password='12345')
+        self.user = CustomUser.objects.create_user(username="testuser", password=str(secrets.randbits(16)))
         self.bug = Bug.objects.create(
             user=self.user,
             title="Sample Bug",

@@ -1,3 +1,4 @@
+import secrets
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from users.models import CustomUser
@@ -6,7 +7,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 class BugViewSetTestCase(APITestCase):
     def setUp(self):
-        self.user = CustomUser.objects.create_user(username='test', password='123')
+        self.user = CustomUser.objects.create_user(username='test', password=str(secrets.randbits(16)))
         self.client = APIClient()
 
     def test_bug_list_unauthenticated(self):
@@ -45,7 +46,7 @@ class BugViewSetTestCase(APITestCase):
 
 class AttachmentViewSetTestCase(APITestCase):
     def setUp(self):
-        self.user = CustomUser.objects.create_user(username='test', password='123')
+        self.user = CustomUser.objects.create_user(username='test', password=str(secrets.randbits(16)))
         self.client = APIClient()
         self.client.force_authenticate(self.user)
         self.client.post('/bugs/', {'title': 'Bug', 'description': 'Bug',})

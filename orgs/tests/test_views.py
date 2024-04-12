@@ -1,3 +1,4 @@
+import secrets
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from orgs.models import OrganizationType, Organization
@@ -7,7 +8,7 @@ from users.submodels import Region
 
 class OrganizationViewSetTestCase(APITestCase):
     def setUp(self):
-        self.user = CustomUser.objects.create_user(username='test', password='123')
+        self.user = CustomUser.objects.create_user(username='test', password=str(secrets.randbits(16)))
         self.client = APIClient()
         OrganizationType.objects.create(type_name='Type 1', type_code='TYPE1')
         Region.objects.create(region_name='Region 1')

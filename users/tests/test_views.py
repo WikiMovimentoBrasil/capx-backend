@@ -1,4 +1,5 @@
 import profile
+import secrets
 from django.urls import reverse
 from django.test import TestCase
 from rest_framework import status
@@ -9,7 +10,7 @@ from skills.models import Skill
 
 class ProfileViewSetTestCase(TestCase):
     def setUp(self):
-        self.user = CustomUser.objects.create_user(username='test', password='123')
+        self.user = CustomUser.objects.create_user(username='test', password=str(secrets.randbits(16)))
         self.client = APIClient()
         self.client.force_authenticate(self.user)
 
@@ -49,7 +50,7 @@ class ProfileViewSetTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_update_other_profile(self):
-        user = CustomUser.objects.create_user(username='test2', password='123')
+        user = CustomUser.objects.create_user(username='test2', password=str(secrets.randbits(16)))
         self.assertNotEqual(user.pk, self.user.pk)
 
         url = '/profile/' + str(user.pk) + '/'
