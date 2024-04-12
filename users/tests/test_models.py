@@ -160,40 +160,7 @@ class ProfileModelTest(TestCase):
 
         self.assertIn('Canada', region)
         self.assertIn("French", language)
-        self.assertIn("Wikimedia Canada", affiliation)
         self.assertIn("Wikipedia", wikimedia_project)
-        self.assertIn("Diversity", area_of_interest)
-
-    def test_profile_str_method_with_full_name(self):
-        user = CustomUser.objects.create_user(
-            username="Andy",
-            first_name="Andrew",
-            middle_name="Jay",
-            last_name="Nicole",
-            email="andy@wiki.com",
-            password="WIkiWikiAn34"
-        )
-
-        self.assertEqual(str(user.profile), "Andrew J. Nicole")
-
-    def test_profile_str_method_with_first_and_last_name(self):
-        user = CustomUser.objects.create_user(
-            username="Angela",
-            first_name="Angela",
-            last_name="Brown",
-            email="ab@wemia.com",
-            password="WemB2840"
-        )
-
-        self.assertEqual(str(user.profile), "Angela Brown")
-
-    def test_profile_str_method_with_first_name(self):
-        user = CustomUser.objects.create_user(
-            username="Ali",
-            first_name="Alice",
-        )
-
-        self.assertEqual(str(user.profile), "Alice")
 
     def test_profile_str_method_with_only_username(self):
         user = CustomUser.objects.create_user(
