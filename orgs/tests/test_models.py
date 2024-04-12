@@ -42,3 +42,13 @@ class OrganizationModelTest(TestCase):
         self.assertEqual(expected_display_name, 'Sample Organization')
         self.assertEqual(expected_acronym, 'SO')
         self.assertEqual(expected_type, 'Organization')
+
+    def test_organization_str_method_with_acronym(self):
+        organization = Organization.objects.get(id=1)
+        self.assertEqual(str(organization), "Sample Organization (SO)")
+
+    def test_organization_str_method_without_acronym(self):
+        organization = Organization.objects.create(
+            display_name="Organization 2"
+        )
+        self.assertEqual(str(organization), "Organization 2")

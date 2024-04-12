@@ -19,8 +19,8 @@ class Organization(models.Model):
         message='Invalid URL format. The format should be https://commons.wikimedia.org/wiki/File:filename.ext'
     )])
     acronym = models.CharField(max_length=10, unique=True)
-    type = models.ForeignKey(OrganizationType, on_delete=models.RESTRICT)
-    territory = models.ManyToManyField(Region)
+    type = models.ForeignKey(OrganizationType, on_delete=models.RESTRICT, null=True)
+    territory = models.ManyToManyField(Region, blank=True, related_name='territory')
     managers = models.ManyToManyField('users.CustomUser', related_name='managers', blank=True)
     social_media = models.URLField(blank=True, null=True)
     home_project = models.URLField(blank=True, null=True)

@@ -33,16 +33,8 @@ class OrganizationViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         if request.user.is_staff or request.user in instance.managers.all():
             return super().update(request, *args, **kwargs)
-        else:
-            return Response(
-                {"detail": "Update allowed only for staff and managers of the organization."},
-                status=status.HTTP_403_FORBIDDEN)
         
     def partial_update(self, request, *args, **kwargs):
         instance = self.get_object()
         if request.user.is_staff or request.user in instance.managers.all():
             return super().partial_update(request, *args, **kwargs)
-        else:
-            return Response(
-                {"detail": "Update allowed only for staff and managers of the organization."},
-                status=status.HTTP_403_FORBIDDEN)

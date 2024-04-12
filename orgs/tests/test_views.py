@@ -1,6 +1,6 @@
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
-from orgs.models import OrganizationType
+from orgs.models import OrganizationType, Organization
 from users.models import CustomUser
 from users.submodels import Region
 
@@ -50,10 +50,115 @@ class OrganizationViewSetTestCase(APITestCase):
         self.user.is_staff = True
         self.client.force_authenticate(self.user)
         response = self.client.post('/organizations/', org_data)
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_list_orgs_authenticated(self):
         self.client.force_authenticate(self.user)
         response = self.client.get('/organizations/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        organization = Organization.objects.create(
+            display_name='New Organization',
+            acronym='NO',
+            type=OrganizationType.objects.get(pk=1),
+        )
+        organization.territory.set([Region.objects.get(pk=1)])
+        response = self.client.get('/organizations/')
+        self.assertEqual(len(response.data), 0)
+
+        Organization.objects.create(
+            display_name='New Organization 2',
+            acronym='NO2', 
+            type=OrganizationType.objects.get(pk=1),
+        )
+        organization.territory.set([Region.objects.get(pk=1)])
+        organization.managers.set([self.user])
+        response = self.client.get('/organizations/')
+        self.assertEqual(len(response.data), 1)
+
+
+    def test_list_orgs_staff(self):
+        self.user.is_staff = True
+        self.client.force_authenticate(self.user)
+        response = self.client.get('/organizations/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 0)
+
+        org_data = {
+            'display_name': 'New Organization',
+            'acronym': 'NO',
+            'type': '1',
+            'territory': '1',
+        }
+        self.client.post('/organizations/', org_data)
+        response = self.client.get('/organizations/')
+        self.assertEqual(len(response.data), 1)
+
+    def test_retrieve_org(self):
+        self.client.force_authenticate(self.user)
+        response = self.client.get('/organizations/1/')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+        organization = Organization.objects.create(
+            display_name='New Organization',
+            acronym='NO',
+            type=OrganizationType.objects.get(pk=1),
+        )
+        organization.territory.set([Region.objects.get(pk=1)])
+        response = self.client.get('/organizations/1/')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+        self.user.is_staff = True
+        response = self.client.get('/organizations/1/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.user.is_staff = False
+        organization.managers.set([self.user])
+        response = self.client.get('/organizations/1/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_update_org(self):
+        self.client.force_authenticate(self.user)
+        response = self.client.put('/organizations/1/', {'display_name': 'New Name','acronym': 'NN'})
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+        organization = Organization.objects.create(
+            display_name='New Organization',
+            acronym='NO',
+            type=OrganizationType.objects.get(pk=1),
+        )
+        organization.territory.set([Region.objects.get(pk=1)])
+        response = self.client.put('/organizations/1/', {'display_name': 'New Name','acronym': 'NN'})
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+        self.user.is_staff = True
+        response = self.client.put('/organizations/1/', {'display_name': 'New Name','acronym': 'NN'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.user.is_staff = False
+        organization.managers.set([self.user])
+        response = self.client.put('/organizations/1/', {'display_name': 'Other New Name','acronym': 'ONN'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_partial_update_org(self):
+        self.client.force_authenticate(self.user)
+        response = self.client.patch('/organizations/1/', {'display_name': 'New Name'})
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+        organization = Organization.objects.create(
+            display_name='New Organization',
+            acronym='NO',
+            type=OrganizationType.objects.get(pk=1),
+        )
+        organization.territory.set([Region.objects.get(pk=1)])
+        response = self.client.patch('/organizations/1/', {'display_name': 'New Name'})
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+        self.user.is_staff = True
+        response = self.client.patch('/organizations/1/', {'display_name': 'New Name'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.user.is_staff = False
+        organization.managers.set([self.user])
+        response = self.client.patch('/organizations/1/', {'display_name': 'Other New Name'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
