@@ -1,0 +1,40 @@
+name: Deploy via SSH
+
+on:
+  push:
+    branches:
+      - stable
+
+jobs:
+  deploy:
+    name: Deploy to SSH Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install SSH key
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          fingerprint: ${{ secrets.FINGERPRINT }}
+          script_stop: true
+          script: |
+            become capx
+            become capx-backend
+            git -C $HOME/www/python/src pull origin stable
+            toolforge webservice --backend=kubernetes python3.11 shell
+            source $HOME/www/python/venv/bin/activate
+            pip install --upgrade pip wheel
+            pip install -r $HOME/www/python/src/requirements.txt
+            python $HOME/www/python/src/manage.py migrate
+            python $HOME/www/python/src/manage.py collectstatic --noinput
+            exit
+            toolforge webservice --backend=kubernetes python3.11 restart
+            exit
+            exit
+            exit
