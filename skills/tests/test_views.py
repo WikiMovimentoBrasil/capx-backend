@@ -1,3 +1,4 @@
+import secrets
 from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient
@@ -7,7 +8,7 @@ from skills.serializers import SkillSerializer
 
 class SkillViewSetTestCase(TestCase):
     def setUp(self):
-        self.user = CustomUser.objects.create_user(username='test', password='123')
+        self.user = CustomUser.objects.create_user(username='test', password=str(secrets.randbits(16)))
         self.client = APIClient()
         self.client.force_authenticate(self.user)
         skill = {

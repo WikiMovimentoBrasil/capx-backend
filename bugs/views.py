@@ -1,5 +1,5 @@
 from .models import Bug, Attachment
-from .serializers import BugSerializer, BugStaffSerializer, AttachmentSerializer
+from .serializers import BugSerializer, AttachmentSerializer
 from rest_framework import viewsets, permissions
 
 
@@ -8,12 +8,13 @@ class BugViewSet(viewsets.ModelViewSet):
     queryset = Bug.objects.all()
     permission_classes = (permissions.IsAdminUser,)
 
-    def get_serializer_class(self):
+    def get_queryset(self):
         user = self.request.user
         if user.is_staff:
-            return BugStaffSerializer
+            queryset = Bug.objects.all()
         else:
-            return BugSerializer
+            queryset = Bug.objects.filter(user=user)
+        return queryset
 
     def get_permissions(self):
         if self.request.method in ['DELETE']:

@@ -1,4 +1,4 @@
-.idea
+.idea/
 .env
 __pycache__/
 */__pycache__
@@ -7,10 +7,11 @@ venv/
 Lib/
 Scripts/
 *.sqlite3
-CapX/settings_local.py
 *.pkl
 *.coverage
 htmlcov/
 media/
 .vscode/
 pytest.ini
+coverage.xml
+static/

@@ -2,8 +2,6 @@ from django.db import models
 from django.conf import settings
 
 
-# Create your models here.
-
 class Bug(models.Model):
     BUG_TYPES = [
         ("error", "Error"),

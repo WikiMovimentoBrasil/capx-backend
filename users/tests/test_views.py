@@ -1,14 +1,16 @@
 import profile
+import secrets
 from django.urls import reverse
 from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient
 from users.models import Profile, CustomUser
 from users.serializers import ProfileSerializer
+from skills.models import Skill
 
 class ProfileViewSetTestCase(TestCase):
     def setUp(self):
-        self.user = CustomUser.objects.create_user(username='test', password='123')
+        self.user = CustomUser.objects.create_user(username='test', password=str(secrets.randbits(16)))
         self.client = APIClient()
         self.client.force_authenticate(self.user)
 
@@ -48,7 +50,7 @@ class ProfileViewSetTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_update_other_profile(self):
-        user = CustomUser.objects.create_user(username='test2', password='123')
+        user = CustomUser.objects.create_user(username='test2', password=str(secrets.randbits(16)))
         self.assertNotEqual(user.pk, self.user.pk)
 
         url = '/profile/' + str(user.pk) + '/'
@@ -57,3 +59,18 @@ class ProfileViewSetTestCase(TestCase):
         }
         response = self.client.put(url, updated_data)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_update_match_skills_profile(self):
+        Skill.objects.create(
+            skill_name="Programming",
+            skill_description="A skill for writing code",
+            skill_wikidata_item="Q123456789"
+        )
+
+        url = '/profile/' + str(self.user.pk) + '/'
+        updated_data = {
+            'skills_known': [1],
+            'skills_available': [1],
+        }
+        response = self.client.put(url, updated_data)
+        self.assertEqual(response.status_code, status.HTTP_409_CONFLICT)
