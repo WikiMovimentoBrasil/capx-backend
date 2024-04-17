@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.db.models.signals import post_save
 from orgs.models import Organization
 from skills.models import Skill
-from users.submodels import Region, Language, WikimediaProject
+from users.submodels import Territory, Language, WikimediaProject
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
@@ -58,7 +58,7 @@ class Profile(models.Model):
     email = models.EmailField(verbose_name=_("Email"), blank=True)
 
     # LOCALIZATION
-    region = models.ManyToManyField(Region, verbose_name=_("Region"), related_name="user_region", blank=True)
+    territory = models.ManyToManyField(Territory, verbose_name="Territory", related_name="user_territory", blank=True)
     language = models.ManyToManyField(Language, verbose_name=_("Language"), related_name="user_language", blank=True)
     affiliation = models.ManyToManyField(Organization, verbose_name=_("Affiliation"),
                                          related_name="user_affiliation", blank=True)

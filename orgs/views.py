@@ -2,7 +2,7 @@ from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
 from .models import Organization
 from .serializers import OrganizationSerializer
-from users.models import CustomUser as User, Region
+from users.models import CustomUser as User, Territory
 
 
 class OrganizationViewSet(viewsets.ModelViewSet):
@@ -20,7 +20,7 @@ class OrganizationViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         data = serializer.data
-        data['territory'] = [Region.objects.get(id=id).region_name for id in data['territory']]
+        data['territory'] = [Territory.objects.get(id=id).region_name for id in data['territory']]
         data['managers'] = [User.objects.get(id=id).username for id in data['managers']]
         return Response(data)
 

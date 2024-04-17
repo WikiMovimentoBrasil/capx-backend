@@ -35,7 +35,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'wiki_develop',
             'email',
             'contact_method',
-            'region',
+            'territory',
             'language',
             'affiliation',
             'wikimedia_project',

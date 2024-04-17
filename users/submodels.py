@@ -1,13 +1,13 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-class Region(models.Model):
-    region_name = models.CharField(verbose_name=_("Region name"), max_length=128, unique=True)
-    parent_region = models.ManyToManyField("self", verbose_name=_("Parent region"), symmetrical=False,
-                                           related_name="region_parent", blank=True)
+class Territory(models.Model):
+    territory_name = models.CharField(verbose_name="Territory name", max_length=128, unique=True)
+    parent_region = models.ManyToManyField("self", verbose_name="Parent territory", symmetrical=False,
+                                           related_name="territory_parent", blank=True)
 
     def __str__(self):
-        return self.region_name
+        return self.territory_name
 
 
 class Language(models.Model):
