@@ -7,6 +7,7 @@ from django.db.models.signals import post_save
 from orgs.models import Organization
 from skills.models import Skill
 from users.submodels import Territory, Language, WikimediaProject
+from django.core.validators import RegexValidator
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
@@ -48,6 +49,10 @@ class Profile(models.Model):
     display_name = models.CharField(verbose_name=_("Display name"), max_length=387, blank=True)
     birthday = models.DateField(verbose_name=_("Birthday"), null=True, blank=True)
     about = models.TextField(verbose_name=_("About me"), max_length=2000, blank=True, default="")
+    wikidata_qid = models.CharField(verbose_name="Wikidata Qid", max_length=10, blank=True, validators=[RegexValidator(
+        regex=r'^Q[1-9]\d*$',
+        message="Invalid Wikidata Qid format. The format should be Q12345"
+    )])
 
     # CONTACT
     contact_method = models.CharField(verbose_name=_("Preferred contact method"), max_length=10,

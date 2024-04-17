@@ -35,6 +35,11 @@ class Migration(migrations.Migration):
             field=models.ManyToManyField(blank=True, related_name='user_territory', to='users.territory', verbose_name='Territory'),
         ),
         migrations.AlterField(
+            model_name='profile',
+            name='wikidata_qid',
+            field=models.CharField(blank=True, max_length=10, validators=[django.core.validators.RegexValidator(message='Invalid Wikidata Qid format. The format should be Q12345', regex='^Q[1-9]\\d*$')], verbose_name='Wikidata Qid'),
+        ),
+        migrations.AlterField(
             model_name='territory',
             name='parent_region',
             field=models.ManyToManyField(blank=True, related_name='territory_parent', to='users.territory', verbose_name='Parent territory'),
