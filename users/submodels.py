@@ -2,7 +2,7 @@ from django.db import models
 
 class Territory(models.Model):
     territory_name = models.CharField(verbose_name="Territory name", max_length=128, unique=True)
-    parent_region = models.ManyToManyField("self", verbose_name="Parent territory", symmetrical=False,
+    parent_territory = models.ManyToManyField("self", verbose_name="Parent territory", symmetrical=False,
                                            related_name="territory_parent", blank=True)
 
     def __str__(self):

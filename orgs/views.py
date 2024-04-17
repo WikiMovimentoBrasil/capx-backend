@@ -20,7 +20,7 @@ class OrganizationViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         data = serializer.data
-        data['territory'] = [Territory.objects.get(id=id).region_name for id in data['territory']]
+        data['territory'] = [Territory.objects.get(id=id).territory_name for id in data['territory']]
         data['managers'] = [User.objects.get(id=id).username for id in data['managers']]
         return Response(data)
 
