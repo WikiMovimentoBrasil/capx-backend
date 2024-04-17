@@ -35,6 +35,46 @@ class Migration(migrations.Migration):
             field=models.ManyToManyField(blank=True, related_name='user_territory', to='users.territory', verbose_name='Territory'),
         ),
         migrations.AlterField(
+            model_name='customuser',
+            name='date_joined',
+            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='Date joined'),
+        ),
+        migrations.AlterField(
+            model_name='customuser',
+            name='email',
+            field=models.EmailField(blank=True, max_length=255, null=True, verbose_name='Email address'),
+        ),
+        migrations.AlterField(
+            model_name='customuser',
+            name='first_name',
+            field=models.CharField(blank=True, max_length=30, null=True, verbose_name='First name'),
+        ),
+        migrations.AlterField(
+            model_name='customuser',
+            name='is_active',
+            field=models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='Active'),
+        ),
+        migrations.AlterField(
+            model_name='customuser',
+            name='is_staff',
+            field=models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='Staff status'),
+        ),
+        migrations.AlterField(
+            model_name='customuser',
+            name='last_name',
+            field=models.CharField(blank=True, max_length=30, null=True, verbose_name='Last name'),
+        ),
+        migrations.AlterField(
+            model_name='customuser',
+            name='middle_name',
+            field=models.CharField(blank=True, max_length=128, null=True, verbose_name='Middle name'),
+        ),
+        migrations.AlterField(
+            model_name='customuser',
+            name='username',
+            field=models.CharField(help_text='100 characters or fewer', max_length=100, unique=True, verbose_name='Username'),
+        ),
+        migrations.AddField(
             model_name='profile',
             name='wikidata_qid',
             field=models.CharField(blank=True, max_length=10, validators=[django.core.validators.RegexValidator(message='Invalid Wikidata Qid format. The format should be Q12345', regex='^Q[1-9]\\d*$')], verbose_name='Wikidata Qid'),

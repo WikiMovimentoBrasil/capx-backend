@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
@@ -58,8 +57,8 @@ else:
     print('replica.my.cnf file not found, running as local')
 
 LANGUAGES = (
-    ('en', _('English')),
-    ('pt-br', _('Brazilian Portuguese')),
-    ('pt', _('Portuguese')),
-    ('es', _('Spanish')),
+    ('en', 'English'),
+    ('pt-br', 'Brazilian Portuguese'),
+    ('pt', 'Portuguese'),
+    ('es', 'Spanish'),
 )
