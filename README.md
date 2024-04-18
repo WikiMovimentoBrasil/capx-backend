@@ -4,7 +4,7 @@ The Capacity Exchange (CapX) is a project focusing on [Global Approaches to Loca
 
 The aim is to create a methodology and service, which will serve as the structure for initiating mutual skills development globally, regionally, and locally. An interactive, online platform, backed by a database, will enable wikimedians to publish information about themselves, their affiliates, and informal groups. They will also be able to conduct searches, access information and to connect with each other in a way that reflects the Wiki's spirit and the Wikimedia Movement Strategy.
 
-The Capacity Exchange (CapX) is available in Toolforge at https://capacity-exchange.toolforge.org
+The Capacity Exchange (CapX) is available in Toolforge at https://capx.toolforge.org
 
 ## Table of Contents
 
@@ -28,13 +28,13 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/WikiMovimentoBrasil/capx-dev.git
+   git clone https://github.com/WikiMovimentoBrasil/capx-backend.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd capx
+   cd capx-backend
    ```
 
 3. Create a virtual environment (optional but recommended):
@@ -72,8 +72,7 @@ Before you begin, ensure you have met the following requirements:
 8. Install initial data:
    ```bash
    python manage.py loaddata fixtures/initial_data.json
-   python manage.py loaddata users/fixtures/organizationType.json
-   python manage.py loaddata users/fixtures/organization.json
+   python manage.py loaddata fixtures/orgs.json
    ```
 
 9. Create a ```.env``` with the following envvars
