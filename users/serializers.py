@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Profile, CustomUser
 
-
+   
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -9,22 +9,30 @@ class UserSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'username',
+            'email',
+            'first_name',
+            'middle_name',
+            'last_name',
             'is_staff',
             'is_active',
             'date_joined',
+            'last_login',
+        ]
+        read_only_fields = [
+            'username',
+            'is_staff',
+            'is_active',
+            'date_joined',
+            'last_login',
         ]
 
-    def get_fields(self):
-        fields = super().get_fields()
-        fields["username"].read_only = True
-        return fields
-
-
 class ProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
 
     class Meta:
         model = Profile
         fields = [
+            'user',
             'pronoun',
             'profile_image',
             'display_name',
@@ -44,9 +52,15 @@ class ProfileSerializer(serializers.ModelSerializer):
             'skills_wanted',
         ]
 
-    def to_representation(self, instance):
-        profile_data = super(ProfileSerializer, self).to_representation(instance)
-        user_data = UserSerializer(instance.user).data
-        return {**user_data, **profile_data}
-
-    
+    # Override the update method to allow write access to the nested user object
+    def update(self, instance, validated_data):
+        user_data = validated_data.pop('user', None)
+        if user_data is not None:
+            user = instance.user
+            user.first_name = user_data.get('first_name', user.first_name)
+            user.middle_name = user_data.get('middle_name', user.middle_name)
+            user.last_name = user_data.get('last_name', user.last_name)
+            user.email = user_data.get('email', user.email)
+            user.save()
+        return super().update(instance, validated_data)
+   
