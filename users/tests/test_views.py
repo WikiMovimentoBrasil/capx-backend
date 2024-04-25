@@ -32,9 +32,10 @@ class ProfileViewSetTestCase(TestCase):
     def test_update_profile(self):
         url = '/profile/' + str(self.user.pk) + '/'
         updated_data = {
+            'user': {},
             'about': 'first user ever!',
         }
-        response = self.client.put(url, updated_data)
+        response = self.client.put(url, updated_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         profiles = Profile.objects.all()
