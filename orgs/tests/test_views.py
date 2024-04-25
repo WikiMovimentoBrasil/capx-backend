@@ -3,7 +3,7 @@ from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from orgs.models import OrganizationType, Organization
 from users.models import CustomUser
-from users.submodels import Region
+from users.submodels import Territory
 
 
 class OrganizationViewSetTestCase(APITestCase):
@@ -11,7 +11,7 @@ class OrganizationViewSetTestCase(APITestCase):
         self.user = CustomUser.objects.create_user(username='test', password=str(secrets.randbits(16)))
         self.client = APIClient()
         OrganizationType.objects.create(type_name='Type 1', type_code='TYPE1')
-        Region.objects.create(region_name='Region 1')
+        Territory.objects.create(territory_name='Territory 1')
     
     def test_get_orgs_list_unauthenticated(self):
         response = self.client.get('/organizations/')
@@ -63,7 +63,7 @@ class OrganizationViewSetTestCase(APITestCase):
             acronym='NO',
             type=OrganizationType.objects.get(pk=1),
         )
-        organization.territory.set([Region.objects.get(pk=1)])
+        organization.territory.set([Territory.objects.get(pk=1)])
         response = self.client.get('/organizations/')
         self.assertEqual(len(response.data), 0)
 
@@ -72,7 +72,7 @@ class OrganizationViewSetTestCase(APITestCase):
             acronym='NO2', 
             type=OrganizationType.objects.get(pk=1),
         )
-        organization.territory.set([Region.objects.get(pk=1)])
+        organization.territory.set([Territory.objects.get(pk=1)])
         organization.managers.set([self.user])
         response = self.client.get('/organizations/')
         self.assertEqual(len(response.data), 1)
@@ -105,7 +105,7 @@ class OrganizationViewSetTestCase(APITestCase):
             acronym='NO',
             type=OrganizationType.objects.get(pk=1),
         )
-        organization.territory.set([Region.objects.get(pk=1)])
+        organization.territory.set([Territory.objects.get(pk=1)])
         response = self.client.get('/organizations/1/')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
@@ -128,7 +128,7 @@ class OrganizationViewSetTestCase(APITestCase):
             acronym='NO',
             type=OrganizationType.objects.get(pk=1),
         )
-        organization.territory.set([Region.objects.get(pk=1)])
+        organization.territory.set([Territory.objects.get(pk=1)])
         response = self.client.put('/organizations/1/', {'display_name': 'New Name','acronym': 'NN'})
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
@@ -151,7 +151,7 @@ class OrganizationViewSetTestCase(APITestCase):
             acronym='NO',
             type=OrganizationType.objects.get(pk=1),
         )
-        organization.territory.set([Region.objects.get(pk=1)])
+        organization.territory.set([Territory.objects.get(pk=1)])
         response = self.client.patch('/organizations/1/', {'display_name': 'New Name'})
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 

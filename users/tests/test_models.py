@@ -2,33 +2,33 @@ import secrets
 from django.test import TestCase
 from django.db import IntegrityError
 from django.core.exceptions import ValidationError
-from ..models import Region, Language, WikimediaProject, Organization, CustomUser, \
+from ..models import Territory, Language, WikimediaProject, Organization, CustomUser, \
     Profile
 
 
-class RegionModelTest(TestCase):
+class TerritoryModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.parent_region = Region.objects.create(
-            region_name="Africa",
+        cls.parent_territory = Territory.objects.create(
+            territory_name="Africa",
         )
-        cls.region = Region.objects.create(
-            region_name="Nigeria",
+        cls.territory = Territory.objects.create(
+            territory_name="Nigeria",
 
         )
-        cls.region.parent_region.set([cls.parent_region])
-        # cls.region.parent_region.set(1])
+        cls.territory.parent_territory.set([cls.parent_territory])
+        # cls.territory.parent_territory.set(1])
 
-    def test_region_creation(self):
-        self.assertEqual(self.region.region_name, "Nigeria")
-        self.assertEqual(str(self.region), "Nigeria")
+    def test_territory_creation(self):
+        self.assertEqual(self.territory.territory_name, "Nigeria")
+        self.assertEqual(str(self.territory), "Nigeria")
 
-        self.assertIn(self.parent_region, self.region.parent_region.all())
+        self.assertIn(self.parent_territory, self.territory.parent_territory.all())
 
-    def test_unique_region_name(self):
-        Region.objects.create(region_name="Asia")
+    def test_unique_territory_name(self):
+        Territory.objects.create(territory_name="Asia")
         with self.assertRaises(IntegrityError):
-            Region.objects.create(region_name="Asia")
+            Territory.objects.create(territory_name="Asia")
 
 
 class LanguageModelTest(TestCase):
@@ -100,8 +100,8 @@ class CustomUserModelTest(TestCase):
 class ProfileModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.region = Region.objects.create(
-            region_name="Canada",
+        cls.territory = Territory.objects.create(
+            territory_name="Canada",
         )
         cls.language = Language.objects.create(
             language_name="French",
@@ -145,18 +145,18 @@ class ProfileModelTest(TestCase):
 
     def test_localization(self):
         profile = self.user.profile
-        profile.region.set([self.region])
+        profile.territory.set([self.territory])
         profile.language.set([self.language])
         profile.wikimedia_project.set([self.wikimedia_project])
         profile.save()
 
         updated_profile = Profile.objects.get(id=profile.id)
-        region = [region.region_name for region in updated_profile.region.all()]
+        territory = [territory.territory_name for territory in updated_profile.territory.all()]
         language = [language.language_name for language in updated_profile.language.all()]
         wikimedia_project = [wikimedia_project.wikimedia_project_name for wikimedia_project in
                              updated_profile.wikimedia_project.all()]
 
-        self.assertIn('Canada', region)
+        self.assertIn('Canada', territory)
         self.assertIn("French", language)
         self.assertIn("Wikipedia", wikimedia_project)
 

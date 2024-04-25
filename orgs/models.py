@@ -1,5 +1,5 @@
 from django.db import models
-from users.submodels import Region
+from users.submodels import Territory
 from django.core.validators import RegexValidator
 from django.utils import timezone as timezone
 
@@ -20,7 +20,7 @@ class Organization(models.Model):
     )])
     acronym = models.CharField(max_length=10, unique=True)
     type = models.ForeignKey(OrganizationType, on_delete=models.RESTRICT, null=True)
-    territory = models.ManyToManyField(Region, blank=True, related_name='territory')
+    territory = models.ManyToManyField(Territory, blank=True, related_name='territory')
     managers = models.ManyToManyField('users.CustomUser', related_name='managers', blank=True)
     meta_page = models.URLField(blank=True, null=True, validators=[RegexValidator(
         regex=r'^https:\/\/meta\.wikimedia\.org\/wiki\/.*?$',
