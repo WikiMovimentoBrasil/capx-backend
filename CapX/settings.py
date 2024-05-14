@@ -146,6 +146,7 @@ REST_FRAMEWORK = {
         'knox.auth.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
+    'DEFAULT_METADATA_CLASS': 'CapX.metadata.CustomMetadata',
 }
 REST_AUTH_SERIALIZERS = {
     "TOKEN_SERIALIZER": "users.serializers.KnoxSerializer",
