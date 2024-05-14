@@ -185,17 +185,17 @@ class EventViewSetTestCase(TestCase):
 
 class EventParticipantCreateTestCase(TestCase):
     def setUp(self):
-        self.user = CustomUser.objects.create_user(username='test', password=str(secrets.randbits(16)))
-        self.other_user = CustomUser.objects.create_user(username='test2', password=str(secrets.randbits(16)))
+        self.user = CustomUser.objects.create_user(username='test3', password=str(secrets.randbits(16)))
+        self.other_user = CustomUser.objects.create_user(username='test4', password=str(secrets.randbits(16)))
         self.client = APIClient()
         self.client.force_authenticate(self.user)
 
     def test_event_participant_create(self):        
         event = Events.objects.create(
-            name='Sample Event',
-            type_of_location='virtual',
-            time_begin='2021-10-10 10:00:00+00:00',
-            time_end='2021-10-10 12:00:00+00:00',
+            name='Event Sample',
+            type_of_location='hybrid',
+            time_begin='2021-11-10 10:00:00+00:00',
+            time_end='2021-11-10 12:00:00+00:00',
             creator=CustomUser.objects.get(id=self.user.id)
         )
 
@@ -327,3 +327,35 @@ class EventParticipantTestCase(TestCase):
         response = self.client.put(f'/events_participants/{organizer_participant.id}/', event_participant_data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(response.data, 'The creator of the event cannot be unconfirmed')
+
+        # Try to unconfirm the creator of the event as a staff
+        new_user.is_staff = True
+        new_user.save()
+        response = self.client.put(f'/events_participants/{organizer_participant.id}/', event_participant_data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_event_participant_delete(self):
+        event = Events.objects.create(
+            name='Sample Event',
+            type_of_location='virtual',
+            time_begin='2021-10-10 10:00:00+00:00',
+            time_end='2021-10-10 12:00:00+00:00',
+            creator=CustomUser.objects.get(id=self.user.id)
+        )
+
+        event_participant = EventParticipant.objects.create(
+            event=event,
+            participant=self.user,
+            role='organizer',
+            confirmed_organizer=True,
+            confirmed_participant=True,
+        )
+
+        response = self.client.delete(f'/events_participants/{event_participant.id}/')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # Set user as staff
+        self.user.is_staff = True
+        self.user.save()
+        response = self.client.delete(f'/events_participants/{event_participant.id}/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
