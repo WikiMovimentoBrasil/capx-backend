@@ -10,6 +10,8 @@ class ProfileInline(admin.StackedInline):
 
 
 class AccountUserAdmin(AuthUserAdmin):
+    list_display = ('username', 'is_staff', 'is_active')
+    
     def add_view(self, *args, **kwargs):
         self.inlines = []
         return super(AccountUserAdmin, self).add_view(*args, **kwargs)
