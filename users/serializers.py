@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import Profile, CustomUser
+from .submodels import Territory
+from orgs.models import Organization
 
    
 class UserSerializer(serializers.ModelSerializer):
@@ -23,9 +25,23 @@ class UserSerializer(serializers.ModelSerializer):
             'last_login',
         ]
 
+class TerritorySerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Territory
+        fields = ['id', 'territory_name']
+
+class OrganizationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Organization
+        fields = ['id', 'display_name']
+
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer()
-
+    territory_rep = TerritorySerializer(many=True, read_only=True, source='territory')
+    affiliation_rep = OrganizationSerializer(many=True, read_only=True, source='affiliation')
+    
     class Meta:
         model = Profile
         fields = [
@@ -37,8 +53,10 @@ class ProfileSerializer(serializers.ModelSerializer):
             'wikidata_qid',
             'wiki_alt',
             'territory',
+            'territory_rep',
             'language',
             'affiliation',
+            'affiliation_rep',
             'wikimedia_project',
             'team',
             'skills_known',
