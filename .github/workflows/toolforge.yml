@@ -28,3 +28,5 @@ jobs:
             become capx-backend webservice python3.11 shell -- webservice-python-bootstrap
             become capx-backend webservice python3.11 shell -- '$HOME/www/python/venv/bin/python' '$HOME/www/python/src/manage.py' migrate
             become capx-backend webservice python3.11 shell -- '$HOME/www/python/venv/bin/python' '$HOME/www/python/src/manage.py' collectstatic --noinput
+            become capx-backend webservice python3.11 restart
+            become capx-backend webservice python3.11 status

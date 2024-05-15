@@ -10,9 +10,6 @@ class UserSerializer(serializers.ModelSerializer):
             'id',
             'username',
             'email',
-            'first_name',
-            'middle_name',
-            'last_name',
             'is_staff',
             'is_active',
             'date_joined',
@@ -33,23 +30,22 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = [
             'user',
-            'pronoun',
             'profile_image',
             'display_name',
-            'birthday',
+            'pronoun',
             'about',
-            'irc',
+            'wikidata_qid',
             'wiki_alt',
-            'wiki_develop',
-            'email',
-            'contact_method',
             'territory',
             'language',
             'affiliation',
             'wikimedia_project',
+            'team',
             'skills_known',
             'skills_available',
             'skills_wanted',
+            'contact',
+            'social',
         ]
 
     # Override the update method to allow write access to the nested user object
@@ -57,9 +53,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         user_data = validated_data.pop('user', None)
         if user_data is not None:
             user = instance.user
-            user.first_name = user_data.get('first_name', user.first_name)
-            user.middle_name = user_data.get('middle_name', user.middle_name)
-            user.last_name = user_data.get('last_name', user.last_name)
             user.email = user_data.get('email', user.email)
             user.save()
         return super().update(instance, validated_data)

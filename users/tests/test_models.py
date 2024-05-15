@@ -77,9 +77,6 @@ class CustomUserModelTest(TestCase):
             username="Abrahmovic",
             email="abrahmovic@hot.com",
             password=str(secrets.randbits(16)),
-            first_name="Abrah",
-            middle_name="Omo",
-            last_name="Movic",
         )
 
     def test_custom_user_creation(self):
@@ -116,9 +113,6 @@ class ProfileModelTest(TestCase):
             username="Abrahmovic",
             email="abrahmovic@hot.com",
             password=str(secrets.randbits(16)),
-            first_name="Abrah",
-            middle_name="Omo",
-            last_name="Movic",
         )
 
     def test_profile_creation(self):
