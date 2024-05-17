@@ -2,7 +2,6 @@ from .models import Profile
 from .serializers import ProfileSerializer
 from rest_framework import status, viewsets
 from rest_framework.response import Response
-from rest_framework.exceptions import PermissionDenied
 
 
 class UsersViewSet(viewsets.ModelViewSet):
