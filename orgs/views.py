@@ -38,3 +38,13 @@ class OrganizationViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         if request.user.is_staff or request.user in instance.managers.all():
             return super().partial_update(request, *args, **kwargs)
+        
+# Alternative version of OrganizationViewSet, read-only and only returns the organization's __str__ with the id as the key
+class AfilliationViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Organization.objects.all()
+    serializer_class = OrganizationSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        data = {org.id: str(org) for org in queryset}
+        return Response(data)
