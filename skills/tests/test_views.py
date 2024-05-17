@@ -44,6 +44,11 @@ class SkillViewSetTestCase(TestCase):
         serializer = SkillSerializer(skill)
         self.assertEqual(response.data, serializer.data)
 
+        options_response = self.client.options('/skill/1/')
+        expected_choices = [{'value': 1, 'display_name': 'Programming'}, {'value': 2, 'display_name': 'Cooking'}]
+        self.assertEqual(options_response.status_code, status.HTTP_200_OK)
+        self.assertEqual(options_response.data['actions']['PUT']['skill_type']['choices'], expected_choices)
+
     def test_update_skill(self):
         skill = Skill.objects.get(skill_name='Programming')
         updated_data = {
@@ -57,5 +62,25 @@ class SkillViewSetTestCase(TestCase):
         self.assertEqual(serializer.data['skill_name'], updated_data['skill_name'])
 
     def test_delete_skill(self):
+        response = self.client.delete('/skill/1/')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_delete_skill_staff(self):
+        self.user.is_staff = True
+        self.user.save()
+        response = self.client.delete('/skill/1/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_delete_skill_referenced(self):
+        # Create a second skill that references the first skill
+        skill = {
+            'skill_name': "Cooking",
+            'skill_description': "A skill for cooking food",
+            'skill_wikidata_item': "Q987654321",
+            'skill_type': 1
+        }
+        self.client.post('/skill/', skill)
+        self.user.is_staff = True
+        self.user.save()
         response = self.client.delete('/skill/1/')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
