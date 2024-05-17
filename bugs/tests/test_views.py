@@ -1,6 +1,6 @@
-import secrets
-from rest_framework.test import APITestCase, APIClient
+import secrets, os
 from rest_framework import status
+from rest_framework.test import APITestCase, APIClient
 from users.models import CustomUser
 from django.core.files.uploadedfile import SimpleUploadedFile
 
@@ -43,6 +43,27 @@ class BugViewSetTestCase(APITestCase):
         response = self.client.get('/bugs/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_bug_list_staff(self):
+        self.user.is_staff = True
+        self.user.save()
+        self.client.force_authenticate(self.user)
+        response = self.client.get('/bugs/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_bug_delete(self):
+        self.client.force_authenticate(self.user)
+        self.client.post('/bugs/', {'title': 'Bug', 'description': 'Bug',})
+        response = self.client.delete('/bugs/1/')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_bug_delete_staff(self):
+        self.user.is_staff = True
+        self.user.save()
+        self.client.force_authenticate(self.user)
+        self.client.post('/bugs/', {'title': 'Bug', 'description': 'Bug',})
+        response = self.client.delete('/bugs/1/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
 
 class AttachmentViewSetTestCase(APITestCase):
     def setUp(self):
@@ -51,7 +72,7 @@ class AttachmentViewSetTestCase(APITestCase):
         self.client.force_authenticate(self.user)
         self.client.post('/bugs/', {'title': 'Bug', 'description': 'Bug',})
         attachment_data = {
-            'file': SimpleUploadedFile('attachment.txt', b'attachment content'),
+            'file': SimpleUploadedFile('attachment.test', b'attachment content'),
             'bug': '1',
         }
         self.client.post('/attachment/', attachment_data)
@@ -61,15 +82,22 @@ class AttachmentViewSetTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
 
+    def test_attachment_list_staff(self):
+        self.user.is_staff = True
+        self.user.save()
+        self.client.force_authenticate(self.user)
+        response = self.client.get('/attachment/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     def test_attachment_retrieve(self):
         attachment_id = 1
         response = self.client.get(f'/attachment/{attachment_id}/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['file'].split('/')[-1].split('_')[0], 'attachment')
+        self.assertEqual(response.data['file'].split('/')[-1].split('_')[0], 'attachment.test')
 
     def test_attachment_create(self):
         attachment_data = {
-            'file': SimpleUploadedFile('new_attach.txt', b'new attachment content'),
+            'file': SimpleUploadedFile('new_attach.test', b'new attachment content'),
             'bug': '1',
         }
         response = self.client.post('/attachment/', attachment_data)
@@ -77,7 +105,7 @@ class AttachmentViewSetTestCase(APITestCase):
 
     def test_attachment_update(self):
         attachment_data = {
-            'file': SimpleUploadedFile('updated_attachment.txt', b'updated attachment content'),
+            'file': SimpleUploadedFile('updated_attachment.test', b'updated attachment content'),
             'bug': '1',
         }
         response = self.client.put('/attachment/1/', attachment_data)
@@ -87,7 +115,9 @@ class AttachmentViewSetTestCase(APITestCase):
     def test_attachment_delete(self):
         response = self.client.delete('/attachment/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-
-
-
-        
+ 
+    # Delete *.test files on folder after test
+    def tearDown(self):
+        for file in os.listdir('media/attachments/'):
+            if file.endswith('.test'):
+                os.remove(f'media/attachments/{file}')
