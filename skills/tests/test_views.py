@@ -12,8 +12,6 @@ class SkillViewSetTestCase(TestCase):
         self.client = APIClient()
         self.client.force_authenticate(self.user)
         skill = {
-            'skill_name': "Programming",
-            'skill_description': "A skill for writing code",
             'skill_wikidata_item': "Q123456789"
         }
         self.client.post('/skill/', skill)
@@ -33,33 +31,31 @@ class SkillViewSetTestCase(TestCase):
 
     def test_create_skill(self):
         skill = {
-            'skill_name': "Cooking",
-            'skill_description': "A skill for cooking food",
             'skill_wikidata_item': "Q987654321"
         }
         response = self.client.post('/skill/', skill)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        skill = Skill.objects.get(skill_name='Cooking')
+        skill = Skill.objects.get(skill_wikidata_item='Q987654321')
         serializer = SkillSerializer(skill)
         self.assertEqual(response.data, serializer.data)
 
         options_response = self.client.options('/skill/1/')
-        expected_choices = [{'value': 1, 'display_name': 'Programming'}, {'value': 2, 'display_name': 'Cooking'}]
+        expected_choices = [{'value': 1, 'display_name': 'Q123456789'}, {'value': 2, 'display_name': 'Q987654321'}]
         self.assertEqual(options_response.status_code, status.HTTP_200_OK)
         self.assertEqual(options_response.data['actions']['PUT']['skill_type']['choices'], expected_choices)
 
     def test_update_skill(self):
-        skill = Skill.objects.get(skill_name='Programming')
+        skill = Skill.objects.get(skill_wikidata_item='Q123456789')
         updated_data = {
-            'skill_name': 'Updated Skill',
+            'skill_wikidata_item': 'Q123456780',
         }
         response = self.client.patch('/skill/' + str(skill.pk) + '/', updated_data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         skill.refresh_from_db()
         serializer = SkillSerializer(skill)
-        self.assertEqual(serializer.data['skill_name'], updated_data['skill_name'])
+        self.assertEqual(serializer.data['skill_wikidata_item'], updated_data['skill_wikidata_item'])
 
     def test_delete_skill(self):
         response = self.client.delete('/skill/1/')
@@ -74,8 +70,6 @@ class SkillViewSetTestCase(TestCase):
     def test_delete_skill_referenced(self):
         # Create a second skill that references the first skill
         skill = {
-            'skill_name': "Cooking",
-            'skill_description': "A skill for cooking food",
             'skill_wikidata_item': "Q987654321",
             'skill_type': 1
         }

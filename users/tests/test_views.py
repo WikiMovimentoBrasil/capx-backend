@@ -63,8 +63,6 @@ class ProfileViewSetTestCase(TestCase):
 
     def test_update_match_skills_profile(self):
         Skill.objects.create(
-            skill_name="Programming",
-            skill_description="A skill for writing code",
             skill_wikidata_item="Q123456789"
         )
 
