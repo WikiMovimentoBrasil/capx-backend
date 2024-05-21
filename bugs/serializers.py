@@ -28,15 +28,13 @@ class AttachmentSerializer(serializers.ModelSerializer):
         ]
 
     def validate_file(self, value):
-        if value.size <= 0:
-            raise serializers.ValidationError("File size must be greater than 0.")
         max_size = 1024 * 1024  # 1 MB in bytes
         if value.size > max_size:
             raise serializers.ValidationError("File size exceeds the limit of 1 MB.")
         return value
 
     def validate(self, data):
-        bug = data['bug']
+        bug = data.get('bug')
         if bug is None:
             raise serializers.ValidationError("Bug field is required.")
         if bug.attachments.count() >= 3:

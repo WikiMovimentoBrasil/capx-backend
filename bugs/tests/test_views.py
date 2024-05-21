@@ -112,6 +112,39 @@ class AttachmentViewSetTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['file'].split('/')[-1].split('_')[0], 'updated')
 
+    def test_attachment_create_exceed_size(self):
+        attachment_data = {
+            'file': SimpleUploadedFile('exceed_size.test', b'a' * 1024 * 1025),
+            'bug': '1',
+        }
+        response = self.client.post('/attachment/', attachment_data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_attachment_create_exceed_count(self):
+        attachment_data = {
+            'file': SimpleUploadedFile('attachment1.test', b'attachment content'),
+            'bug': '1',
+        }
+        self.client.post('/attachment/', attachment_data)
+        attachment_data = {
+            'file': SimpleUploadedFile('attachment2.test', b'attachment content'),
+            'bug': '1',
+        }
+        self.client.post('/attachment/', attachment_data)
+        attachment_data = {
+            'file': SimpleUploadedFile('attachment3.test', b'attachment content'),
+            'bug': '1',
+        }
+        response = self.client.post('/attachment/', attachment_data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_attachment_no_bug(self):
+        attachment_data = {
+            'file': SimpleUploadedFile('no_bug.test', b'attachment content'),
+        }
+        response = self.client.post('/attachment/', attachment_data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
     def test_attachment_delete(self):
         response = self.client.delete('/attachment/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

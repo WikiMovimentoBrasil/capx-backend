@@ -22,6 +22,7 @@ def configure_settings():
         debug = False
         hosts = ['capx-backend.toolforge.org','toolforge.org']
         callback = 'https://capx.toolforge.org/oauth/'
+        message = 'You are running in production mode'
 
         databases = {
             'default': {
@@ -48,6 +49,7 @@ def configure_settings():
         debug = True
         hosts = ['127.0.0.1']
         callback = 'http://127.0.0.1:8000/oauth/complete/mediawiki/'
+        message = 'You are running in local mode, please make sure to set up the replica.my.cnf file to run in production mode'
 
         databases = {
             'default': {
@@ -68,6 +70,7 @@ def configure_settings():
         'SOCIAL_AUTH_MEDIAWIKI_CALLBACK': callback,
         'DATABASES': databases,
         'OPENSEARCH_DSL': opensearch,
+        'MESSAGE': message,
     }
 
 settings = configure_settings()
@@ -76,7 +79,4 @@ ALLOWED_HOSTS = settings['ALLOWED_HOSTS']
 SOCIAL_AUTH_MEDIAWIKI_CALLBACK = settings['SOCIAL_AUTH_MEDIAWIKI_CALLBACK']
 DATABASES = settings['DATABASES']
 OPENSEARCH_DSL = settings['OPENSEARCH_DSL']
-if DEBUG == True:
-    print('replica.my.cnf file not found, running as local')
-else:
-    print('replica.my.cnf file found, running as production')
+print(settings['MESSAGE'])
