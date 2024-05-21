@@ -11,4 +11,4 @@ class SkillDocument(Document):
 
     class Django:
         model = Skill
-        fields = ['skill_name']
+        fields = ['skill_wikidata_item']

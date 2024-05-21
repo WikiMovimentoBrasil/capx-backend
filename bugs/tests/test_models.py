@@ -1,6 +1,5 @@
 from PIL import Image
-import io
-import secrets
+import io, os, secrets
 from django.test import TestCase
 from ..models import Bug, Attachment
 from users.models import CustomUser
@@ -37,6 +36,11 @@ class BugModelTest(TestCase):
         self.assertEqual(expected_bug_type, 'error')
         self.assertEqual(expected_status, 'to_do')
 
+    def test_bug_str(self):
+        bug = Bug.objects.get(id=1)
+        expected_str = f'{bug.title}'
+        self.assertEqual(expected_str, str(bug))
+
 
 class AttachmentModelTest(TestCase):
     def setUp(self):
@@ -68,4 +72,9 @@ class AttachmentModelTest(TestCase):
         self.assertIn("attachments/", self.attachment.file.name)
         expected_str = f"Attachment for {self.attachment.bug.bug_type} - {self.attachment.uploaded_at.strftime('%Y-%m-%d')}"
         self.assertEqual(str(self.attachment), expected_str)
+
+    def tearDown(self):
+        os.remove(self.attachment.file.path)
+
+
 
