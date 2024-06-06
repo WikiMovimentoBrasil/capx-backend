@@ -11,6 +11,7 @@ class Territory(models.Model):
 
 class Language(models.Model):
     language_name = models.CharField(verbose_name="Language name", max_length=128)
+    language_autonym = models.CharField(verbose_name="Language autonym", max_length=128, blank=True)
     language_code = models.CharField(verbose_name="Language code", max_length=10, unique=True)
 
     def __str__(self):

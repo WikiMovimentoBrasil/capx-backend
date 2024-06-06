@@ -27,3 +27,13 @@ class SkillViewSet(viewsets.ModelViewSet):
 
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ListSkillViewSet (viewsets.ReadOnlyModelViewSet):
+    queryset = Skill.objects.all()
+    serializer_class = SkillSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        data = {skill.id: str(skill) for skill in queryset}
+        return Response(data)

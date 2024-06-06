@@ -1,5 +1,5 @@
-from .models import Profile
-from .serializers import ProfileSerializer
+from .models import Profile, Territory, Language, WikimediaProject
+from .serializers import ProfileSerializer, TerritorySerializer, LanguageSerializer, WikimediaProjectSerializer
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 
@@ -30,3 +30,33 @@ class ProfileViewSet(viewsets.ModelViewSet):
                 return Response(response, status=status.HTTP_409_CONFLICT)
             else:
                 return super().update(request, *args, **kwargs)
+
+
+class ListTerritoryViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Territory.objects.all()
+    serializer_class = TerritorySerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        data = {territory.id: str(territory) for territory in queryset}
+        return Response(data)
+
+
+class ListLanguageViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Language.objects.all()
+    serializer_class = LanguageSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        data = {language.id: str(language) for language in queryset}
+        return Response(data)
+
+
+class ListWikimediaProjectViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = WikimediaProject.objects.all()
+    serializer_class = WikimediaProjectSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        data = {project.id: str(project) for project in queryset}
+        return Response(data)
