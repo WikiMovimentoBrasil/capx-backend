@@ -164,7 +164,7 @@ class OrganizationViewSetTestCase(APITestCase):
         response = self.client.patch('/organizations/1/', {'display_name': 'Other New Name'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-class AfilliationViewSetTestCase(APITestCase):
+class ListOrganizationsViewSetTestCase(APITestCase):
     def setUp(self):
         self.user = CustomUser.objects.create_user(username='test', password=str(secrets.randbits(16)))
         self.client = APIClient()
@@ -172,12 +172,12 @@ class AfilliationViewSetTestCase(APITestCase):
         Territory.objects.create(territory_name='Territory 1')
 
     def test_list_orgs_unauthenticated(self):
-        response = self.client.get('/affiliations/')
+        response = self.client.get('/list_organizations/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_list_orgs_authenticated(self):
         self.client.force_authenticate(self.user)
-        response = self.client.get('/affiliations/')
+        response = self.client.get('/list_organizations/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         organization = Organization.objects.create(
@@ -186,7 +186,7 @@ class AfilliationViewSetTestCase(APITestCase):
             type=OrganizationType.objects.get(pk=1),
         )
         organization.territory.set([Territory.objects.get(pk=1)])
-        response = self.client.get('/affiliations/')
+        response = self.client.get('/list_organizations/')
         self.assertEqual(len(response.data), 1)
         expected = {
             1: 'New Organization (NO)',
@@ -200,7 +200,7 @@ class AfilliationViewSetTestCase(APITestCase):
         )
         organization.territory.set([Territory.objects.get(pk=1)])
         organization.managers.set([self.user])
-        response = self.client.get('/affiliations/')
+        response = self.client.get('/list_organizations/')
         self.assertEqual(len(response.data), 2)
         expected = {
             1: 'New Organization (NO)',
@@ -211,7 +211,7 @@ class AfilliationViewSetTestCase(APITestCase):
     def test_list_orgs_staff(self):
         self.user.is_staff = True
         self.client.force_authenticate(self.user)
-        response = self.client.get('/affiliations/')
+        response = self.client.get('/list_organizations/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 0)
 
@@ -222,5 +222,5 @@ class AfilliationViewSetTestCase(APITestCase):
             'territory': '1',
         }
         self.client.post('/organizations/', org_data)
-        response = self.client.get('/affiliations/')
+        response = self.client.get('/list_organizations/')
         self.assertEqual(len(response.data), 1)

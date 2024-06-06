@@ -21,10 +21,10 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from .search import search
 from rest_framework.routers import DefaultRouter
-from skills.views import SkillViewSet
-from users.views import ProfileViewSet, UsersViewSet
+from skills.views import SkillViewSet, ListSkillViewSet
+from users.views import ProfileViewSet, UsersViewSet, ListTerritoryViewSet, ListLanguageViewSet, ListWikimediaProjectViewSet
 from bugs.views import BugViewSet, AttachmentViewSet
-from orgs.views import OrganizationViewSet, AfilliationViewSet
+from orgs.views import OrganizationViewSet, ListOrganizationViewSet
 from events.views import EventViewSet, EventParticipantViewSet, EventOrganizationsViewSet
 
 
@@ -33,12 +33,19 @@ router.register('skill', SkillViewSet, basename='skill')
 router.register('users', UsersViewSet, basename='users')
 router.register('profile', ProfileViewSet, basename='profile')
 router.register('organizations', OrganizationViewSet, basename='organizations')
-router.register('affiliations', AfilliationViewSet, basename='affiliations')
 router.register('bugs', BugViewSet, basename='bugs')
 router.register('attachment', AttachmentViewSet, basename='attachment')
 router.register('events', EventViewSet)
 router.register('events_participants', EventParticipantViewSet)
 router.register('events_organizations', EventOrganizationsViewSet)
+
+# Alternative version of views, read-only and only returns the __str__ with the id as the key
+router.register('list_language', ListLanguageViewSet, basename='list_language')
+router.register('list_organizations', ListOrganizationViewSet, basename='list_organizations')
+router.register('list_skills', ListSkillViewSet, basename='list_skills')
+router.register('list_territory', ListTerritoryViewSet, basename='list_territory')
+router.register('list_wikimedia_project', ListWikimediaProjectViewSet, basename='list_wikimedia_project')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Profile, CustomUser
-from .submodels import Territory
+from .submodels import Territory, Language, WikimediaProject
 from orgs.models import Organization
 
    
@@ -30,6 +30,20 @@ class TerritorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Territory
         fields = ['id', 'territory_name']
+
+
+class LanguageSerializer(serializers.ModelSerializer):
+    
+        class Meta:
+            model = Language
+            fields = ['id', 'language_name', 'language_autonym', 'language_code']
+
+
+class WikimediaProjectSerializer(serializers.ModelSerializer):
+    
+        class Meta:
+            model = WikimediaProject
+            fields = ['id', 'wikimedia_project_name', 'wikimedia_project_code']
 
 class OrganizationSerializer(serializers.ModelSerializer):
 
