@@ -24,9 +24,22 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
         # Check if the requesting user is the owner of the profile
         if instance.user == request.user:
-            # Verify if there are any matches between skill_known and skill_available
-            if set(request.data.get('skills_known', [])) & set(request.data.get('skills_available', [])):
-                response = {'message': 'You cannot update the profile with matching skills.'}
+
+            # Verify if there are any mismatch between skill_known and skill_available
+            no_value = object()
+
+            if request.data.get('skills_known', no_value) is no_value:
+                skills_known = set(map(str, instance.skills_known.all().values_list('id', flat=True)))
+            else:
+                skills_known = set(request.data.get('skills_known'))
+
+            if request.data.get('skills_available', no_value) is no_value:
+                skills_available = set(map(str, instance.skills_available.all().values_list('id', flat=True)))
+            else:    
+                skills_available = set(request.data.get('skills_available'))
+
+            if skills_available - skills_known:
+                response = {'message': 'You cannot add a skill to skills_available that is not in skills_known.'}
                 return Response(response, status=status.HTTP_409_CONFLICT)
             else:
                 return super().update(request, *args, **kwargs)
@@ -62,7 +75,6 @@ class ListWikimediaProjectViewSet(viewsets.ReadOnlyModelViewSet):
         return Response(data)
 
 
-# List users that set an queried skill as known, available or wanted. Output as three lists.
 class UsersBySkillViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = UsersBySkillSerializer
