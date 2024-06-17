@@ -1,5 +1,5 @@
 from .models import Profile, Territory, Language, WikimediaProject
-from .serializers import ProfileSerializer, TerritorySerializer, LanguageSerializer, WikimediaProjectSerializer
+from .serializers import ProfileSerializer, TerritorySerializer, LanguageSerializer, WikimediaProjectSerializer, UsersBySkillSerializer
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 
@@ -60,3 +60,26 @@ class ListWikimediaProjectViewSet(viewsets.ReadOnlyModelViewSet):
         queryset = self.get_queryset()
         data = {project.id: str(project) for project in queryset}
         return Response(data)
+
+
+# List users that set an queried skill as known, available or wanted. Output as three lists.
+class UsersBySkillViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = UsersBySkillSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        skill_id = self.kwargs['pk']
+        known_users = Profile.objects.filter(skills_known=skill_id)
+        available_users = Profile.objects.filter(skills_available=skill_id)
+        wanted_users = Profile.objects.filter(skills_wanted=skill_id)
+        data = {
+            'known': [user.id for user in known_users],
+            'available': [user.id for user in available_users],
+            'wanted': [user.id for user in wanted_users],
+        }
+        return Response(data)
+
+    def list(self, request, *args, **kwargs):
+        response = {'message': 'Please provide a skill id.'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+   
