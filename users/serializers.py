@@ -88,4 +88,21 @@ class ProfileSerializer(serializers.ModelSerializer):
             user.email = user_data.get('email', user.email)
             user.save()
         return super().update(instance, validated_data)
+
+class UsersBySkillSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Profile
+        fields = [
+            'user',
+            'skills_known',
+            'skills_available',
+            'skills_wanted',
+        ]
+        read_only_fields = [
+            'skills_known',
+            'skills_available',
+            'skills_wanted',
+        ]
    

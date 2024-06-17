@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from .search import search
 from rest_framework.routers import DefaultRouter
 from skills.views import SkillViewSet, ListSkillViewSet
-from users.views import ProfileViewSet, UsersViewSet, ListTerritoryViewSet, ListLanguageViewSet, ListWikimediaProjectViewSet
+from users.views import ProfileViewSet, UsersViewSet, ListTerritoryViewSet, ListLanguageViewSet, ListWikimediaProjectViewSet, UsersBySkillViewSet
 from bugs.views import BugViewSet, AttachmentViewSet
 from orgs.views import OrganizationViewSet, ListOrganizationViewSet
 from events.views import EventViewSet, EventParticipantViewSet, EventOrganizationsViewSet
@@ -35,6 +35,7 @@ router.register('profile', ProfileViewSet, basename='profile')
 router.register('organizations', OrganizationViewSet, basename='organizations')
 router.register('bugs', BugViewSet, basename='bugs')
 router.register('attachment', AttachmentViewSet, basename='attachment')
+router.register('users_by_skill', UsersBySkillViewSet, basename='users_by_skill')
 router.register('events', EventViewSet)
 router.register('events_participants', EventParticipantViewSet)
 router.register('events_organizations', EventOrganizationsViewSet)
