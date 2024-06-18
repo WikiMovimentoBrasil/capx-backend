@@ -1,12 +1,14 @@
 from .models import Profile, Territory, Language, WikimediaProject
 from .serializers import ProfileSerializer, TerritorySerializer, LanguageSerializer, WikimediaProjectSerializer, UsersBySkillSerializer
-from rest_framework import status, viewsets
+from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
 
 
 class UsersViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['user__username', 'user__email', 'display_name', 'about']
     http_method_names = ['get', 'head', 'options']
 
 

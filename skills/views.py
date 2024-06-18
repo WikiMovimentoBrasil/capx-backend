@@ -1,12 +1,14 @@
 from .models import Skill
 from .serializers import SkillSerializer
-from rest_framework import status, viewsets
+from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
 
 
 class SkillViewSet(viewsets.ModelViewSet):
     serializer_class = SkillSerializer
     queryset = Skill.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['skill_wikidata_item']
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
