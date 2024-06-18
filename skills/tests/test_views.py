@@ -9,6 +9,8 @@ from skills.serializers import SkillSerializer
 class SkillViewSetTestCase(TestCase):
     def setUp(self):
         self.user = CustomUser.objects.create_user(username='test', password=str(secrets.randbits(16)))
+        self.user.is_staff = True
+        self.user.save()
         self.client = APIClient()
         self.client.force_authenticate(self.user)
         skill = {
@@ -59,13 +61,13 @@ class SkillViewSetTestCase(TestCase):
 
     def test_delete_skill(self):
         response = self.client.delete('/skill/1/')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    def test_delete_skill_staff(self):
-        self.user.is_staff = True
+    def test_delete_skill_nostaff(self):
+        self.user.is_staff = False
         self.user.save()
         response = self.client.delete('/skill/1/')
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_delete_skill_referenced(self):
         # Create a second skill that references the first skill
@@ -74,7 +76,5 @@ class SkillViewSetTestCase(TestCase):
             'skill_type': 1
         }
         self.client.post('/skill/', skill)
-        self.user.is_staff = True
-        self.user.save()
         response = self.client.delete('/skill/1/')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

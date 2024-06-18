@@ -61,14 +61,13 @@ class ProfileViewSetTestCase(TestCase):
         response = self.client.put(url, updated_data)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
-    def test_update_match_skills_profile(self):
+    def test_update_unmatch_skills_profile(self):
         Skill.objects.create(
             skill_wikidata_item="Q123456789"
         )
 
         url = '/profile/' + str(self.user.pk) + '/'
         updated_data = {
-            'skills_known': [1],
             'skills_available': [1],
         }
         response = self.client.put(url, updated_data)
