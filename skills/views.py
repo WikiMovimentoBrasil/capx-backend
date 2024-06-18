@@ -10,13 +10,30 @@ class SkillViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['skill_wikidata_item']
 
+    #Only staff can create and update skills
+    def create(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return Response(
+                {"detail": "Only staff can create skills."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        return super().create(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return Response(
+                {"detail": "Only staff can update skills."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        return super().update(request, *args, **kwargs)
+
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
 
         # Check if user is staff
         if not request.user.is_staff:
             return Response(
-                {"detail": "You do not have permission to perform this action."},
+                {"detail": "Only staff can delete skills."},
                 status=status.HTTP_403_FORBIDDEN
             )
 
