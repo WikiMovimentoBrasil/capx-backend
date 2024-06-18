@@ -19,7 +19,6 @@ from django.conf import settings
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
-from .search import search
 from rest_framework.routers import DefaultRouter
 from skills.views import SkillViewSet, ListSkillViewSet
 from users.views import ProfileViewSet, UsersViewSet, ListTerritoryViewSet, ListLanguageViewSet, ListWikimediaProjectViewSet, UsersBySkillViewSet
@@ -50,7 +49,6 @@ router.register('list_wikimedia_project', ListWikimediaProjectViewSet, basename=
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('search/', search, name='search'),
     path('api-auth/', include("rest_framework.urls", namespace="rest_framework")),
     path('', include('social_django.urls')),
     path('', include(router.urls)),

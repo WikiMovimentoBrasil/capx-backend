@@ -35,16 +35,6 @@ def configure_settings():
             }
         }
 
-        opensearch={
-            'default': {
-                'hosts': 'http://elasticsearch.svc.tools.eqiad1.wikimedia.cloud:80',
-                'http_auth': (
-                    os.environ.get("TOOL_ELASTICSEARCH_USER", "default-value"), 
-                    os.environ.get("TOOL_ELASTICSEARCH_PASSWORD", "default-value")
-                )
-            }
-        }
-
     else:
         debug = True
         hosts = ['127.0.0.1']
@@ -58,18 +48,11 @@ def configure_settings():
             }
         }
 
-        opensearch={
-            'default': {
-                'hosts': 'http://localhost:9200'
-            }
-        }
-
     return {
         'DEBUG': debug,
         'ALLOWED_HOSTS': hosts,
         'SOCIAL_AUTH_MEDIAWIKI_CALLBACK': callback,
         'DATABASES': databases,
-        'OPENSEARCH_DSL': opensearch,
         'MESSAGE': message,
     }
 
@@ -78,5 +61,4 @@ DEBUG = settings['DEBUG']
 ALLOWED_HOSTS = settings['ALLOWED_HOSTS']
 SOCIAL_AUTH_MEDIAWIKI_CALLBACK = settings['SOCIAL_AUTH_MEDIAWIKI_CALLBACK']
 DATABASES = settings['DATABASES']
-OPENSEARCH_DSL = settings['OPENSEARCH_DSL']
 print(settings['MESSAGE'])

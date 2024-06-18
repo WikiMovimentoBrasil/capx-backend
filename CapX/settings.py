@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'modeltranslation',
-    'django_opensearch_dsl',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_social_auth',
