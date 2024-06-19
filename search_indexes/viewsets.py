@@ -16,6 +16,7 @@ from django_elasticsearch_dsl_drf.filter_backends import (
     OrderingFilterBackend,
     DefaultOrderingFilterBackend,
     SearchFilterBackend,
+    SuggesterFilterBackend,
 )
 from django_elasticsearch_dsl_drf.viewsets import BaseDocumentViewSet
 from django_elasticsearch_dsl_drf.pagination import PageNumberPagination
@@ -33,11 +34,12 @@ class UsersDocumentViewSet(BaseDocumentViewSet):
         OrderingFilterBackend,
         DefaultOrderingFilterBackend,
         SearchFilterBackend,
+        SuggesterFilterBackend,
     ]
     search_fields = {
-        'display_name': 'display_name',
-        'about': 'about',
-        'user__username': 'user__username',
+        'display_name',
+        'about',
+        'user.username',
     }
     filter_fields = {
         'id': {
@@ -53,12 +55,37 @@ class UsersDocumentViewSet(BaseDocumentViewSet):
         },
         'display_name': 'display_name.raw',
         'about': 'about.raw',
-        'user__username': 'user__username.raw',
+        'username': 'user.username.raw',
     }
     ordering_fields = {
         'id': 'id',
         'display_name': 'display_name.raw',
         'about': 'about.raw',
-        'user__username': 'user__username.raw',
+        'username': 'user.username.raw',
     }
-    ordering = ('id', 'display_name', 'about', 'user__username')
+    nested_filter_fields = {
+        'username': {
+            'field': 'user.username.raw',
+            'path': 'user',
+        }
+    }
+    suggester_fields = {
+        'display_name_suggest': {
+            'field': 'display_name.suggest',
+            'suggesters': [
+                'SUGGESTER_COMPLETION',
+            ],
+        },
+        'about_suggest': {
+            'field': 'about.suggest',
+            'suggesters': [
+                'SUGGESTER_COMPLETION',
+            ],
+        },
+        'username_suggest': {
+            'field': 'user.username.suggest',
+            'suggesters': [
+                'SUGGESTER_COMPLETION',
+            ],
+        },
+    }

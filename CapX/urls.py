@@ -25,7 +25,7 @@ from users.views import ProfileViewSet, UsersViewSet, ListTerritoryViewSet, List
 from bugs.views import BugViewSet, AttachmentViewSet
 from orgs.views import OrganizationViewSet, ListOrganizationViewSet
 from events.views import EventViewSet, EventParticipantViewSet, EventOrganizationsViewSet
-from search_indexes.viewsets import UsersDocumentViewSet
+from search_indexes import urls as search_index_urls
 
 
 router = DefaultRouter()
@@ -47,10 +47,6 @@ router.register('list_skills', ListSkillViewSet, basename='list_skills')
 router.register('list_territory', ListTerritoryViewSet, basename='list_territory')
 router.register('list_wikimedia_project', ListWikimediaProjectViewSet, basename='list_wikimedia_project')
 
-
-router.register(r'search_users', UsersDocumentViewSet, basename='search_users')
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include("rest_framework.urls", namespace="rest_framework")),
@@ -58,6 +54,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('<int:pk>/', include(router.urls)),
     path('api/login/', include('rest_social_auth.urls_knox')),
+    path('search/', include(search_index_urls)),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

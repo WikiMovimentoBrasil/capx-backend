@@ -2,6 +2,7 @@ from django.conf import settings
 from django_elasticsearch_dsl import Document, Index, fields
 from elasticsearch_dsl import analyzer
 from users.models import Profile
+from django_elasticsearch_dsl_drf.compat import KeywordField, StringField
 
 INDEX = Index('profiles')
 INDEX.settings(
@@ -11,12 +12,23 @@ INDEX.settings(
 
 @INDEX.doc_type
 class ProfileDocument(Document):
+    id = fields.IntegerField(attr='id')
     user = fields.ObjectField(properties={
-        'username': fields.TextField(),
+        'username': StringField(
+            fields={
+                'raw': KeywordField(),
+                'suggest': fields.CompletionField(),
+            }
+        )
     })
-    display_name = fields.TextField(),
-    about = fields.TextField(),
-    id = fields.IntegerField(attr='id'),
+    display_name = StringField(
+        fields={
+            'raw': KeywordField(),
+            'suggest': fields.CompletionField(),
+        }
+    )
+    about = StringField()
+    
 
     class Django:
         model = Profile
