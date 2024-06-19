@@ -35,7 +35,7 @@ def configure_settings():
             }
         }
 
-        opensearch={
+        elasticsearch={
             'default': {
                 'hosts': 'http://elasticsearch.svc.tools.eqiad1.wikimedia.cloud:80',
                 'http_auth': (
@@ -58,7 +58,7 @@ def configure_settings():
             }
         }
 
-        opensearch={
+        elasticsearch={
             'default': {
                 'hosts': 'http://localhost:9200'
             }
@@ -69,7 +69,7 @@ def configure_settings():
         'ALLOWED_HOSTS': hosts,
         'SOCIAL_AUTH_MEDIAWIKI_CALLBACK': callback,
         'DATABASES': databases,
-        'OPENSEARCH_DSL': opensearch,
+        'ELASTICSEARCH_DSL': elasticsearch,
         'MESSAGE': message,
     }
 
@@ -78,5 +78,5 @@ DEBUG = settings['DEBUG']
 ALLOWED_HOSTS = settings['ALLOWED_HOSTS']
 SOCIAL_AUTH_MEDIAWIKI_CALLBACK = settings['SOCIAL_AUTH_MEDIAWIKI_CALLBACK']
 DATABASES = settings['DATABASES']
-OPENSEARCH_DSL = settings['OPENSEARCH_DSL']
+ELASTICSEARCH_DSL = settings['ELASTICSEARCH_DSL']
 print(settings['MESSAGE'])

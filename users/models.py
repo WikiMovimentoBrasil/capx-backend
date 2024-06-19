@@ -168,6 +168,15 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+    @property
+    def users_indexing(self):
+        return {
+            'id': self.id,
+            'username': self.user.username,
+            'display_name': self.display_name,
+            'about': self.about,
+        }
+
 
 @receiver(post_save, sender=CustomUser)
 def create_user_profile(sender, instance, created, **kwargs):

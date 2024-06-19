@@ -19,13 +19,13 @@ from django.conf import settings
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
-from .search import search
 from rest_framework.routers import DefaultRouter
 from skills.views import SkillViewSet, ListSkillViewSet
 from users.views import ProfileViewSet, UsersViewSet, ListTerritoryViewSet, ListLanguageViewSet, ListWikimediaProjectViewSet, UsersBySkillViewSet
 from bugs.views import BugViewSet, AttachmentViewSet
 from orgs.views import OrganizationViewSet, ListOrganizationViewSet
 from events.views import EventViewSet, EventParticipantViewSet, EventOrganizationsViewSet
+from search_indexes.viewsets import UsersDocumentViewSet
 
 
 router = DefaultRouter()
@@ -48,9 +48,11 @@ router.register('list_territory', ListTerritoryViewSet, basename='list_territory
 router.register('list_wikimedia_project', ListWikimediaProjectViewSet, basename='list_wikimedia_project')
 
 
+router.register(r'search_users', UsersDocumentViewSet, basename='search_users')
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('search/', search, name='search'),
     path('api-auth/', include("rest_framework.urls", namespace="rest_framework")),
     path('', include('social_django.urls')),
     path('', include(router.urls)),
