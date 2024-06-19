@@ -9,7 +9,7 @@ class UsersDocumentSerializer(DocumentSerializer):
         document = ProfileDocument
         fields = [
             'id',
-            'user__username',
+            'user',
             'display_name',
             'about',
         ]

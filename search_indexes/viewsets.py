@@ -16,6 +16,7 @@ from django_elasticsearch_dsl_drf.filter_backends import (
     OrderingFilterBackend,
     DefaultOrderingFilterBackend,
     SearchFilterBackend,
+    NestedFilteringFilterBackend,
     SuggesterFilterBackend,
 )
 from django_elasticsearch_dsl_drf.viewsets import BaseDocumentViewSet
@@ -34,6 +35,7 @@ class UsersDocumentViewSet(BaseDocumentViewSet):
         OrderingFilterBackend,
         DefaultOrderingFilterBackend,
         SearchFilterBackend,
+        NestedFilteringFilterBackend,
         SuggesterFilterBackend,
     ]
     search_fields = {
