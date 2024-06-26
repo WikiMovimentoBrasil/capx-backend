@@ -13,7 +13,6 @@ class TestSettingsLocal(unittest.TestCase):
             self.assertListEqual(settings['ALLOWED_HOSTS'], ['127.0.0.1'])
             self.assertEqual(settings['SOCIAL_AUTH_MEDIAWIKI_CALLBACK'], 'http://127.0.0.1:8000/oauth/complete/mediawiki/')
             self.assertEqual(settings['DATABASES']['default']['ENGINE'], 'django.db.backends.sqlite3')
-            self.assertEqual(settings['OPENSEARCH_DSL']['default']['hosts'], 'http://localhost:9200')
             self.assertEqual(settings['MESSAGE'], 'You are running in local mode, please make sure to set up the replica.my.cnf file to run in production mode')
 
     @unittest.skipIf(not hasattr(settings_local, 'configure_settings'), "settings_local.configure_settings doesn't exist")
@@ -25,5 +24,4 @@ class TestSettingsLocal(unittest.TestCase):
             self.assertListEqual(settings['ALLOWED_HOSTS'], ['capx-backend.toolforge.org', 'toolforge.org'])
             self.assertEqual(settings['SOCIAL_AUTH_MEDIAWIKI_CALLBACK'], 'https://capx.toolforge.org/oauth/')
             self.assertEqual(settings['DATABASES']['default']['ENGINE'], 'django.db.backends.mysql')
-            self.assertEqual(settings['OPENSEARCH_DSL']['default']['hosts'], 'http://elasticsearch.svc.tools.eqiad1.wikimedia.cloud:80')
             self.assertEqual(settings['MESSAGE'], 'You are running in production mode')

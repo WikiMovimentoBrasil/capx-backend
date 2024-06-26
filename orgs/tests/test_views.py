@@ -110,10 +110,12 @@ class OrganizationViewSetTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
         self.user.is_staff = True
+        self.user.save()
         response = self.client.get('/organizations/1/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         self.user.is_staff = False
+        self.user.save()
         organization.managers.set([self.user])
         response = self.client.get('/organizations/1/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)

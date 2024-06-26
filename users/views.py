@@ -1,12 +1,14 @@
 from .models import Profile, Territory, Language, WikimediaProject
 from .serializers import ProfileSerializer, TerritorySerializer, LanguageSerializer, WikimediaProjectSerializer, UsersBySkillSerializer
-from rest_framework import status, viewsets
+from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
 
 
 class UsersViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['user__username', 'user__email', 'display_name', 'about']
     http_method_names = ['get', 'head', 'options']
 
 
@@ -85,9 +87,9 @@ class UsersBySkillViewSet(viewsets.ReadOnlyModelViewSet):
         available_users = Profile.objects.filter(skills_available=skill_id)
         wanted_users = Profile.objects.filter(skills_wanted=skill_id)
         data = {
-            'known': [user.id for user in known_users],
-            'available': [user.id for user in available_users],
-            'wanted': [user.id for user in wanted_users],
+            'known': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in known_users],
+            'available': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in available_users],
+            'wanted': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in wanted_users],
         }
         return Response(data)
 
