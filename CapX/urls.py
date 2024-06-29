@@ -21,7 +21,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from skills.views import SkillViewSet, ListSkillViewSet
-from users.views import ProfileViewSet, UsersViewSet, ListTerritoryViewSet, ListLanguageViewSet, ListWikimediaProjectViewSet, UsersBySkillViewSet
+from users.views import ProfileViewSet, UsersViewSet, ListTerritoryViewSet, ListLanguageViewSet, ListWikimediaProjectViewSet, UsersBySkillViewSet, UsersByTagViewSet
 from bugs.views import BugViewSet, AttachmentViewSet
 from orgs.views import OrganizationViewSet, ListOrganizationViewSet
 from events.views import EventViewSet, EventParticipantViewSet, EventOrganizationsViewSet
@@ -35,6 +35,7 @@ router.register('organizations', OrganizationViewSet, basename='organizations')
 router.register('bugs', BugViewSet, basename='bugs')
 router.register('attachment', AttachmentViewSet, basename='attachment')
 router.register('users_by_skill', UsersBySkillViewSet, basename='users_by_skill')
+router.register('tags', UsersByTagViewSet, basename='tags')
 router.register('events', EventViewSet)
 router.register('events_participants', EventParticipantViewSet)
 router.register('events_organizations', EventOrganizationsViewSet)
@@ -54,6 +55,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('<int:pk>/', include(router.urls)),
     path('api/login/', include('rest_social_auth.urls_knox')),
+    path('tags/<str:tag_type>/<int:tag_id>/', UsersByTagViewSet.as_view({'get': 'retrieve'}), name='tags'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
