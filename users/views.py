@@ -96,4 +96,45 @@ class UsersBySkillViewSet(viewsets.ReadOnlyModelViewSet):
     def list(self, request, *args, **kwargs):
         response = {'message': 'Please provide a skill id.'}
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
-   
+
+
+# Class to list users by "tags" (skills, languages, territories, projects, affiliation) with format /tags/<tag_type>/<tag_id>/
+# Example: /tags/project/1/
+class UsersByTagViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        tag_type = self.kwargs['tag_type']
+        tag_id = self.kwargs['tag_id']
+
+        if tag_type == 'skill':
+            known_users = Profile.objects.filter(skills_known=tag_id)
+            available_users = Profile.objects.filter(skills_available=tag_id)
+            wanted_users = Profile.objects.filter(skills_wanted=tag_id)
+            data = {
+                'known': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in known_users],
+                'available': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in available_users],
+                'wanted': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in wanted_users],
+            }
+        elif tag_type == 'language':
+            users = Profile.objects.filter(languages=tag_id)
+            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
+        elif tag_type == 'territory':
+            users = Profile.objects.filter(territory=tag_id)
+            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
+        elif tag_type == 'project':
+            users = Profile.objects.filter(wikimedia_project=tag_id)
+            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
+        elif tag_type == 'affiliation':
+            users = Profile.objects.filter(affiliation=tag_id)
+            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
+        else:
+            response = {'message': 'Invalid tag type.'}
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(data)
+
+    def list(self, request, *args, **kwargs):
+        response = {'message': 'Please provide a tag type and a tag id.'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
