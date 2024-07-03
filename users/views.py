@@ -105,8 +105,12 @@ class UsersByTagViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProfileSerializer
 
     def retrieve(self, request, *args, **kwargs):
-        tag_type = self.kwargs['tag_type']
-        tag_id = self.kwargs['tag_id']
+        tag_type = self.kwargs.get('tag_type')
+        tag_id = self.kwargs.get('tag_id')
+
+        if tag_type and not tag_id:
+            response = {'message': 'Please provide a valid tag id.'}
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
         if tag_type == 'skill':
             known_users = Profile.objects.filter(skills_known=tag_id)
@@ -136,5 +140,5 @@ class UsersByTagViewSet(viewsets.ReadOnlyModelViewSet):
         return Response(data)
 
     def list(self, request, *args, **kwargs):
-        response = {'message': 'Please provide a tag type and a tag id.'}
+        response = {'message': 'Please provide a tag type and a tag id. Options are: skill, language, territory, project, affiliation.'}
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
