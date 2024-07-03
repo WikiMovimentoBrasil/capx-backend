@@ -42,7 +42,7 @@ router.register('events_organizations', EventOrganizationsViewSet)
 
 # Alternative version of views, read-only and only returns the __str__ with the id as the key
 router.register('list_language', ListLanguageViewSet, basename='list_language')
-router.register('list_organizations', ListOrganizationViewSet, basename='list_organizations')
+router.register('list_affiliation', ListOrganizationViewSet, basename='list_affiliation')
 router.register('list_skills', ListSkillViewSet, basename='list_skills')
 router.register('list_territory', ListTerritoryViewSet, basename='list_territory')
 router.register('list_wikimedia_project', ListWikimediaProjectViewSet, basename='list_wikimedia_project')
