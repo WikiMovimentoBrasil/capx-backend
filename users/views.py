@@ -98,7 +98,7 @@ class UsersBySkillViewSet(viewsets.ReadOnlyModelViewSet):
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 
-# Class to list users by "tags" (skills, languages, territories, projects, affiliation) with format /tags/<tag_type>/<tag_id>/
+# Class to list users by "tags" (skills, languages, territories, wikimedia_project, affiliation) with format /tags/<tag_type>/<tag_id>/
 # Example: /tags/project/1/
 class UsersByTagViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Profile.objects.all()
@@ -127,7 +127,7 @@ class UsersByTagViewSet(viewsets.ReadOnlyModelViewSet):
         elif tag_type == 'territory':
             users = Profile.objects.filter(territory=tag_id)
             data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
-        elif tag_type == 'project':
+        elif tag_type == 'wikimedia_project':
             users = Profile.objects.filter(wikimedia_project=tag_id)
             data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
         elif tag_type == 'affiliation':
@@ -140,5 +140,5 @@ class UsersByTagViewSet(viewsets.ReadOnlyModelViewSet):
         return Response(data)
 
     def list(self, request, *args, **kwargs):
-        response = {'message': 'Please provide a tag type and a tag id. Options are: skill, language, territory, project, affiliation.'}
+        response = {'message': 'Please provide a tag type and a tag id. Options are: skill, language, territory, wikimedia_project, affiliation.'}
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
