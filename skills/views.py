@@ -56,3 +56,23 @@ class ListSkillViewSet (viewsets.ReadOnlyModelViewSet):
         queryset = self.get_queryset()
         data = {skill.id: str(skill) for skill in queryset}
         return Response(data)
+
+
+class SkillByTypeViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Skill.objects.all()
+    serializer_class = SkillSerializer  
+
+    def retrieve(self, request, *args, **kwargs):
+        skill_id = self.kwargs.get('pk')
+        print(self.kwargs)
+        if skill_id == "0":
+            skills = Skill.objects.filter(skill_type__isnull=True)
+        else:
+            skills = Skill.objects.filter(skill_type=skill_id)
+        
+        data = {skill.id: str(skill) for skill in skills}
+        return Response(data)
+
+    def list(self, request, *args, **kwargs):
+        response = {'message': 'Please provide a skill_id to retrieve skills.'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
