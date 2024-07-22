@@ -174,12 +174,12 @@ class ListOrganizationsViewSetTestCase(APITestCase):
         Territory.objects.create(territory_name='Territory 1')
 
     def test_list_orgs_unauthenticated(self):
-        response = self.client.get('/list_organizations/')
+        response = self.client.get('/list_affiliation/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_list_orgs_authenticated(self):
         self.client.force_authenticate(self.user)
-        response = self.client.get('/list_organizations/')
+        response = self.client.get('/list_affiliation/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         organization = Organization.objects.create(
@@ -188,7 +188,7 @@ class ListOrganizationsViewSetTestCase(APITestCase):
             type=OrganizationType.objects.get(pk=1),
         )
         organization.territory.set([Territory.objects.get(pk=1)])
-        response = self.client.get('/list_organizations/')
+        response = self.client.get('/list_affiliation/')
         self.assertEqual(len(response.data), 1)
         expected = {
             1: 'New Organization (NO)',
@@ -202,7 +202,7 @@ class ListOrganizationsViewSetTestCase(APITestCase):
         )
         organization.territory.set([Territory.objects.get(pk=1)])
         organization.managers.set([self.user])
-        response = self.client.get('/list_organizations/')
+        response = self.client.get('/list_affiliation/')
         self.assertEqual(len(response.data), 2)
         expected = {
             1: 'New Organization (NO)',
@@ -213,7 +213,7 @@ class ListOrganizationsViewSetTestCase(APITestCase):
     def test_list_orgs_staff(self):
         self.user.is_staff = True
         self.client.force_authenticate(self.user)
-        response = self.client.get('/list_organizations/')
+        response = self.client.get('/list_affiliation/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 0)
 
@@ -224,5 +224,5 @@ class ListOrganizationsViewSetTestCase(APITestCase):
             'territory': '1',
         }
         self.client.post('/organizations/', org_data)
-        response = self.client.get('/list_organizations/')
+        response = self.client.get('/list_affiliation/')
         self.assertEqual(len(response.data), 1)
