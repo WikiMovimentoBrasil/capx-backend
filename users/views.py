@@ -122,7 +122,7 @@ class UsersByTagViewSet(viewsets.ReadOnlyModelViewSet):
                 'wanted': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in wanted_users],
             }
         elif tag_type == 'language':
-            users = Profile.objects.filter(languages=tag_id)
+            users = Profile.objects.filter(language=tag_id)
             data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
         elif tag_type == 'territory':
             users = Profile.objects.filter(territory=tag_id)
