@@ -44,7 +44,7 @@ class ProfileViewSetTestCase(TestCase):
 
     def test_destroy_profile(self):
         response = self.client.delete('/profile/' + str(self.user.pk) + '/')
-        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_create_profile(self):
         response = self.client.post('/profile/')
