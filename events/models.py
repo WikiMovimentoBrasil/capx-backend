@@ -24,7 +24,7 @@ class Events(models.Model):
     )])
     time_begin = models.DateTimeField(verbose_name="Start Time")
     time_end = models.DateTimeField(verbose_name="End Time")
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.RESTRICT, related_name="events_created", verbose_name="Event Creator")
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="events_created", verbose_name="Event Creator")
     team = models.ManyToManyField(settings.AUTH_USER_MODEL, through="EventParticipant", related_name="team_members", verbose_name="Event Team")
     organizations = models.ManyToManyField(Organization, through="EventOrganizations", verbose_name="Event Organizations")
     related_skills = models.ManyToManyField("skills.Skill", blank=True, verbose_name="Related Skills")
@@ -41,7 +41,7 @@ class EventParticipant(models.Model):
         ("volunteer", "Volunteer"),
     ]
     event = models.ForeignKey(Events, on_delete=models.CASCADE)
-    participant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.RESTRICT)
+    participant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     role = models.CharField(choices=ROLE_TYPES, max_length=20)
     confirmed_organizer = models.BooleanField(default=False)
     confirmed_participant = models.BooleanField(default=False)
@@ -58,7 +58,7 @@ class EventOrganizations(models.Model):
         ("supporter", "Supporter"),
     ]
     event = models.ForeignKey(Events, on_delete=models.CASCADE)
-    organization = models.ForeignKey(Organization, on_delete=models.RESTRICT)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     role = models.CharField(choices=ROLE_TYPES, max_length=20)
     confirmed_organizer = models.BooleanField(default=False)
     confirmed_organization = models.BooleanField(default=False)

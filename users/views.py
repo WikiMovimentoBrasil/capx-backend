@@ -21,7 +21,7 @@ class UsersViewSet(viewsets.ModelViewSet):
 class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
-    http_method_names = ['get', 'put', 'head', 'options']
+    http_method_names = ['get', 'put', 'head', 'delete', 'options']
 
     def get_queryset(self):
         # Only allow the logged-in user to access their own profile
@@ -51,6 +51,22 @@ class ProfileViewSet(viewsets.ModelViewSet):
                 return Response(response, status=status.HTTP_409_CONFLICT)
             else:
                 return super().update(request, *args, **kwargs)
+
+    # Make it possible for the user to delete their own account
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance.user == request.user:
+            self.perform_destroy(instance)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            response = {'message': 'You are not allowed to delete this profile.'}
+            return Response(response, status=status.HTTP_403_FORBIDDEN)
+
+    def perform_destroy(self, instance):
+        # Delete the associated CustomUser when a Profile is deleted
+        user = instance.user
+        instance.delete()
+        user.delete()
 
 
 class ListTerritoryViewSet(viewsets.ReadOnlyModelViewSet):
