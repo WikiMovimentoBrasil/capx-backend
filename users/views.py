@@ -11,6 +11,12 @@ class UsersViewSet(viewsets.ModelViewSet):
     search_fields = ['user__username', 'user__email', 'display_name', 'about']
     http_method_names = ['get', 'head', 'options']
 
+    def get_queryset(self):
+        queryset = Profile.objects.all()
+        username = self.request.query_params.get('username', None)
+        if username is not None:
+            queryset = queryset.filter(user__username=username)
+        return queryset
 
 class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
