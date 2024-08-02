@@ -15,7 +15,7 @@ class UsersViewSet(viewsets.ModelViewSet):
         queryset = Profile.objects.all()
         username = self.request.query_params.get('username', None)
         if username is not None:
-            queryset = queryset.filter(user__username=username)
+            queryset = queryset.filter(user__username=username).first()
         return queryset
 
 class ProfileViewSet(viewsets.ModelViewSet):
