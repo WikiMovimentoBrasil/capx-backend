@@ -64,8 +64,12 @@ class SkillByTypeViewSet(viewsets.ReadOnlyModelViewSet):
 
     def retrieve(self, request, *args, **kwargs):
         skill_id = self.kwargs.get('pk')
-        print(self.kwargs)
-        if skill_id == "0":
+        if not skill_id.isdigit():
+            return Response(
+                {"detail": "Skill ID must be an integer."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        elif skill_id == "0":
             skills = Skill.objects.filter(skill_type__isnull=True)
         else:
             skills = Skill.objects.filter(skill_type=skill_id)

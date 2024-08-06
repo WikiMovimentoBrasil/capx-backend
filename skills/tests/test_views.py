@@ -97,3 +97,46 @@ class SkillViewSetTestCase(TestCase):
         self.client.post('/skill/', skill)
         response = self.client.delete('/skill/1/')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_get_skills_list_simple(self):
+        Skill.objects.create(skill_wikidata_item='Q43210')
+        response = self.client.get('/list_skills/')
+        skills = Skill.objects.all()
+        serializer = SkillSerializer(skills, many=True)
+        expected_data = {item['id']: item['skill_wikidata_item'] for item in serializer.data}
+        self.assertEqual(response.data, expected_data)
+
+class SkillByTypeTestCase(TestCase):
+    def setUp(self):
+        self.user = CustomUser.objects.create_user(username='test', password=str(secrets.randbits(16)))
+        self.client = APIClient()
+        self.client.force_authenticate(self.user)
+        first = Skill.objects.create(skill_wikidata_item='Q123456789')
+        second = Skill.objects.create(skill_wikidata_item='Q987654321')
+        second.skill_type.add(first)
+
+    def test_get_skills_by_type(self):
+        response = self.client.get('/skills_by_type/1/')
+        skills = Skill.objects.filter(skill_type=1)
+        serializer = SkillSerializer(skills, many=True)
+        expected_data = {item['id']: item['skill_wikidata_item'] for item in serializer.data}
+        self.assertEqual(response.data, expected_data)
+
+    def test_get_skills_by_type_empty(self):
+        response = self.client.get('/skills_by_type/2/')
+        self.assertEqual(response.data, {})
+
+    def test_get_skills_by_type_invalid(self):
+        response = self.client.get('/skills_by_type/invalid/')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_get_skills_by_type_root(self):
+        response = self.client.get('/skills_by_type/0/')
+        skills = Skill.objects.filter(skill_type__isnull=True)
+        serializer = SkillSerializer(skills, many=True)
+        expected_data = {item['id']: item['skill_wikidata_item'] for item in serializer.data}
+        self.assertEqual(response.data, expected_data)
+
+    def test_get_skills_by_type_not_provided(self):
+        response = self.client.get('/skills_by_type/')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
