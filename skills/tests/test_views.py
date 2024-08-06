@@ -47,6 +47,15 @@ class SkillViewSetTestCase(TestCase):
         self.assertEqual(options_response.status_code, status.HTTP_200_OK)
         self.assertEqual(options_response.data['actions']['PUT']['skill_type']['choices'], expected_choices)
 
+    def test_create_skill_nostaff(self):
+        self.user.is_staff = False
+        self.user.save()
+        skill = {
+            'skill_wikidata_item': "Q987654321"
+        }
+        response = self.client.post('/skill/', skill)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
     def test_update_skill(self):
         skill = Skill.objects.get(skill_wikidata_item='Q123456789')
         updated_data = {
@@ -58,6 +67,16 @@ class SkillViewSetTestCase(TestCase):
         skill.refresh_from_db()
         serializer = SkillSerializer(skill)
         self.assertEqual(serializer.data['skill_wikidata_item'], updated_data['skill_wikidata_item'])
+
+    def test_update_skill_nostaff(self):
+        self.user.is_staff = False
+        self.user.save()
+        skill = Skill.objects.get(skill_wikidata_item='Q123456789')
+        updated_data = {
+            'skill_wikidata_item': 'Q123456780',
+        }
+        response = self.client.patch('/skill/' + str(skill.pk) + '/', updated_data)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_delete_skill(self):
         response = self.client.delete('/skill/1/')
