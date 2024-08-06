@@ -56,7 +56,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('<int:pk>/', include(router.urls)),
     path('api/login/', include('rest_social_auth.urls_knox')),
-    path('tags/<str:tag_type>/<int:tag_id>/', UsersByTagViewSet.as_view({'get': 'retrieve'}), name='tags'),
+    path('tags/<str:tag_type>/<str:tag_id>/', UsersByTagViewSet.as_view({'get': 'retrieve'}), name='tags'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

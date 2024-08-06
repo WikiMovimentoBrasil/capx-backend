@@ -133,7 +133,7 @@ class UsersByTagViewSet(viewsets.ReadOnlyModelViewSet):
         tag_type = self.kwargs.get('tag_type')
         tag_id = self.kwargs.get('tag_id')
 
-        if tag_type and not tag_id:
+        if tag_type and not tag_id.isdigit():
             response = {'message': 'Please provide a valid tag id.'}
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
