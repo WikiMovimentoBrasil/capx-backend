@@ -1,5 +1,7 @@
 from .models import Profile, Territory, Language, WikimediaProject
+from orgs.models import Organization
 from .serializers import ProfileSerializer, TerritorySerializer, LanguageSerializer, WikimediaProjectSerializer, UsersBySkillSerializer
+from skills.models import Skill
 from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
@@ -59,9 +61,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
         if instance.user == request.user:
             self.perform_destroy(instance)
             return Response(status=status.HTTP_204_NO_CONTENT)
-        else:
-            response = {'message': 'You are not allowed to delete this profile.'}
-            return Response(response, status=status.HTTP_403_FORBIDDEN)
 
     def perform_destroy(self, instance):
         # Delete the associated CustomUser when a Profile is deleted
