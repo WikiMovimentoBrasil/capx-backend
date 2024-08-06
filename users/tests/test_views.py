@@ -120,24 +120,27 @@ class ListyViewSetTestCase(TestCase):
         Territory.objects.create(territory_name='test2')
 
         response = self.client.get('/list_territory/')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 2)
+        territories = Territory.objects.all()
+        expected_data = {territory.pk: territory.territory_name for territory in territories}
+        self.assertEqual(response.data, expected_data)
 
     def test_get_languages_list(self):
         Language.objects.create(language_name='test', language_code='test')
         Language.objects.create(language_name='test2', language_code='test2')
 
         response = self.client.get('/list_language/')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 2)
+        languages = Language.objects.all()
+        expected_data = {language.pk: language.language_name for language in languages}
+        self.assertEqual(response.data, expected_data)
 
     def test_get_wikimedia_projects_list(self):
         WikimediaProject.objects.create(wikimedia_project_name='test', wikimedia_project_code='test')
         WikimediaProject.objects.create(wikimedia_project_name='test2', wikimedia_project_code='test2')
 
         response = self.client.get('/list_wikimedia_project/')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 2)
+        wikimedia_projects = WikimediaProject.objects.all()
+        expected_data = {wikimedia_project.pk: wikimedia_project.wikimedia_project_name for wikimedia_project in wikimedia_projects}
+        self.assertEqual(response.data, expected_data)
 
 class UsersBySkillTestCase(TestCase):
     def setUp(self):
@@ -222,7 +225,6 @@ class UsersByTagTestCase(TestCase):
 
     def test_get_users_by_tag_skill_not_found(self):
         response = self.client.get('/tags/skill/999/')
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_get_users_by_tag_skill_no_users(self):
