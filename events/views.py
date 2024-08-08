@@ -185,3 +185,13 @@ class EventOrganizationsViewSet(viewsets.ModelViewSet):
             return super().create(request, *args, **kwargs)
         else:
             return Response("Only the organizer, committee or staff can create a participant", status=status.HTTP_403_FORBIDDEN)
+
+    # Only Organizer, Commitee, Staff and managers of the organization can delete the organization participation
+    def delete(self, request, *args, **kwargs):
+        team = EventOrganizations.objects.filter(event=request.data['event'], role__in=['organizer', 'committee'])
+        if (request.user.pk in team.values_list('organization', flat=True) or
+            request.user.is_staff or
+            request.user.pk in self.get_object().organization.managers.values_list('pk', flat=True)):
+            return super().delete(request, *args, **kwargs)
+        else:
+            return Response("Only the organizer, committee, staff and managers of the organization can edit this participation", status=status.HTTP_403_FORBIDDEN)
