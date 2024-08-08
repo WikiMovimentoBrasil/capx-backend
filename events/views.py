@@ -147,6 +147,29 @@ class EventOrganizationsViewSet(viewsets.ModelViewSet):
             self.serializer_class.Meta.read_only_fields += ['confirmed_organizer']
 
         return super().retrieve(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        
+        # Dynamically setting read-only fields based on user role and permissions
+        if request.user.is_staff:
+            return super().update(request, *args, **kwargs)
+        else:
+            self.serializer_class.Meta.read_only_fields += ['event', 'organization', 'role']
+
+            if request.user.pk not in instance.organization.managers.values_list('pk', flat=True):
+                self.serializer_class.Meta.read_only_fields += ['confirmed_organization']
+
+            team = EventOrganizations.objects.filter(event=instance.event, role__in=['organizer', 'sponsor'])
+            if request.user.pk not in team.values_list('organization', flat=True):
+                self.serializer_class.Meta.read_only_fields += ['confirmed_organizer']
+
+        read_only_fields = getattr(self.serializer_class.Meta, 'read_only_fields', [])
+        for field in read_only_fields:
+            if field in request.data and getattr(instance, field) != request.data[field]:
+                return Response("You cannot change this field", status=status.HTTP_403_FORBIDDEN)
+
+        return super().update(request, *args, **kwargs)
     
     # Only Organizer, Commitee or Staff can set a organization as envolved in the event
     def create(self, request, *args, **kwargs):
