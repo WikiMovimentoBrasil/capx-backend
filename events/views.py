@@ -122,6 +122,9 @@ class EventParticipantViewSet(viewsets.ModelViewSet):
         
         return super().update(request, *args, **kwargs)
 
+    def partial_update(self, request, *args, **kwargs):
+        return Response("PATCH method is not allowed", status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
 class EventOrganizationsViewSet(viewsets.ModelViewSet):
     queryset = EventOrganizations.objects.all()
     serializer_class = EventOrganizationsSerializer
@@ -170,6 +173,9 @@ class EventOrganizationsViewSet(viewsets.ModelViewSet):
                 return Response("You cannot change this field", status=status.HTTP_403_FORBIDDEN)
 
         return super().update(request, *args, **kwargs)
+
+    def partial_update(self, request, *args, **kwargs):
+        return Response("PATCH method is not allowed", status=status.HTTP_405_METHOD_NOT_ALLOWED)
     
     # Only Organizer, Commitee or Staff can set a organization as envolved in the event
     def create(self, request, *args, **kwargs):
