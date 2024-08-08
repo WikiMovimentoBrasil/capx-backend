@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import mimetypes
 from datetime import timedelta
-from .settings_local import *
+from CapX.settings_local import (DEBUG, ALLOWED_HOSTS, SOCIAL_AUTH_MEDIAWIKI_CALLBACK, 
+    DATABASES, BASE_DIR, SECRET_KEY, SOCIAL_AUTH_MEDIAWIKI_URL, SOCIAL_AUTH_MEDIAWIKI_KEY, 
+    SOCIAL_AUTH_MEDIAWIKI_SECRET, LANGUAGES)
+
 
 # Application definition
 
