@@ -139,8 +139,9 @@ class EventOrganizationsViewSet(viewsets.ModelViewSet):
         if request.user.pk not in self.get_object().organization.managers.values_list('pk', flat=True):
             self.serializer_class.Meta.read_only_fields += ['confirmed_organization']
         
-        team = EventOrganizations.objects.filter(event=self.get_object().event, role__in=['organizer', 'sponsor'])
-        if request.user.pk not in team.values_list('organization', flat=True):
+        event_id = self.get_object().event.id
+        team = EventParticipant.objects.filter(event=event_id, role__in=['organizer', 'committee'])
+        if request.user.pk not in team.values_list('participant', flat=True):
             self.serializer_class.Meta.read_only_fields += ['confirmed_organizer']
 
         return super().retrieve(request, *args, **kwargs)
@@ -156,10 +157,10 @@ class EventOrganizationsViewSet(viewsets.ModelViewSet):
 
             if request.user.pk not in instance.organization.managers.values_list('pk', flat=True):
                 self.serializer_class.Meta.read_only_fields += ['confirmed_organization']
+        team = EventParticipant.objects.filter(event=request.data['event'], role__in=['organizer', 'committee'])
 
-            team = EventOrganizations.objects.filter(event=instance.event, role__in=['organizer', 'sponsor'])
-            if request.user.pk not in team.values_list('organization', flat=True):
                 self.serializer_class.Meta.read_only_fields += ['confirmed_organizer']
+        if request.user.pk not in team.values_list('participant', flat=True):
 
         read_only_fields = getattr(self.serializer_class.Meta, 'read_only_fields', [])
         for field in read_only_fields:
