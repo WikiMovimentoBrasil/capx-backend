@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
-
 from users.models import Territory, Language, WikimediaProject, CustomUser, Profile
 
 

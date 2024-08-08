@@ -33,6 +33,7 @@ jobs:
         echo "BASE_DIR = '${GITHUB_WORKSPACE}'" >> CapX/settings_local.py
         echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'db.sqlite3'}}" >> CapX/settings_local.py
         echo "LANGUAGES = (('en', 'English'),('pt', 'Portuguese'),('es', 'Spanish'),)" >> CapX/settings.py
+        echo "    CapX/tests/test_settings_local.py" >> .coveragerc
     - name: Coverage report
       run: |
         pip install coverage

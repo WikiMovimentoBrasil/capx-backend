@@ -98,7 +98,6 @@ class EventParticipantViewSet(viewsets.ModelViewSet):
                 )
         ]
 
-
         # Check if user is not staff
         if request.user.is_staff:
             return super().update(request, *args, **kwargs)
@@ -106,7 +105,9 @@ class EventParticipantViewSet(viewsets.ModelViewSet):
         # Check if user is not in the team
         if (request.user.pk not in team.values_list('participant', flat=True)):            
             # Check if more than one field changed and confirmed_participant is not one of them
-            if len(changed_fields) > 1 and 'confirmed_participant' not in changed_fields:
+            if request.user.pk != self.get_object().participant.pk or ( 
+                len(changed_fields) > 1 and 'confirmed_participant' not in changed_fields
+            ):
                 return Response("Only the organizer, committee or staff can edit participants", status=status.HTTP_403_FORBIDDEN)
         
         # Check if the user is trying to unconfirm the creator of the event
@@ -120,14 +121,12 @@ class EventParticipantViewSet(viewsets.ModelViewSet):
         
         return super().update(request, *args, **kwargs)
 
+    def partial_update(self, request, *args, **kwargs):
+        return Response("PATCH method is not allowed", status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
 class EventOrganizationsViewSet(viewsets.ModelViewSet):
     queryset = EventOrganizations.objects.all()
     serializer_class = EventOrganizationsSerializer
-
-    def get_permissions(self):
-        if self.request.method in ['DELETE']:
-            return [permissions.IsAdminUser()]
-        return [permissions.IsAuthenticated()]
     
     # On retrieve, only the field confirmed_organizer and confirmed_organization are editable
     def retrieve(self, request, *args, **kwargs):
@@ -140,11 +139,39 @@ class EventOrganizationsViewSet(viewsets.ModelViewSet):
         if request.user.pk not in self.get_object().organization.managers.values_list('pk', flat=True):
             self.serializer_class.Meta.read_only_fields += ['confirmed_organization']
         
-        team = EventOrganizations.objects.filter(event=self.get_object().event, role__in=['organizer', 'sponsor'])
-        if request.user.pk not in team.values_list('organization', flat=True):
+        event_id = self.get_object().event.id
+        team = EventParticipant.objects.filter(event=event_id, role__in=['organizer', 'committee'])
+        if request.user.pk not in team.values_list('participant', flat=True):
             self.serializer_class.Meta.read_only_fields += ['confirmed_organizer']
 
         return super().retrieve(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        if request.user.is_staff:
+            return super().update(request, *args, **kwargs)
+
+        instance = self.get_object()
+        team = EventParticipant.objects.filter(event=request.data['event'], role__in=['organizer', 'committee'])
+        read_only_fields = ['event', 'organization', 'role']
+
+        if request.user.pk not in instance.organization.managers.values_list('pk', flat=True):
+            read_only_fields += ['confirmed_organization']
+        if request.user.pk not in team.values_list('participant', flat=True):
+            read_only_fields += ['confirmed_organizer']
+
+        for field in read_only_fields:
+            if field in request.data:
+                field_object = instance._meta.get_field(field)
+                instance_value = str(getattr(instance, field_object.attname))
+                request_value = request.data[field]
+
+                if instance_value != request_value:
+                    return Response(f"You cannot change the '{field}' field", status=status.HTTP_403_FORBIDDEN)
+
+        return super().update(request, *args, **kwargs)
+
+    def partial_update(self, request, *args, **kwargs):
+        return Response("PATCH method is not allowed", status=status.HTTP_405_METHOD_NOT_ALLOWED)
     
     # Only Organizer, Commitee or Staff can set a organization as envolved in the event
     def create(self, request, *args, **kwargs):
@@ -160,3 +187,17 @@ class EventOrganizationsViewSet(viewsets.ModelViewSet):
             return super().create(request, *args, **kwargs)
         else:
             return Response("Only the organizer, committee or staff can create a participant", status=status.HTTP_403_FORBIDDEN)
+
+    # Only Organizer, Commitee, Staff and managers of the organization can delete the organization participation
+    def destroy(self, request, *args, **kwargs):
+        event_id = self.get_object().event.id
+        team = EventParticipant.objects.filter(event=event_id, role__in=['organizer', 'committee']).values_list('participant', flat=True)
+        managers = self.get_object().organization.managers.values_list('pk', flat=True)
+        if (
+            request.user.pk in team or
+            request.user.is_staff or
+            request.user.pk in managers
+        ):
+            return super().destroy(request, *args, **kwargs)
+        else:
+            return Response("Only the organizer, committee, staff and managers of the organization can edit this participation", status=status.HTTP_403_FORBIDDEN)
