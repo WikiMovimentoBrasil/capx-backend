@@ -106,7 +106,9 @@ class EventParticipantViewSet(viewsets.ModelViewSet):
         # Check if user is not in the team
         if (request.user.pk not in team.values_list('participant', flat=True)):            
             # Check if more than one field changed and confirmed_participant is not one of them
-            if len(changed_fields) > 1 and 'confirmed_participant' not in changed_fields:
+            if request.user.pk != self.get_object().participant.pk or ( 
+                len(changed_fields) > 1 and 'confirmed_participant' not in changed_fields
+            ):
                 return Response("Only the organizer, committee or staff can edit participants", status=status.HTTP_403_FORBIDDEN)
         
         # Check if the user is trying to unconfirm the creator of the event
