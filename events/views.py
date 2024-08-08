@@ -98,7 +98,6 @@ class EventParticipantViewSet(viewsets.ModelViewSet):
                 )
         ]
 
-
         # Check if user is not staff
         if request.user.is_staff:
             return super().update(request, *args, **kwargs)
@@ -128,11 +127,6 @@ class EventParticipantViewSet(viewsets.ModelViewSet):
 class EventOrganizationsViewSet(viewsets.ModelViewSet):
     queryset = EventOrganizations.objects.all()
     serializer_class = EventOrganizationsSerializer
-
-    def get_permissions(self):
-        if self.request.method in ['DELETE']:
-            return [permissions.IsAdminUser()]
-        return [permissions.IsAuthenticated()]
     
     # On retrieve, only the field confirmed_organizer and confirmed_organization are editable
     def retrieve(self, request, *args, **kwargs):
@@ -193,11 +187,15 @@ class EventOrganizationsViewSet(viewsets.ModelViewSet):
             return Response("Only the organizer, committee or staff can create a participant", status=status.HTTP_403_FORBIDDEN)
 
     # Only Organizer, Commitee, Staff and managers of the organization can delete the organization participation
-    def delete(self, request, *args, **kwargs):
-        team = EventOrganizations.objects.filter(event=request.data['event'], role__in=['organizer', 'committee'])
-        if (request.user.pk in team.values_list('organization', flat=True) or
+    def destroy(self, request, *args, **kwargs):
+        event_id = self.get_object().event.id
+        team = EventParticipant.objects.filter(event=event_id, role__in=['organizer', 'committee']).values_list('participant', flat=True)
+        managers = self.get_object().organization.managers.values_list('pk', flat=True)
+        if (
+            request.user.pk in team or
             request.user.is_staff or
-            request.user.pk in self.get_object().organization.managers.values_list('pk', flat=True)):
-            return super().delete(request, *args, **kwargs)
+            request.user.pk in managers
+        ):
+            return super().destroy(request, *args, **kwargs)
         else:
             return Response("Only the organizer, committee, staff and managers of the organization can edit this participation", status=status.HTTP_403_FORBIDDEN)
