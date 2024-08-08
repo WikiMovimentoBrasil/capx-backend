@@ -147,25 +147,26 @@ class EventOrganizationsViewSet(viewsets.ModelViewSet):
         return super().retrieve(request, *args, **kwargs)
 
     def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        
-        # Dynamically setting read-only fields based on user role and permissions
         if request.user.is_staff:
             return super().update(request, *args, **kwargs)
-        else:
-            self.serializer_class.Meta.read_only_fields += ['event', 'organization', 'role']
 
-            if request.user.pk not in instance.organization.managers.values_list('pk', flat=True):
-                self.serializer_class.Meta.read_only_fields += ['confirmed_organization']
+        instance = self.get_object()
         team = EventParticipant.objects.filter(event=request.data['event'], role__in=['organizer', 'committee'])
+        read_only_fields = ['event', 'organization', 'role']
 
-                self.serializer_class.Meta.read_only_fields += ['confirmed_organizer']
+        if request.user.pk not in instance.organization.managers.values_list('pk', flat=True):
+            read_only_fields += ['confirmed_organization']
         if request.user.pk not in team.values_list('participant', flat=True):
+            read_only_fields += ['confirmed_organizer']
 
-        read_only_fields = getattr(self.serializer_class.Meta, 'read_only_fields', [])
         for field in read_only_fields:
-            if field in request.data and getattr(instance, field) != request.data[field]:
-                return Response("You cannot change this field", status=status.HTTP_403_FORBIDDEN)
+            if field in request.data:
+                field_object = instance._meta.get_field(field)
+                instance_value = str(getattr(instance, field_object.attname))
+                request_value = request.data[field]
+
+                if instance_value != request_value:
+                    return Response(f"You cannot change the '{field}' field", status=status.HTTP_403_FORBIDDEN)
 
         return super().update(request, *args, **kwargs)
 
