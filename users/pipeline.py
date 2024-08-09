@@ -1,4 +1,4 @@
-def get_username(details, user=None):
+def get_username(strategy, details, user=None, *args, **kwargs):
     if user:
         return {"username": user.username}
     else:
