@@ -21,7 +21,6 @@ The Capacity Exchange (CapX) is available in Toolforge at https://capx.toolforge
 Before you begin, ensure you have met the following requirements:
 
 - Python 3
-- Django 4.2.5
 
 ### Installation
 
@@ -48,7 +47,7 @@ Before you begin, ensure you have met the following requirements:
    ```bash
    venv\Scripts\activate.bat
    ```
-   
+
     * On macOS and Linux:
    ```bash
    source venv/bin/activate
@@ -63,7 +62,9 @@ Before you begin, ensure you have met the following requirements:
    ```bash
    python manage.py migrate
    ```
-   
+
+This will create a SQLite file in your source directory.
+
 7. Create a superuser to have full control over the database:
    ```bash
    python manage.py createsuperuser
@@ -83,13 +84,15 @@ Before you begin, ensure you have met the following requirements:
    SECRET_KEY="<CREATE YOUR OWN RANDOM KEY>"
    ```
 
+To create a new OAuth app and key, go to https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration .  For local development, you can enable "This consumer is for use only by <your username>" and "User identify verification only".
+
 10. Start the development server:
 
     ```bash
     python manage.py runserver
     ```
 
-You should now be able to access the project at http://localhost:8000/ in your web browser.
+You should now be able to access the project at http://127.0.0.1:8000/ in your web browser.
 
 ## Contributing
 Contributions are welcome! To contribute to the Capacity Exchange, follow these steps:
