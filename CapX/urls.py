@@ -55,7 +55,6 @@ urlpatterns = [
     path('api-auth/', include("rest_framework.urls", namespace="rest_framework")),
     path('', include('social_django.urls')),
     path('', include(router.urls)),
-    path('<int:pk>/', include(router.urls)),
     path('api/login/', include('rest_social_auth.urls_knox')),
     path('tags/<str:tag_type>/<str:tag_id>/', UsersByTagViewSet.as_view({'get': 'retrieve'}), name='tags'),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
