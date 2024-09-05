@@ -53,8 +53,6 @@ class OrganizationSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer()
-    territory_rep = TerritorySerializer(many=True, read_only=True, source='territory')
-    affiliation_rep = OrganizationSerializer(many=True, read_only=True, source='affiliation')
     
     class Meta:
         model = Profile
@@ -67,10 +65,8 @@ class ProfileSerializer(serializers.ModelSerializer):
             'wikidata_qid',
             'wiki_alt',
             'territory',
-            'territory_rep',
             'language',
             'affiliation',
-            'affiliation_rep',
             'wikimedia_project',
             'team',
             'skills_known',
