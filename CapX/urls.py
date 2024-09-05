@@ -25,6 +25,7 @@ from users.views import ProfileViewSet, UsersViewSet, ListTerritoryViewSet, List
 from bugs.views import BugViewSet, AttachmentViewSet
 from orgs.views import OrganizationViewSet, ListOrganizationViewSet
 from events.views import EventViewSet, EventParticipantViewSet, EventOrganizationsViewSet
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 
 router = DefaultRouter()
@@ -57,6 +58,8 @@ urlpatterns = [
     path('<int:pk>/', include(router.urls)),
     path('api/login/', include('rest_social_auth.urls_knox')),
     path('tags/<str:tag_type>/<str:tag_id>/', UsersByTagViewSet.as_view({'get': 'retrieve'}), name='tags'),
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("docs/", SpectacularSwaggerView.as_view(url_name="schema"),name="swagger-ui",),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

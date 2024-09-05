@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_social_auth',
     'knox',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -149,6 +150,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_METADATA_CLASS': 'CapX.metadata.CustomMetadata',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 REST_AUTH_SERIALIZERS = {
     "TOKEN_SERIALIZER": "users.serializers.KnoxSerializer",
@@ -156,3 +158,9 @@ REST_AUTH_SERIALIZERS = {
 REST_AUTH_TOKEN_MODEL = "knox.models.AuthToken"
 REST_AUTH_TOKEN_CREATOR = "users.utils.create_knox_token"
 REST_KNOX = {'TOKEN_TTL': timedelta(days=30)}
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'CapX API',
+    'DESCRIPTION': 'The Capacity Exchange (CapX) is a project within and for the Wikimedia Movement.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
