@@ -37,7 +37,6 @@ router.register('bugs', BugViewSet, basename='bugs')
 router.register('attachment', AttachmentViewSet, basename='attachment')
 router.register('users_by_skill', UsersBySkillViewSet, basename='users_by_skill')
 router.register('skills_by_type', SkillByTypeViewSet, basename='skills_by_type')
-router.register('tags', UsersByTagViewSet, basename='tags')
 router.register('events', EventViewSet)
 router.register('events_participants', EventParticipantViewSet)
 router.register('events_organizations', EventOrganizationsViewSet)
@@ -56,7 +55,7 @@ urlpatterns = [
     path('', include('social_django.urls')),
     path('', include(router.urls)),
     path('api/login/', include('rest_social_auth.urls_knox')),
-    path('tags/<str:tag_type>/<str:tag_id>/', UsersByTagViewSet.as_view({'get': 'retrieve'}), name='tags'),
+    path('tags/<str:tag_type>/<int:tag_id>/', UsersByTagViewSet.as_view({'get': 'list'}), name='tags'),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path("docs/", SpectacularSwaggerView.as_view(url_name="schema"),name="swagger-ui",),
 ]

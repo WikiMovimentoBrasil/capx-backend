@@ -102,3 +102,15 @@ class UsersBySkillSerializer(serializers.ModelSerializer):
             'skills_wanted',
         ]
    
+
+class UsersByTagSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username')
+
+    class Meta:
+        model = Profile
+        fields = [
+            'id', 
+            'display_name', 
+            'username', 
+            'profile_image'
+        ]

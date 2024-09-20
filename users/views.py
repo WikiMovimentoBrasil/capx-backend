@@ -1,6 +1,6 @@
 from .models import Profile, Territory, Language, WikimediaProject
 from orgs.models import Organization
-from .serializers import ProfileSerializer, TerritorySerializer, LanguageSerializer, WikimediaProjectSerializer, UsersBySkillSerializer
+from .serializers import ProfileSerializer, TerritorySerializer, LanguageSerializer, WikimediaProjectSerializer, UsersBySkillSerializer, UsersByTagSerializer
 from skills.models import Skill
 from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
@@ -146,28 +146,27 @@ class UsersByTagViewSet(viewsets.ReadOnlyModelViewSet):
                 'available': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in available_users],
                 'wanted': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in wanted_users],
             }
-        elif tag_type == 'language':
-            tag = get_object_or_404(Language, pk=tag_id)
-            users = Profile.objects.filter(language=tag)
-            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
-        elif tag_type == 'territory':
-            tag = get_object_or_404(Territory, pk=tag_id)
-            users = Profile.objects.filter(territory=tag)
-            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
-        elif tag_type == 'wikimedia_project':
-            tag = get_object_or_404(WikimediaProject, pk=tag_id)
-            users = Profile.objects.filter(wikimedia_project=tag)
-            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
-        elif tag_type == 'affiliation':
-            tag = get_object_or_404(Organization, pk=tag_id)
-            users = Profile.objects.filter(affiliation=tag)
-            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
-        else:
-            response = {'message': 'Invalid tag type.'}
-            return Response(response, status=status.HTTP_400_BAD_REQUEST)
-
-        return Response(data)
-
     def list(self, request, *args, **kwargs):
-        response = {'message': 'Please provide a tag type and a tag id. Options are: skill, language, territory, wikimedia_project, affiliation.'}
-        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+        tag_type = kwargs.get('tag_type')
+        tag_id = kwargs.get('tag_id')
+        if not tag_type or not tag_id:
+            return Response({'message': 'Please provide a valid tag type and tag ID.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if tag_type == 'skill_known':
+            queryset = Profile.objects.filter(skills_known__id=tag_id)
+        elif tag_type == 'skill_available':
+            queryset = Profile.objects.filter(skills_available__id=tag_id)
+        elif tag_type == 'skill_wanted':
+            queryset = Profile.objects.filter(skills_wanted__id=tag_id)
+        elif tag_type == 'language':
+            queryset = Profile.objects.filter(language__id=tag_id)
+        elif tag_type == 'territory':
+            queryset = Profile.objects.filter(territory__id=tag_id)
+        elif tag_type == 'wikimedia_project':
+            queryset = Profile.objects.filter(wikimedia_project__id=tag_id)
+        elif tag_type == 'affiliation':
+            queryset = Profile.objects.filter(affiliation__id=tag_id)
+        else:
+            return Response({'message': 'Invalid tag type. Options are: skill_known, skill_available, skill_wanted, language, territory, wikimedia_project, affiliation.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(self.get_serializer(queryset, many=True).data)
