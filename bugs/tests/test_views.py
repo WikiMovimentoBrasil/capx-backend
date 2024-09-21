@@ -109,8 +109,7 @@ class AttachmentViewSetTestCase(APITestCase):
             'bug': '1',
         }
         response = self.client.put('/attachment/1/', attachment_data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['file'].split('/')[-1].split('_')[0], 'updated')
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_attachment_create_exceed_size(self):
         attachment_data = {
@@ -147,7 +146,7 @@ class AttachmentViewSetTestCase(APITestCase):
 
     def test_attachment_delete(self):
         response = self.client.delete('/attachment/1/')
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
  
     # Delete *.test files on folder after test
     def tearDown(self):

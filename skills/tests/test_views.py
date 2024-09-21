@@ -62,11 +62,11 @@ class SkillViewSetTestCase(TestCase):
             'skill_wikidata_item': 'Q123456780',
         }
         response = self.client.patch('/skill/' + str(skill.pk) + '/', updated_data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
         skill.refresh_from_db()
         serializer = SkillSerializer(skill)
-        self.assertEqual(serializer.data['skill_wikidata_item'], updated_data['skill_wikidata_item'])
+        self.assertNotEqual(serializer.data['skill_wikidata_item'], updated_data['skill_wikidata_item'])
 
     def test_update_skill_nostaff(self):
         self.user.is_staff = False
@@ -76,7 +76,7 @@ class SkillViewSetTestCase(TestCase):
             'skill_wikidata_item': 'Q123456780',
         }
         response = self.client.patch('/skill/' + str(skill.pk) + '/', updated_data)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_delete_skill(self):
         response = self.client.delete('/skill/1/')

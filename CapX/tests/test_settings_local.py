@@ -22,6 +22,6 @@ class TestSettingsLocal(unittest.TestCase):
             # Your assertions when os.path.exists returns True
             self.assertTrue(os.path.exists('/some/path'))  # This will be True
             self.assertListEqual(settings['ALLOWED_HOSTS'], ['capx-backend.toolforge.org', 'toolforge.org'])
-            self.assertEqual(settings['SOCIAL_AUTH_MEDIAWIKI_CALLBACK'], 'https://capx.toolforge.org/oauth/')
+            self.assertEqual(settings['SOCIAL_AUTH_MEDIAWIKI_CALLBACK'], 'https://capx.toolforge.org/oauth')
             self.assertEqual(settings['DATABASES']['default']['ENGINE'], 'django.db.backends.mysql')
             self.assertEqual(settings['MESSAGE'], 'You are running in production mode')

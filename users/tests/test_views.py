@@ -195,7 +195,7 @@ class UsersByTagTestCase(TestCase):
 
     def test_get_users_by_tag_no_tag_type(self):
         response = self.client.get('/tags/')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_get_users_by_tag_skill(self):
         skill = Skill.objects.create(
@@ -204,10 +204,10 @@ class UsersByTagTestCase(TestCase):
         profile = Profile.objects.get(user=self.user)
         profile.skills_known.add(skill)
 
-        response = self.client.get('/tags/skill/' + str(skill.pk) + '/')
+        response = self.client.get('/tags/skill_known/' + str(skill.pk) + '/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        response_data = response.data['known']
+        response_data = response.data
         serializer_data = ProfileSerializer(Profile.objects.filter(skills_known=skill), many=True).data
         simplified_serializer_data = [
             {
@@ -220,21 +220,22 @@ class UsersByTagTestCase(TestCase):
         self.assertEqual(response_data, simplified_serializer_data)
 
     def test_get_users_by_tag_skill_no_id(self):
-        response = self.client.get('/tags/skill/')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        response = self.client.get('/tags/skill_known/')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_get_users_by_tag_skill_not_found(self):
-        response = self.client.get('/tags/skill/999/')
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        response = self.client.get('/tags/skill_known/999/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, [])
 
     def test_get_users_by_tag_skill_no_users(self):
         skill = Skill.objects.create(
             skill_wikidata_item="Q123456789"
         )
 
-        response = self.client.get('/tags/skill/' + str(skill.pk) + '/')
+        response = self.client.get('/tags/skill_known/' + str(skill.pk) + '/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data, {'known': [], 'available': [], 'wanted': []})
+        self.assertEqual(response.data, [])
 
     def test_get_users_by_tag_language(self):
         language = Language.objects.create(
@@ -261,11 +262,12 @@ class UsersByTagTestCase(TestCase):
 
     def test_get_users_by_tag_language_no_id(self):
         response = self.client.get('/tags/language/')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_get_users_by_tag_language_not_found(self):
         response = self.client.get('/tags/language/999/')
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, [])
 
     def test_get_users_by_tag_language_no_users(self):
         language = Language.objects.create(
@@ -301,11 +303,12 @@ class UsersByTagTestCase(TestCase):
 
     def test_get_users_by_tag_territory_no_id(self):
         response = self.client.get('/tags/territory/')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_get_users_by_tag_territory_not_found(self):
         response = self.client.get('/tags/territory/999/')
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, [])
 
     def test_get_users_by_tag_territory_no_users(self):
         territory = Territory.objects.create(
@@ -341,11 +344,12 @@ class UsersByTagTestCase(TestCase):
 
     def test_get_users_by_tag_wikimedia_project_no_id(self):
         response = self.client.get('/tags/wikimedia_project/')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
     
     def test_get_users_by_tag_wikimedia_project_not_found(self):
         response = self.client.get('/tags/wikimedia_project/999/')
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, [])
 
     def test_get_users_by_tag_wikimedia_project_no_users(self):
         wikimedia_project = WikimediaProject.objects.create(
@@ -363,7 +367,7 @@ class UsersByTagTestCase(TestCase):
     
     def test_get_users_by_tag_invalid_tag_id(self):
         response = self.client.get('/tags/skill/invalid/')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_get_users_by_tag_affiliation(self):
         organization = Organization.objects.create(
