@@ -130,26 +130,8 @@ class UsersBySkillViewSet(viewsets.ReadOnlyModelViewSet):
 # Example: /tags/project/1/
 class UsersByTagViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
+    serializer_class = UsersByTagSerializer
 
-    def retrieve(self, request, *args, **kwargs):
-        tag_type = self.kwargs.get('tag_type')
-        tag_id = self.kwargs.get('tag_id')
-
-        if tag_type and not tag_id.isdigit():
-            response = {'message': 'Please provide a valid tag id.'}
-            return Response(response, status=status.HTTP_400_BAD_REQUEST)
-
-        if tag_type == 'skill':
-            tag = get_object_or_404(Skill, pk=tag_id)
-            known_users = Profile.objects.filter(skills_known=tag)
-            available_users = Profile.objects.filter(skills_available=tag)
-            wanted_users = Profile.objects.filter(skills_wanted=tag)
-            data = {
-                'known': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in known_users],
-                'available': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in available_users],
-                'wanted': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in wanted_users],
-            }
     def list(self, request, *args, **kwargs):
         tag_type = kwargs.get('tag_type')
         tag_id = kwargs.get('tag_id')
