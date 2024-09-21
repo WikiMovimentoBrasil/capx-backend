@@ -1,5 +1,5 @@
 from .models import Skill
-from .serializers import SkillSerializer
+from .serializers import SkillSerializer, ListSkillSerializer
 from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
 
@@ -50,12 +50,20 @@ class SkillViewSet(viewsets.ModelViewSet):
 
 class ListSkillViewSet (viewsets.ReadOnlyModelViewSet):
     queryset = Skill.objects.all()
-    serializer_class = SkillSerializer
+    serializer_class = ListSkillSerializer
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        data = {skill.id: str(skill) for skill in queryset}
-        return Response(data)
+        serializer = self.get_serializer(queryset, many=True)
+
+        aggregated_data = {}
+        for item in serializer.data:
+            aggregated_data.update(item)
+
+        return Response(aggregated_data)
+
+    def retrieve(self, request, *args, **kwargs):
+        return Response({'message': 'Method not allowed.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 class SkillByTypeViewSet(viewsets.ReadOnlyModelViewSet):
