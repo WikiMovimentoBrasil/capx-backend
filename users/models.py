@@ -67,16 +67,19 @@ class Profile(models.Model):
     profile_image = models.URLField(
         verbose_name="Profile image",
         null=True,
+        help_text="URL of the profile image from Commons.",
         blank=True
     )
     display_name = models.CharField(
         verbose_name="Display name",
         max_length=387,
+        help_text="Display name of the user.",
         blank=True
     )
     pronoun = models.CharField(
         verbose_name="Pronoun",
         max_length=20,
+        help_text="Pronoun of the user.",
         choices=PRONOUNS,
         blank=True
     )
@@ -84,11 +87,13 @@ class Profile(models.Model):
         verbose_name="Short bio",
         max_length=2000,
         blank=True,
+        help_text="Short bio of the user.",
         default=""
     )
     wikidata_qid = models.CharField(
         verbose_name="Wikidata Qid",
         max_length=10,
+        help_text="Wikidata Qid of the user.",
         blank=True,
         validators=[RegexValidator(
             regex=r'^Q[1-9]\d*$',
@@ -98,6 +103,7 @@ class Profile(models.Model):
     wiki_alt = models.CharField(
         verbose_name="Wikimedia alternative account",
         max_length=128,
+        help_text="Wikimedia alternative account of the user.",
         blank=True
     )
 
@@ -106,28 +112,33 @@ class Profile(models.Model):
         Territory,
         verbose_name="Territory",
         related_name="user_territory",
+        help_text="ID of the territory that the user is based in.",
         blank=True)
     language = models.ManyToManyField(
         Language,
         verbose_name="Language",
         related_name="user_language",
+        help_text="ID of the language that the user speaks.",
         blank=True
     )
     affiliation = models.ManyToManyField(
         Organization,
         verbose_name="Affiliation",
         related_name="user_affiliation",
+        help_text="ID of the organization that the user is affiliated with.",
         blank=True
     )
     wikimedia_project = models.ManyToManyField(
         WikimediaProject,
         verbose_name="Wikimedia project",
         related_name="user_wikimedia_project",
+        help_text="ID of the Wikimedia project that the user contributes to.",
         blank=True
     )
     team = models.CharField(
         verbose_name="Team",
         max_length=128,
+        help_text="Name of the team that the user is part of.",
         blank=True
     )
 
@@ -136,18 +147,21 @@ class Profile(models.Model):
         Skill,
         verbose_name="Known capacity",
         related_name="user_known_skils",
+        help_text="List of IDs of skills that the user knows.",
         blank=True
     )
     skills_available = models.ManyToManyField(
         Skill,
         verbose_name="Available capacity",
         related_name="user_available_skills",
+        help_text="List of IDs of skills that the user is available to teach.",
         blank=True
     )
     skills_wanted = models.ManyToManyField(
         Skill, 
         verbose_name="Wanted capacity", 
         related_name="user_desired_skils",
+        help_text="List of IDs of skills that the user wants to learn.",
         blank=True
     )
     

@@ -17,10 +17,24 @@ class Bug(models.Model):
         ("done", "Done")
     ]
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    description = models.TextField(max_length=1000)
-    bug_type = models.CharField(choices=BUG_TYPES, max_length=20, blank=True, default="error")
-    status = models.CharField(choices=BUG_STATUSES, max_length=20, blank=True, default="to_do")
+    title = models.CharField(
+        max_length=200,
+        help_text="Title of the bug."
+    )
+    description = models.TextField(
+        max_length=1000,
+        help_text="Description of the bug."
+    )
+    bug_type = models.CharField(
+        choices=BUG_TYPES, 
+        max_length=20, blank=True, default="error",
+        help_text="Type of the bug."
+    )
+    status = models.CharField(
+        choices=BUG_STATUSES, 
+        max_length=20, blank=True, default="to_do",
+        help_text="Status of the bug (to be set by the staff)."
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
