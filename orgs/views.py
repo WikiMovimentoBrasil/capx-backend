@@ -1,7 +1,7 @@
 from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
-from .models import Organization
-from .serializers import OrganizationSerializer
+from .models import Organization, OrganizationType
+from .serializers import OrganizationSerializer, OrganizationTypeSerializer
 from users.models import CustomUser as User, Territory
 
 
@@ -48,3 +48,7 @@ class ListOrganizationViewSet(viewsets.ReadOnlyModelViewSet):
         queryset = self.get_queryset()
         data = {org.id: str(org) for org in queryset}
         return Response(data)
+
+class OrganizationTypeViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = OrganizationType.objects.all()
+    serializer_class = OrganizationTypeSerializer
