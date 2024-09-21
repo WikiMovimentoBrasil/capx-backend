@@ -21,7 +21,11 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from skills.views import SkillViewSet, ListSkillViewSet, SkillByTypeViewSet
-from users.views import ProfileViewSet, UsersViewSet, ListTerritoryViewSet, ListLanguageViewSet, ListWikimediaProjectViewSet, UsersBySkillViewSet, UsersByTagViewSet
+from users.views import (
+    ProfileViewSet, UsersViewSet, ListTerritoryViewSet, 
+    ListLanguageViewSet, ListWikimediaProjectViewSet, 
+    UsersBySkillViewSet, UsersByTagViewSet, TerritoryViewSet
+)
 from bugs.views import BugViewSet, AttachmentViewSet
 from orgs.views import OrganizationViewSet, ListOrganizationViewSet
 from events.views import EventViewSet, EventParticipantViewSet, EventOrganizationsViewSet
@@ -32,6 +36,7 @@ router = DefaultRouter()
 router.register('skill', SkillViewSet, basename='skill')
 router.register('users', UsersViewSet, basename='users')
 router.register('profile', ProfileViewSet, basename='profile')
+router.register('territory', TerritoryViewSet, basename='territory')
 router.register('organizations', OrganizationViewSet, basename='organizations')
 router.register('bugs', BugViewSet, basename='bugs')
 router.register('attachment', AttachmentViewSet, basename='attachment')

@@ -29,21 +29,21 @@ class TerritorySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Territory
-        fields = ['id', 'territory_name']
+        fields = ['id', 'territory_name', 'parent_territory']
 
 
 class LanguageSerializer(serializers.ModelSerializer):
     
-        class Meta:
-            model = Language
-            fields = ['id', 'language_name', 'language_autonym', 'language_code']
+    class Meta:
+        model = Language
+        fields = ['id', 'language_name', 'language_autonym', 'language_code']
 
 
 class WikimediaProjectSerializer(serializers.ModelSerializer):
-    
-        class Meta:
-            model = WikimediaProject
-            fields = ['id', 'wikimedia_project_name', 'wikimedia_project_code']
+
+    class Meta:
+        model = WikimediaProject
+        fields = ['id', 'wikimedia_project_name', 'wikimedia_project_code']
 
 class OrganizationSerializer(serializers.ModelSerializer):
 

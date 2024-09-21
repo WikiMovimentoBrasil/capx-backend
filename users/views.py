@@ -68,6 +68,10 @@ class ProfileViewSet(viewsets.ModelViewSet):
         instance.delete()
         user.delete()
 
+class TerritoryViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Territory.objects.all()
+    serializer_class = TerritorySerializer
+
 
 class ListTerritoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Territory.objects.all()
