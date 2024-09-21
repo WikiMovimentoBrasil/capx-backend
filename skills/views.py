@@ -2,15 +2,30 @@ from .models import Skill
 from .serializers import SkillSerializer, ListSkillSerializer
 from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter, OpenApiTypes, OpenApiExample, OpenApiResponse
 
-
+@extend_schema_view(
+    list=extend_schema(
+        summary='List all skills.',
+        description='This endpoint lists all skills.',
+    ),
+    retrieve=extend_schema(
+        summary='Retrieve a skill by ID.',
+        description='This endpoint retrieves a skill by its ID.',
+    ),
+)
 class SkillViewSet(viewsets.ModelViewSet):
     serializer_class = SkillSerializer
     queryset = Skill.objects.all()
     filter_backends = [filters.SearchFilter]
     search_fields = ['skill_wikidata_item']
 
-    #Only staff can create and update skills
+
+    @extend_schema(
+        summary='Creates a new skill.',
+        description='This endpoint creates a new skill based on the Wikidata item ID. ' \
+            'Only staff members are allowed to create skills.',
+    )
     def create(self, request, *args, **kwargs):
         if not request.user.is_staff:
             return Response(
@@ -19,6 +34,12 @@ class SkillViewSet(viewsets.ModelViewSet):
             )
         return super().create(request, *args, **kwargs)
 
+
+    @extend_schema(
+        summary='Updates a skill.',
+        description='This endpoint updates a skill already saved. ' \
+            'Only staff members are allowed to update skills.',
+    )
     def update(self, request, *args, **kwargs):
         if not request.user.is_staff:
             return Response(
@@ -27,9 +48,17 @@ class SkillViewSet(viewsets.ModelViewSet):
             )
         return super().update(request, *args, **kwargs)
 
+    
+    @extend_schema(exclude=True)        
     def partial_update(self, request, *args, **kwargs):
-        return response.Response("PATCH method not allowed", status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        return Response("PATCH method not allowed", status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+
+    @extend_schema(
+        summary='Deletes a skill.',
+        description='This endpoint deletes a skill. ' \
+            'Only staff members are allowed to delete skills.',
+    )
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
 
@@ -55,6 +84,11 @@ class ListSkillViewSet (viewsets.ReadOnlyModelViewSet):
     queryset = Skill.objects.all()
     serializer_class = ListSkillSerializer
 
+    @extend_schema(
+        summary='List all skills.',
+        deprecated=True,
+        description='Depracated. This endpoint lists all skills. Use the /skills/ endpoint instead.',
+    )
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
@@ -65,6 +99,7 @@ class ListSkillViewSet (viewsets.ReadOnlyModelViewSet):
 
         return Response(aggregated_data)
 
+    @extend_schema(exclude=True)
     def retrieve(self, request, *args, **kwargs):
         return Response({'message': 'Method not allowed.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
@@ -73,6 +108,19 @@ class SkillByTypeViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer  
 
+    @extend_schema(
+        summary='Retrieve skills by skill type.',
+        description='This endpoint retrieves skills by skill type ID.',
+        parameters=[
+            OpenApiParameter(
+                'id',
+                OpenApiTypes.INT,
+                OpenApiParameter.PATH,
+                description='Skill type ID. Use 0 to retrieve skills without a skill type.',
+                required=True,
+            ),
+        ],
+    )
     def retrieve(self, request, *args, **kwargs):
         skill_id = self.kwargs.get('pk')
         if not skill_id.isdigit():
@@ -88,6 +136,7 @@ class SkillByTypeViewSet(viewsets.ReadOnlyModelViewSet):
         data = {skill.id: str(skill) for skill in skills}
         return Response(data)
 
+    @extend_schema(exclude=True)
     def list(self, request, *args, **kwargs):
         response = {'message': 'Please provide a skill_id to retrieve skills.'}
         return Response(response, status=status.HTTP_400_BAD_REQUEST)

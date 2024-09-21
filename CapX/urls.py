@@ -59,11 +59,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include("rest_framework.urls", namespace="rest_framework")),
     path('', include('social_django.urls')),
-    path('', include(router.urls)),
     path('api/login/', include('rest_social_auth.urls_knox')),
     path('tags/<str:tag_type>/<int:tag_id>/', UsersByTagViewSet.as_view({'get': 'list'}), name='tags'),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
-    path("docs/", SpectacularSwaggerView.as_view(url_name="schema"),name="swagger-ui",),
+    path("", SpectacularSwaggerView.as_view(url_name="schema"),name="swagger-ui",),
+    path('', include(router.urls)),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
