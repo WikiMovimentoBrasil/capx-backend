@@ -86,12 +86,11 @@ class CustomUserModelTest(TestCase):
     def test_username_uniqueness(self):
         # Test the uniqueness of the username
         with self.assertRaises(IntegrityError):
-            another_user = CustomUser.objects.create_user(
+            CustomUser.objects.create_user(
                 username="Abrahmovic",
                 email="another@example.com",
                 password=str(secrets.randbits(16)),
             )
-            another_user.full_clean()
 
 
 class ProfileModelTest(TestCase):
