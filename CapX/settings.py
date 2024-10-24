@@ -159,8 +159,8 @@ REST_AUTH_TOKEN_MODEL = "knox.models.AuthToken"
 REST_AUTH_TOKEN_CREATOR = "users.utils.create_knox_token"
 REST_KNOX = {'TOKEN_TTL': timedelta(days=30)}
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'CapX API',
-    'DESCRIPTION': 'The Capacity Exchange (CapX) is a project within and for the Wikimedia Movement.',
-    'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
+    'TITLE': 'Capacity Exchange (CapX) API',
+    'DESCRIPTION': 'The Capacity Exchange (CapX) is a platform for finding and connecting with fellow Wikimedians to exchange knowledge, skills, and services on a global level.',
+    'VERSION': '1.10.1',
+    'SERVE_INCLUDE_SCHEMA': True,
 }
