@@ -29,21 +29,21 @@ class TerritorySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Territory
-        fields = ['id', 'territory_name']
+        fields = ['id', 'territory_name', 'parent_territory']
 
 
 class LanguageSerializer(serializers.ModelSerializer):
     
-        class Meta:
-            model = Language
-            fields = ['id', 'language_name', 'language_autonym', 'language_code']
+    class Meta:
+        model = Language
+        fields = ['id', 'language_name', 'language_autonym', 'language_code']
 
 
 class WikimediaProjectSerializer(serializers.ModelSerializer):
-    
-        class Meta:
-            model = WikimediaProject
-            fields = ['id', 'wikimedia_project_name', 'wikimedia_project_code']
+
+    class Meta:
+        model = WikimediaProject
+        fields = ['id', 'wikimedia_project_name', 'wikimedia_project_code']
 
 class OrganizationSerializer(serializers.ModelSerializer):
 
@@ -53,8 +53,6 @@ class OrganizationSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer()
-    territory_rep = TerritorySerializer(many=True, read_only=True, source='territory')
-    affiliation_rep = OrganizationSerializer(many=True, read_only=True, source='affiliation')
     
     class Meta:
         model = Profile
@@ -67,10 +65,8 @@ class ProfileSerializer(serializers.ModelSerializer):
             'wikidata_qid',
             'wiki_alt',
             'territory',
-            'territory_rep',
             'language',
             'affiliation',
-            'affiliation_rep',
             'wikimedia_project',
             'team',
             'skills_known',
@@ -106,3 +102,15 @@ class UsersBySkillSerializer(serializers.ModelSerializer):
             'skills_wanted',
         ]
    
+
+class UsersByTagSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username')
+
+    class Meta:
+        model = Profile
+        fields = [
+            'id', 
+            'display_name', 
+            'username', 
+            'profile_image'
+        ]

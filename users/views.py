@@ -1,12 +1,23 @@
 from .models import Profile, Territory, Language, WikimediaProject
 from orgs.models import Organization
-from .serializers import ProfileSerializer, TerritorySerializer, LanguageSerializer, WikimediaProjectSerializer, UsersBySkillSerializer
+from .serializers import ProfileSerializer, TerritorySerializer, LanguageSerializer, WikimediaProjectSerializer, UsersBySkillSerializer, UsersByTagSerializer
 from skills.models import Skill
 from rest_framework import status, viewsets, filters
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter, OpenApiTypes, OpenApiExample, OpenApiResponse
 
 
+@extend_schema_view(
+    list=extend_schema(
+        summary='List all users.',
+        description='This endpoint lists all users.',
+    ),
+    retrieve=extend_schema(
+        summary='Retrieve a user by ID.',
+        description='This endpoint retrieves a user by their ID.',
+    ),
+)
 class UsersViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
@@ -21,6 +32,16 @@ class UsersViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(user__username=username)
         return queryset
 
+@extend_schema_view(
+    list=extend_schema(
+        summary='List the profile of the logged-in user.',
+        description='This endpoint lists the profile of the logged-in user.',
+    ),
+    retrieve=extend_schema(
+        summary='Retrieve the profile of the logged-in user.',
+        description='This endpoint retrieves the profile of the logged-in user.',
+    ),
+)
 class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
@@ -30,6 +51,55 @@ class ProfileViewSet(viewsets.ModelViewSet):
         # Only allow the logged-in user to access their own profile
         return Profile.objects.filter(user=self.request.user)
 
+
+    @extend_schema(
+        summary='Update the profile of the logged-in user.',
+        description='This endpoint updates the profile of the logged-in user.',
+        parameters=[
+            ProfileSerializer,
+            OpenApiParameter(
+                name='user',
+                required=False,
+                description='Object containing the user data.',
+                type={
+                    'type': 'object', 
+                    'properties': {
+                        'email': {'type': 'string', 'format': 'email'},
+                    },
+                },
+            ),
+            OpenApiParameter(
+                name='contact',
+                required=False,
+                description='Object containing the contact data.',
+                type={
+                    'type': 'array',
+                    'items': {
+                        'type': 'object',
+                        'properties': {
+                            'display_name': {'type': 'string'},
+                            'value': {'type': 'string'},
+                        },
+                    },
+                },
+            ),
+            OpenApiParameter(
+                name='social',
+                required=False,
+                description='Object containing the social media data.',
+                type={
+                    'type': 'array',
+                    'items': {
+                        'type': 'object',
+                        'properties': {
+                            'display_name': {'type': 'string'},
+                            'value': {'type': 'string'},
+                        },
+                    },
+                },
+            ),
+        ],
+    )
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
 
@@ -55,7 +125,11 @@ class ProfileViewSet(viewsets.ModelViewSet):
             else:
                 return super().update(request, *args, **kwargs)
 
-    # Make it possible for the user to delete their own account
+    
+    @extend_schema(
+        summary='Delete the profile of the logged-in user.',
+        description='This endpoint deletes the profile of the logged-in user.',
+    )
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         if instance.user == request.user:
@@ -68,41 +142,86 @@ class ProfileViewSet(viewsets.ModelViewSet):
         instance.delete()
         user.delete()
 
+@extend_schema_view(
+    list=extend_schema(
+        summary='List all territories.',
+        description='This endpoint lists all territories.',
+    ),
+    retrieve=extend_schema(
+        summary='Retrieve a territory by ID.',
+        description='This endpoint retrieves a territory by its ID.',
+    ),
+)
+class TerritoryViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Territory.objects.all()
+    serializer_class = TerritorySerializer
+
 
 class ListTerritoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Territory.objects.all()
     serializer_class = TerritorySerializer
 
+    @extend_schema(
+        summary='List all territories.',
+        description='Deprecated. This endpoint lists all territories. Please use the /tags/ endpoint instead.',
+        deprecated=True
+    )
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         data = {territory.id: str(territory) for territory in queryset}
         return Response(data)
 
+    @extend_schema(exclude=True)
+    def retrieve(self, request, *args, **kwargs):
+        return Response({'message': 'Method not allowed.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 class ListLanguageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
 
+    @extend_schema(
+        summary='List all languages.',
+        description='Deprecated. This endpoint lists all languages. Please use the /tags/ endpoint instead.',
+        deprecated=True
+    )
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         data = {language.id: str(language) for language in queryset}
         return Response(data)
+
+    @extend_schema(exclude=True)
+    def retrieve(self, request, *args, **kwargs):
+        return Response({'message': 'Method not allowed.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 class ListWikimediaProjectViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = WikimediaProject.objects.all()
     serializer_class = WikimediaProjectSerializer
 
+    @extend_schema(
+        summary='List all Wikimedia projects.',
+        description='Deprecated. This endpoint lists all Wikimedia projects. Please use the /tags/ endpoint instead.',
+        deprecated=True
+    )
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         data = {project.id: str(project) for project in queryset}
         return Response(data)
+
+    @extend_schema(exclude=True)
+    def retrieve(self, request, *args, **kwargs):
+        return Response({'message': 'Method not allowed.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 class UsersBySkillViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = UsersBySkillSerializer
 
+    @extend_schema(
+        summary='List users by skill.',
+        description='Deprecated. This endpoint lists users by skill. Please use the /tags/ endpoint instead.',
+        deprecated=True
+    )
     def retrieve(self, request, *args, **kwargs):
         skill_id = self.kwargs['pk']
         skill = get_object_or_404(Skill, pk=skill_id)
@@ -117,57 +236,58 @@ class UsersBySkillViewSet(viewsets.ReadOnlyModelViewSet):
         }
         return Response(data)
 
+    @extend_schema(exclude=True)
     def list(self, request, *args, **kwargs):
         response = {'message': 'Please provide a skill id.'}
         return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 
-# Class to list users by "tags" (skills, languages, territories, wikimedia_project, affiliation) with format /tags/<tag_type>/<tag_id>/
-# Example: /tags/project/1/
 class UsersByTagViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
+    serializer_class = UsersByTagSerializer
 
-    def retrieve(self, request, *args, **kwargs):
-        tag_type = self.kwargs.get('tag_type')
-        tag_id = self.kwargs.get('tag_id')
-
-        if tag_type and not tag_id.isdigit():
-            response = {'message': 'Please provide a valid tag id.'}
-            return Response(response, status=status.HTTP_400_BAD_REQUEST)
-
-        if tag_type == 'skill':
-            tag = get_object_or_404(Skill, pk=tag_id)
-            known_users = Profile.objects.filter(skills_known=tag)
-            available_users = Profile.objects.filter(skills_available=tag)
-            wanted_users = Profile.objects.filter(skills_wanted=tag)
-            data = {
-                'known': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in known_users],
-                'available': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in available_users],
-                'wanted': [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in wanted_users],
-            }
-        elif tag_type == 'language':
-            tag = get_object_or_404(Language, pk=tag_id)
-            users = Profile.objects.filter(language=tag)
-            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
-        elif tag_type == 'territory':
-            tag = get_object_or_404(Territory, pk=tag_id)
-            users = Profile.objects.filter(territory=tag)
-            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
-        elif tag_type == 'wikimedia_project':
-            tag = get_object_or_404(WikimediaProject, pk=tag_id)
-            users = Profile.objects.filter(wikimedia_project=tag)
-            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
-        elif tag_type == 'affiliation':
-            tag = get_object_or_404(Organization, pk=tag_id)
-            users = Profile.objects.filter(affiliation=tag)
-            data = [{'id': user.id, 'display_name': user.display_name, 'username': user.user.username, 'profile_image': user.profile_image} for user in users]
-        else:
-            response = {'message': 'Invalid tag type.'}
-            return Response(response, status=status.HTTP_400_BAD_REQUEST)
-
-        return Response(data)
-
+    @extend_schema(
+        summary='Lists users by tag.',
+        description='This endpoint retrieves users by tag.',
+        parameters=[
+            OpenApiParameter(
+                "tag_type",
+                OpenApiTypes.STR,
+                OpenApiParameter.PATH,
+                required=True,
+                description='The type of tag to search for.',
+                enum=['skill_known', 'skill_available', 'skill_wanted', 'language', 'territory', 'wikimedia_project', 'affiliation'],
+            ),
+            OpenApiParameter(
+                "tag_id",
+                OpenApiTypes.INT,
+                OpenApiParameter.PATH,
+                required=True,
+                description='The ID of the tag to search for.',
+            ),
+        ],
+    )
     def list(self, request, *args, **kwargs):
-        response = {'message': 'Please provide a tag type and a tag id. Options are: skill, language, territory, wikimedia_project, affiliation.'}
-        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+        tag_type = kwargs.get('tag_type')
+        tag_id = kwargs.get('tag_id')
+        if not tag_type or not tag_id:
+            return Response({'message': 'Please provide a valid tag type and tag ID.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if tag_type == 'skill_known':
+            queryset = Profile.objects.filter(skills_known__id=tag_id)
+        elif tag_type == 'skill_available':
+            queryset = Profile.objects.filter(skills_available__id=tag_id)
+        elif tag_type == 'skill_wanted':
+            queryset = Profile.objects.filter(skills_wanted__id=tag_id)
+        elif tag_type == 'language':
+            queryset = Profile.objects.filter(language__id=tag_id)
+        elif tag_type == 'territory':
+            queryset = Profile.objects.filter(territory__id=tag_id)
+        elif tag_type == 'wikimedia_project':
+            queryset = Profile.objects.filter(wikimedia_project__id=tag_id)
+        elif tag_type == 'affiliation':
+            queryset = Profile.objects.filter(affiliation__id=tag_id)
+        else:
+            return Response({'message': 'Invalid tag type. Options are: skill_known, skill_available, skill_wanted, language, territory, wikimedia_project, affiliation.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(self.get_serializer(queryset, many=True).data)

@@ -14,7 +14,7 @@ import mimetypes
 from datetime import timedelta
 from CapX.settings_local import (DEBUG, ALLOWED_HOSTS, SOCIAL_AUTH_MEDIAWIKI_CALLBACK, 
     DATABASES, BASE_DIR, SECRET_KEY, SOCIAL_AUTH_MEDIAWIKI_URL, SOCIAL_AUTH_MEDIAWIKI_KEY, 
-    SOCIAL_AUTH_MEDIAWIKI_SECRET, LANGUAGES)
+    SOCIAL_AUTH_MEDIAWIKI_SECRET, LANGUAGES, EMAIL_HOST, EMAIL_PORT, SERVER_EMAIL, ADMINS)
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_social_auth',
     'knox',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -149,6 +150,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_METADATA_CLASS': 'CapX.metadata.CustomMetadata',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 REST_AUTH_SERIALIZERS = {
     "TOKEN_SERIALIZER": "users.serializers.KnoxSerializer",
@@ -156,3 +158,9 @@ REST_AUTH_SERIALIZERS = {
 REST_AUTH_TOKEN_MODEL = "knox.models.AuthToken"
 REST_AUTH_TOKEN_CREATOR = "users.utils.create_knox_token"
 REST_KNOX = {'TOKEN_TTL': timedelta(days=30)}
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Capacity Exchange (CapX) API',
+    'DESCRIPTION': 'The Capacity Exchange (CapX) is a platform for finding and connecting with fellow Wikimedians to exchange knowledge, skills, and services on a global level.',
+    'VERSION': '1.10.1',
+    'SERVE_INCLUDE_SCHEMA': True,
+}

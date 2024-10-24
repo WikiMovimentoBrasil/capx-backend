@@ -61,7 +61,7 @@ class SkillViewSetTestCase(TestCase):
         updated_data = {
             'skill_wikidata_item': 'Q123456780',
         }
-        response = self.client.patch('/skill/' + str(skill.pk) + '/', updated_data)
+        response = self.client.put('/skill/' + str(skill.pk) + '/', updated_data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         skill.refresh_from_db()
@@ -75,8 +75,16 @@ class SkillViewSetTestCase(TestCase):
         updated_data = {
             'skill_wikidata_item': 'Q123456780',
         }
-        response = self.client.patch('/skill/' + str(skill.pk) + '/', updated_data)
+        response = self.client.put('/skill/' + str(skill.pk) + '/', updated_data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_partial_update_skill(self):
+        skill = Skill.objects.get(skill_wikidata_item='Q123456789')
+        updated_data = {
+            'skill_wikidata_item': 'Q123456780',
+        }
+        response = self.client.patch('/skill/' + str(skill.pk) + '/', updated_data)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_delete_skill(self):
         response = self.client.delete('/skill/1/')
@@ -105,6 +113,9 @@ class SkillViewSetTestCase(TestCase):
         serializer = SkillSerializer(skills, many=True)
         expected_data = {item['id']: item['skill_wikidata_item'] for item in serializer.data}
         self.assertEqual(response.data, expected_data)
+        
+        response = self.client.get('/list_skills/1/')
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
 class SkillByTypeTestCase(TestCase):
     def setUp(self):

@@ -65,14 +65,14 @@ class EventViewSetTests(TestCase):
         response = self.client.patch(f'/events/{self.event.id}/', {
             'name': 'Updated Event',
         })
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_partial_update_event_by_non_organizer(self):
         self.client.force_login(self.regular_user)
         response = self.client.patch(f'/events/{self.event.id}/', {
             'name': 'Updated Event',
         })
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_delete_event_by_admin(self):
         self.client.force_login(self.staff_user)

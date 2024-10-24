@@ -130,9 +130,11 @@ class OrganizationViewSetTestCase(APITestCase):
             acronym='NO',
             type=OrganizationType.objects.get(pk=1),
         )
+        manager = CustomUser.objects.create_user(username='manager', password=str(secrets.randbits(16)))
+        organization.managers.set([manager])
         organization.territory.set([Territory.objects.get(pk=1)])
         response = self.client.put('/organizations/1/', {'display_name': 'New Name','acronym': 'NN'})
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
         self.user.is_staff = True
         response = self.client.put('/organizations/1/', {'display_name': 'New Name','acronym': 'NN'})
@@ -146,7 +148,7 @@ class OrganizationViewSetTestCase(APITestCase):
     def test_partial_update_org(self):
         self.client.force_authenticate(self.user)
         response = self.client.patch('/organizations/1/', {'display_name': 'New Name'})
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
         organization = Organization.objects.create(
             display_name='New Organization',
@@ -155,16 +157,36 @@ class OrganizationViewSetTestCase(APITestCase):
         )
         organization.territory.set([Territory.objects.get(pk=1)])
         response = self.client.patch('/organizations/1/', {'display_name': 'New Name'})
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
         self.user.is_staff = True
         response = self.client.patch('/organizations/1/', {'display_name': 'New Name'})
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
         self.user.is_staff = False
         organization.managers.set([self.user])
         response = self.client.patch('/organizations/1/', {'display_name': 'Other New Name'})
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def test_delete_org(self):
+        self.client.force_authenticate(self.user)
+        response = self.client.delete('/organizations/1/')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+        organization = Organization.objects.create(
+            display_name='New Organization',
+            acronym='NO',
+            type=OrganizationType.objects.get(pk=1),
+        )
+        manager = CustomUser.objects.create_user(username='manager', password=str(secrets.randbits(16)))
+        organization.managers.set([manager])
+        organization.territory.set([Territory.objects.get(pk=1)])
+        response = self.client.delete('/organizations/1/')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        self.user.is_staff = True
+        response = self.client.delete('/organizations/1/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
 class ListOrganizationsViewSetTestCase(APITestCase):
     def setUp(self):
@@ -209,6 +231,9 @@ class ListOrganizationsViewSetTestCase(APITestCase):
             2: 'New Organization 2 (NO2)',
         }
         self.assertEqual(response.data, expected)
+
+        response = self.client.get('/list_affiliation/1/')
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_list_orgs_staff(self):
         self.user.is_staff = True

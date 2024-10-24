@@ -21,22 +21,28 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from skills.views import SkillViewSet, ListSkillViewSet, SkillByTypeViewSet
-from users.views import ProfileViewSet, UsersViewSet, ListTerritoryViewSet, ListLanguageViewSet, ListWikimediaProjectViewSet, UsersBySkillViewSet, UsersByTagViewSet
+from users.views import (
+    ProfileViewSet, UsersViewSet, ListTerritoryViewSet, 
+    ListLanguageViewSet, ListWikimediaProjectViewSet, 
+    UsersBySkillViewSet, UsersByTagViewSet, TerritoryViewSet
+)
 from bugs.views import BugViewSet, AttachmentViewSet
-from orgs.views import OrganizationViewSet, ListOrganizationViewSet
+from orgs.views import OrganizationViewSet, ListOrganizationViewSet, OrganizationTypeViewSet
 from events.views import EventViewSet, EventParticipantViewSet, EventOrganizationsViewSet
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 
 router = DefaultRouter()
 router.register('skill', SkillViewSet, basename='skill')
 router.register('users', UsersViewSet, basename='users')
 router.register('profile', ProfileViewSet, basename='profile')
+router.register('territory', TerritoryViewSet, basename='territory')
 router.register('organizations', OrganizationViewSet, basename='organizations')
+router.register('organization_type', OrganizationTypeViewSet, basename='organization_type')
 router.register('bugs', BugViewSet, basename='bugs')
 router.register('attachment', AttachmentViewSet, basename='attachment')
 router.register('users_by_skill', UsersBySkillViewSet, basename='users_by_skill')
 router.register('skills_by_type', SkillByTypeViewSet, basename='skills_by_type')
-router.register('tags', UsersByTagViewSet, basename='tags')
 router.register('events', EventViewSet)
 router.register('events_participants', EventParticipantViewSet)
 router.register('events_organizations', EventOrganizationsViewSet)
@@ -53,10 +59,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include("rest_framework.urls", namespace="rest_framework")),
     path('', include('social_django.urls')),
-    path('', include(router.urls)),
-    path('<int:pk>/', include(router.urls)),
     path('api/login/', include('rest_social_auth.urls_knox')),
-    path('tags/<str:tag_type>/<str:tag_id>/', UsersByTagViewSet.as_view({'get': 'retrieve'}), name='tags'),
+    path('tags/<str:tag_type>/<int:tag_id>/', UsersByTagViewSet.as_view({'get': 'list'}), name='tags'),
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("", SpectacularSwaggerView.as_view(url_name="schema"),name="swagger-ui",),
+    path('', include(router.urls)),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
