@@ -53,7 +53,14 @@ from users.serializers import ProfileSerializer
             ),
             OpenApiParameter(
                 name='ordering',
-                description='Sort users by field. Prefix with "-" for descending order. Options: last_update.',
+                description=(
+                    'Sort users by field. Prefix with "-" for descending order. '
+                    'Options: last_update, display_priority. '
+                    'display_priority ranks profiles for the Explore feed: complete profiles '
+                    '(with capacities) before incomplete ones, and within each group those with '
+                    'a Wikidata image first, then a chosen avatar, then no image. Combine with '
+                    'last_update as a tie-breaker, e.g. "display_priority,-last_update".'
+                ),
                 required=False,
                 type=OpenApiTypes.STR,
             ),
@@ -68,7 +75,7 @@ class UsersViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    ordering_fields = ['last_update']
+    ordering_fields = ['last_update', 'display_priority']
     filterset_fields = [
         'user__username',
         'about',
@@ -83,6 +90,36 @@ class UsersViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+
+        # Annotate a display priority used by the Explore feed ordering.
+        # A profile "has an image" via Wikidata when it links a Wikidata item but
+        # picked no avatar (avatar is null); a chosen avatar always wins over Wikidata.
+        # Completeness (having any capacity) takes precedence over the image tier, so
+        # incomplete profiles always rank after complete ones:
+        #   complete:   wikidata image = 0, chosen avatar = 1, no image = 2
+        #   incomplete: wikidata image = 3, chosen avatar = 4, no image = 5
+        # Using Exists keeps the skill check from multiplying rows across the M2M joins.
+        has_any_skill = models.Exists(
+            Profile.all_objects.filter(pk=models.OuterRef('pk')).filter(
+                models.Q(skills_known__isnull=False)
+                | models.Q(skills_available__isnull=False)
+                | models.Q(skills_wanted__isnull=False)
+            )
+        )
+        has_wikidata_image = models.Q(avatar__isnull=True) & ~models.Q(wikidata_qid='')
+        has_avatar = models.Q(avatar__isnull=False)
+        queryset = queryset.annotate(_has_any_skill=has_any_skill).annotate(
+            display_priority=models.Case(
+                models.When(models.Q(_has_any_skill=True) & has_wikidata_image, then=models.Value(0)),
+                models.When(models.Q(_has_any_skill=True) & has_avatar, then=models.Value(1)),
+                models.When(_has_any_skill=True, then=models.Value(2)),
+                models.When(has_wikidata_image, then=models.Value(3)),
+                models.When(has_avatar, then=models.Value(4)),
+                default=models.Value(5),
+                output_field=models.IntegerField(),
+            )
+        )
+
         has_skills_known = self.request.query_params.get('has_skills_known')
         has_skills_available = self.request.query_params.get('has_skills_available')
         has_skills_wanted = self.request.query_params.get('has_skills_wanted')

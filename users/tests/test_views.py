@@ -5,7 +5,7 @@ from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient
 from users.models import Profile, CustomUser, LanguageProficiency, SavedItem, Badge, UserBadge
-from users.models import Territory, Language, WikimediaProject
+from users.models import Territory, Language, WikimediaProject, Avatar
 from users.serializers import ProfileSerializer, TerritorySerializer, LanguageSerializer, WikimediaProjectSerializer, SavedItemSerializer, BadgeSerializer, UserBadgeSerializer
 from skills.models import Skill
 from orgs.models import Organization, OrganizationType, OrganizationName
@@ -1122,6 +1122,77 @@ class UsersOrderingTestCase(TestCase):
         self.assertGreaterEqual(len(results), 3)
         # user3 should be first as it was updated most recently
         self.assertEqual(results[0]['user']['username'], 'gamma_user')
+
+
+class UsersDisplayPriorityOrderingTestCase(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.skill = Skill.objects.create(skill_wikidata_item='Q123456789')
+        self.avatar = Avatar.objects.create(avatar_url='https://example.org/avatar.png')
+
+    def _make_profile(self, username, *, has_skill=False, avatar=False, wikidata=False):
+        user = CustomUser.objects.create_user(username=username, password=str(secrets.randbits(16)))
+        profile = user.profile
+        if avatar:
+            profile.avatar = self.avatar
+        if wikidata:
+            profile.wikidata_qid = 'Q42'
+        profile.save()
+        if has_skill:
+            profile.skills_known.add(self.skill)
+        return user
+
+    def test_display_priority_orders_complete_and_image_tiers(self):
+        # Created out of priority order on purpose to prove ordering is by display_priority.
+        self._make_profile('p5_incomplete_noimage')
+        self._make_profile('p2_complete_noimage', has_skill=True)
+        self._make_profile('p4_incomplete_avatar', avatar=True)
+        self._make_profile('p0_complete_wikidata', has_skill=True, wikidata=True)
+        self._make_profile('p3_incomplete_wikidata', wikidata=True)
+        self._make_profile('p1_complete_avatar', has_skill=True, avatar=True)
+
+        response = self.client.get('/users/?ordering=display_priority,-last_update')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        usernames = [r['user']['username'] for r in response.data['results']]
+        self.assertEqual(
+            usernames,
+            [
+                'p0_complete_wikidata',
+                'p1_complete_avatar',
+                'p2_complete_noimage',
+                'p3_incomplete_wikidata',
+                'p4_incomplete_avatar',
+                'p5_incomplete_noimage',
+            ],
+        )
+
+    def test_display_priority_avatar_wins_over_wikidata(self):
+        # A chosen avatar takes precedence over a linked Wikidata image (mirrors the UI).
+        self._make_profile('with_avatar_and_wikidata', has_skill=True, avatar=True, wikidata=True)
+        self._make_profile('with_wikidata_only', has_skill=True, wikidata=True)
+
+        response = self.client.get('/users/?ordering=display_priority,-last_update')
+        usernames = [r['user']['username'] for r in response.data['results']]
+        # Wikidata-image profile (priority 0) ranks before the avatar one (priority 1).
+        self.assertLess(
+            usernames.index('with_wikidata_only'),
+            usernames.index('with_avatar_and_wikidata'),
+        )
+
+    def test_display_priority_breaks_ties_by_last_update(self):
+        # Same tier (complete + no image): most recently updated comes first.
+        older = self._make_profile('older_complete', has_skill=True)
+        newer = self._make_profile('newer_complete', has_skill=True)
+        # Touch `older` last so it would win by recency if the tie-break is wrong-way,
+        # then touch `newer` to make it the most recent.
+        older.profile.about = 'touch older'
+        older.profile.save()
+        newer.profile.about = 'touch newer'
+        newer.profile.save()
+
+        response = self.client.get('/users/?ordering=display_priority,-last_update')
+        usernames = [r['user']['username'] for r in response.data['results']]
+        self.assertLess(usernames.index('newer_complete'), usernames.index('older_complete'))
 
 
 class LanguagesByTerritoryViewTestCase(TestCase):
